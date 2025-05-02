@@ -20,7 +20,7 @@ import qrcode
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
 
-def generate_qr_code(url, output_dir, repository="YOUR_USERNAME/ptz-camera-controller"):
+def generate_qr_code(url, output_dir, repository="zforce0/ptz-camera-controller"):
     """Generate a QR code for the given URL."""
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
@@ -161,7 +161,7 @@ def generate_qr_code(url, output_dir, repository="YOUR_USERNAME/ptz-camera-contr
 
 def main():
     parser = argparse.ArgumentParser(description='Generate QR code for PTZ Camera Controller app installation')
-    parser.add_argument('url', nargs='?', default='https://github.com/YOUR_USERNAME/ptz-camera-controller/releases/latest/download/ptz-camera-controller.apk',
+    parser.add_argument('url', nargs='?', default='https://github.com/zforce0/ptz-camera-controller/releases/latest/download/ptz-camera-controller.apk',
                         help='URL to the APK file')
     parser.add_argument('output_dir', nargs='?', default='qr_output',
                         help='Directory to save the QR code and HTML')

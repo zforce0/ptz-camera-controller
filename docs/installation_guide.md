@@ -41,7 +41,7 @@ If you cannot scan the QR code, follow these steps:
 1. **Download the APK**
    
    - On your Android tablet, visit:
-     https://github.com/YOUR_USERNAME/ptz-camera-controller/releases/latest
+     https://github.com/zforce0/ptz-camera-controller/releases/latest
    - Scroll down to "Assets"
    - Tap on "ptz-camera-controller.apk" to download
 

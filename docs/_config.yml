@@ -5,6 +5,6 @@ show_downloads: true
 google_analytics:
 github:
   is_project_page: true
-  repository_url: https://github.com/YOUR_USERNAME/ptz-camera-controller
-  owner_url: https://github.com/YOUR_USERNAME
-  owner_name: YOUR_USERNAME
+  repository_url: https://github.com/zforce0/ptz-camera-controller
+  owner_url: https://github.com/zforce0
+  owner_name: zforce0

@@ -22,13 +22,13 @@ A comprehensive Android application for controlling PTZ (Pan-Tilt-Zoom) cameras 
 
 Scan this QR code with your Android tablet to download the latest APK:
 
-![QR Code for APK Download](https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/YOUR_USERNAME/ptz-camera-controller/releases/latest/download/ptz-camera-controller.apk)
+![QR Code for APK Download](https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/zforce0/ptz-camera-controller/releases/latest/download/ptz-camera-controller.apk)
 
 This QR code will automatically update when new releases are published, always linking to the latest version.
 
 #### Option 2: Direct Download
 
-Download the APK directly from our [GitHub Releases page](https://github.com/YOUR_USERNAME/ptz-camera-controller/releases).
+Download the APK directly from our [GitHub Releases page](https://github.com/zforce0/ptz-camera-controller/releases).
 
 Each release includes:
 - APK file for direct installation
@@ -51,7 +51,7 @@ The app will periodically check for new releases on GitHub and notify you when u
 
 1. Clone this repository:
    ```
-   git clone https://github.com/username/ptz-camera-controller.git
+   git clone https://github.com/zforce0/ptz-camera-controller.git
    cd ptz-camera-controller
    ```
 

@@ -45,4 +45,4 @@ Scan this QR code with your Android tablet to download the app:
 
 ## Support
 
-If you encounter any issues or have questions, please [open an issue](https://github.com/YOUR_USERNAME/ptz-camera-controller/issues) on GitHub.
+If you encounter any issues or have questions, please [open an issue](https://github.com/zforce0/ptz-camera-controller/issues) on GitHub.
