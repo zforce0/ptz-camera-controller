@@ -1,0 +1,37 @@
+modules = ["python-3.11"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["freetype", "lcms2", "libGL", "libGLU", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "tcl", "tk", "zlib"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "PTZ Camera Server"
+
+[[workflows.workflow]]
+name = "PTZ Camera Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd onboard && pip install -r requirements.txt && python camera_server.py"
+waitForPort = 8000
+
+[deployment]
+run = ["sh", "-c", "cd onboard && pip install -r requirements.txt && python camera_server.py"]
+
+[[ports]]
+localPort = 8000
+externalPort = 8000
+
+[[ports]]
+localPort = 8001
+externalPort = 80
