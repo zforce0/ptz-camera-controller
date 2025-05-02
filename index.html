@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTZ Camera Controller - QR Code Installation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #3498db;
+            font-weight: normal;
+            margin-top: 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 320px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .card img {
+            max-width: 200px;
+            height: auto;
+            margin: 20px 0;
+        }
+        .card p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+        .secondary-button {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        .secondary-button:hover {
+            background-color: #d5dbdb;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>PTZ Camera Controller</h1>
+        <h2>Installation & Documentation</h2>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <h3>Android Tablet App</h3>
+            <img src="screenshots/qr_code_placeholder.svg" alt="QR Code">
+            <p>Scan this QR code with your Android tablet to download and install the PTZ Camera Controller app.</p>
+            <a href="qr_code_installer.html" class="button">Installation Page</a>
+        </div>
+        
+        <div class="card">
+            <h3>Server Installation</h3>
+            <img src="https://cdn-icons-png.flaticon.com/512/5088/5088494.png" alt="Server Icon">
+            <p>Install the PTZ Camera Server on your Raspberry Pi or NVIDIA Jetson device.</p>
+            <a href="docs/installation_guide.md" class="button">Installation Guide</a>
+        </div>
+        
+        <div class="card">
+            <h3>Developer Resources</h3>
+            <img src="https://cdn-icons-png.flaticon.com/512/5636/5636746.png" alt="Developer Icon">
+            <p>GitHub release setup, keystore configuration, and development guides.</p>
+            <a href="docs/github_release_guide.md" class="button">GitHub Guide</a>
+            <a href="docs/keystore_setup_guide.md" class="button secondary-button">Keystore Setup</a>
+        </div>
+    </div>
+</body>
+</html>

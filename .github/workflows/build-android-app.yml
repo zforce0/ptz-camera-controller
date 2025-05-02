@@ -1,92 +1,91 @@
-name: Build Android App
+name: Build and Release Android App
 
 on:
   push:
-    branches: [ main ]
     tags:
-      - 'v*'
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:  # Allow manual trigger
+      - 'v*'  # Trigger on tag push with format v*.*.* (e.g., v1.0.0)
 
 jobs:
   build:
+    name: Build and Release APK
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up JDK
+      - uses: actions/checkout@v3
+      
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
+          java-version: '17'
           distribution: 'temurin'
-          java-version: '11'
           cache: gradle
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Set up keystore
+      
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v2
+      
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      
+      - name: Extract version from tag
+        id: extract_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+      
+      - name: Decode Keystore
         run: |
-          mkdir -p keystore
-          echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > keystore/release.keystore
-          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > keystore.properties
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> keystore.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> keystore.properties
-          echo "storeFile=../keystore/release.keystore" >> keystore.properties
-        env:
-          KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-
+          echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > keystore.jks
+      
       - name: Build APK
-        run: ./gradlew assembleRelease
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v3
-        with:
-          name: ptz-camera-controller
-          path: app/build/outputs/apk/release/app-release.apk
-
-      - name: Generate QR Code
-        if: startsWith(github.ref, 'refs/tags/')
         run: |
+          ./gradlew assembleRelease \
+            -Pandroid.injected.signing.store.file=../keystore.jks \
+            -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} \
+            -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} \
+            -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
+      
+      - name: Rename APK
+        run: |
+          mkdir -p releases
+          cp app/build/outputs/apk/release/app-release.apk releases/ptz-camera-controller.apk
+      
+      - name: Generate QR Code
+        run: |
+          sudo apt-get update
           sudo apt-get install -y qrencode
-          qrencode -o qrcode.png "https://github.com/${{ github.repository }}/releases/latest/download/ptz-camera-controller.apk"
-          
-      - name: Upload QR Code
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: actions/upload-artifact@v3
-        with:
-          name: qrcode
-          path: qrcode.png
-
+          qrencode -o releases/install-qr-code.png "https://github.com/${{ github.repository }}/releases/latest/download/ptz-camera-controller.apk"
+      
       - name: Create Release
-        if: startsWith(github.ref, 'refs/tags/')
+        id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            app/build/outputs/apk/release/app-release.apk
-            qrcode.png
-          name: PTZ Camera Controller ${{ github.ref_name }}
-          body: |
-            # PTZ Camera Controller ${{ github.ref_name }}
-            
-            ## Installation
-            
-            ### Option 1: Scan QR Code
-            Scan the QR code image attached to this release with your Android tablet.
-            
-            ### Option 2: Direct Download
-            Download the APK file directly from this release page.
-            
-            ## Changes in this version
-            - New features and improvements
-            - Bug fixes
-            
-            ## Requirements
-            - Android 6.0 (Marshmallow) or higher
-            - Bluetooth and/or WiFi capability
+          name: PTZ Camera Controller v${{ env.VERSION }}
           draft: false
           prerelease: false
+          body: |
+            # PTZ Camera Controller v${{ env.VERSION }}
+            
+            ## Installation:
+            - Scan the QR code image below with your Android tablet
+            - Download and install the APK file
+            - Follow the in-app setup instructions
+            
+            ## What's new:
+            - New release of PTZ Camera Controller
+            - Refer to repository for detailed changes
+            
+            ## Direct download link:
+            https://github.com/${{ github.repository }}/releases/latest/download/ptz-camera-controller.apk
+          files: |
+            releases/ptz-camera-controller.apk
+            releases/install-qr-code.png
+      
+      - name: Upload QR Code to Pages
+        run: |
+          mkdir -p public
+          cp releases/install-qr-code.png public/
+          echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>PTZ Camera Controller - Install</title></head><body><h1>PTZ Camera Controller</h1><h2>Scan this QR code to install:</h2><img src='install-qr-code.png' alt='Install QR Code'></body></html>" > public/index.html
+          
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages

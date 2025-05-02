@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- QR Code Background -->
+  <rect x="0" y="0" width="300" height="300" fill="#FFFFFF" stroke="#000000" stroke-width="5" />
+  
+  <!-- QR Code Pattern - Simplified representation -->
+  <!-- Position detection patterns (corners) -->
+  <rect x="30" y="30" width="50" height="50" fill="#000000" />
+  <rect x="40" y="40" width="30" height="30" fill="#FFFFFF" />
+  <rect x="50" y="50" width="10" height="10" fill="#000000" />
+  
+  <rect x="220" y="30" width="50" height="50" fill="#000000" />
+  <rect x="230" y="40" width="30" height="30" fill="#FFFFFF" />
+  <rect x="240" y="50" width="10" height="10" fill="#000000" />
+  
+  <rect x="30" y="220" width="50" height="50" fill="#000000" />
+  <rect x="40" y="230" width="30" height="30" fill="#FFFFFF" />
+  <rect x="50" y="240" width="10" height="10" fill="#000000" />
+  
+  <!-- Alignment pattern -->
+  <rect x="200" y="200" width="30" height="30" fill="#000000" />
+  <rect x="205" y="205" width="20" height="20" fill="#FFFFFF" />
+  <rect x="210" y="210" width="10" height="10" fill="#000000" />
+  
+  <!-- Timing patterns -->
+  <rect x="30" y="100" width="240" height="5" fill="#000000" />
+  <rect x="100" y="30" width="5" height="240" fill="#000000" />
+  
+  <!-- Data modules (simplified) -->
+  <!-- Row 1 data -->
+  <rect x="90" y="30" width="10" height="10" fill="#000000" />
+  <rect x="110" y="30" width="10" height="10" fill="#000000" />
+  <rect x="130" y="30" width="10" height="10" fill="#000000" />
+  <rect x="150" y="30" width="10" height="10" fill="#000000" />
+  <rect x="170" y="30" width="10" height="10" fill="#000000" />
+  <rect x="190" y="30" width="10" height="10" fill="#000000" />
+  
+  <!-- Row 2 data -->
+  <rect x="90" y="50" width="10" height="10" fill="#000000" />
+  <rect x="120" y="50" width="10" height="10" fill="#000000" />
+  <rect x="150" y="50" width="10" height="10" fill="#000000" />
+  <rect x="180" y="50" width="10" height="10" fill="#000000" />
+  
+  <!-- Random data points throughout -->
+  <rect x="50" y="70" width="10" height="10" fill="#000000" />
+  <rect x="80" y="70" width="10" height="10" fill="#000000" />
+  <rect x="120" y="70" width="10" height="10" fill="#000000" />
+  <rect x="160" y="70" width="10" height="10" fill="#000000" />
+  <rect x="200" y="70" width="10" height="10" fill="#000000" />
+  <rect x="240" y="70" width="10" height="10" fill="#000000" />
+  
+  <rect x="60" y="110" width="10" height="10" fill="#000000" />
+  <rect x="100" y="110" width="10" height="10" fill="#000000" />
+  <rect x="140" y="110" width="10" height="10" fill="#000000" />
+  <rect x="180" y="110" width="10" height="10" fill="#000000" />
+  <rect x="220" y="110" width="10" height="10" fill="#000000" />
+  
+  <rect x="50" y="140" width="10" height="10" fill="#000000" />
+  <rect x="90" y="140" width="10" height="10" fill="#000000" />
+  <rect x="130" y="140" width="10" height="10" fill="#000000" />
+  <rect x="170" y="140" width="10" height="10" fill="#000000" />
+  <rect x="210" y="140" width="10" height="10" fill="#000000" />
+  
+  <rect x="40" y="170" width="10" height="10" fill="#000000" />
+  <rect x="80" y="170" width="10" height="10" fill="#000000" />
+  <rect x="120" y="170" width="10" height="10" fill="#000000" />
+  <rect x="160" y="170" width="10" height="10" fill="#000000" />
+  <rect x="200" y="170" width="10" height="10" fill="#000000" />
+  <rect x="240" y="170" width="10" height="10" fill="#000000" />
+  
+  <rect x="110" y="210" width="10" height="10" fill="#000000" />
+  <rect x="130" y="210" width="10" height="10" fill="#000000" />
+  <rect x="150" y="210" width="10" height="10" fill="#000000" />
+  <rect x="170" y="210" width="10" height="10" fill="#000000" />
+  
+  <rect x="100" y="240" width="10" height="10" fill="#000000" />
+  <rect x="140" y="240" width="10" height="10" fill="#000000" />
+  <rect x="180" y="240" width="10" height="10" fill="#000000" />
+  <rect x="220" y="240" width="10" height="10" fill="#000000" />
+  
+  <!-- QR Code label -->
+  <text x="150" y="285" font-family="Arial" font-size="14" text-anchor="middle" fill="#000000">Scan to download PTZ Camera Controller</text>
+</svg>

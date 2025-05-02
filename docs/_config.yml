@@ -1,0 +1,10 @@
+theme: jekyll-theme-cayman
+title: PTZ Camera Controller
+description: Android tablet application for controlling PTZ cameras
+show_downloads: true
+google_analytics:
+github:
+  is_project_page: true
+  repository_url: https://github.com/YOUR_USERNAME/ptz-camera-controller
+  owner_url: https://github.com/YOUR_USERNAME
+  owner_name: YOUR_USERNAME
