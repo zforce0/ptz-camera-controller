@@ -1,4 +1,4 @@
-// Plugin management must be the first block in settings.gradle
+
 pluginManagement {
     repositories {
         google()
@@ -8,12 +8,12 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
 }
 
-rootProject.name = "PTZ Controller"
+rootProject.name = 'PTZ Controller'
 include ':app'
