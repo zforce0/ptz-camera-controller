@@ -12,6 +12,7 @@ import logging
 import threading
 import subprocess
 import signal
+import socket
 
 logger = logging.getLogger('video_streamer')
 
@@ -172,23 +173,25 @@ class VideoStreamer:
 
     def get_stream_urls(self):
         """Get the URLs for the active streams"""
-        # For simulation purposes, we'll return demo URLs
-        # In production, these would be real RTSP stream URLs
-        
-        # Create sample URLs that look real but are for demo only
-        rgb_url = f"rtsp://demo.ptz-camera.com:{self.port}/live/rgb-stream"
-        ir_url = f"rtsp://demo.ptz-camera.com:{self.port + 1}/live/ir-stream"
+        # Get local IP address for proper streaming
+        local_ip = self._get_local_ip_address()
+            
+        # Create stream URLs that can be accessed from external devices
+        # In production with real cameras, these would point to the actual RTSP streams
+        rgb_url = f"rtsp://{local_ip}:{self.port}/rgb"
+        ir_url = f"rtsp://{local_ip}:{self.port + 1}/ir"
         
         # Log the URLs we're providing
-        logger.info(f"Providing demo stream URLs - RGB: {rgb_url}, IR: {ir_url}")
+        logger.info(f"Providing stream URLs - RGB: {rgb_url}, IR: {ir_url}")
         
-        # Save the URLs to files for reference
+        # Save the URLs to files for reference and for the local viewer to use
         try:
             with open("/tmp/camera_sim/stream_urls.txt", "w") as f:
                 f.write(f"RGB Stream URL: {rgb_url}\n")
                 f.write(f"IR Stream URL: {ir_url}\n")
                 f.write(f"Generated: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
-                f.write("Note: These are simulation URLs and not actual streams.\n")
+                if not self._check_for_real_cameras():
+                    f.write("Note: These are simulation URLs and not actual streams.\n")
         except Exception as e:
             logger.error(f"Failed to save stream URLs: {e}")
         
@@ -196,3 +199,34 @@ class VideoStreamer:
             "rgb": rgb_url,
             "ir": ir_url
         }
+        
+    def _get_local_ip_address(self):
+        """Get the local IP address for streaming"""
+        try:
+            # Create a socket and connect to an external server
+            # This doesn't actually establish a connection but gives us the local IP
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            local_ip = s.getsockname()[0]
+            s.close()
+            return local_ip
+        except Exception as e:
+            logger.warning(f"Could not determine local IP: {e}")
+            # Fallback to localhost if we can't determine IP
+            return "127.0.0.1"
+    
+    def _check_for_real_cameras(self):
+        """Check if real camera devices are available"""
+        # Common camera device paths to check
+        camera_paths = [
+            "/dev/video0",
+            "/dev/video1",
+            # Add more common paths as needed
+        ]
+        
+        # Check if any of these exist and aren't our simulation files
+        for path in camera_paths:
+            if os.path.exists(path) and not path.startswith("/tmp/camera_sim"):
+                return True
+                
+        return False

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400" height="650" xmlns="http://www.w3.org/2000/svg">
+  <!-- Tablet frame -->
+  <rect x="10" y="10" width="380" height="630" rx="20" ry="20" fill="#333" />
+  <rect x="20" y="20" width="360" height="610" rx="15" ry="15" fill="#222" />
+  
+  <!-- Screen -->
+  <rect x="30" y="40" width="340" height="570" rx="5" ry="5" fill="#f9f9f9" />
+  
+  <!-- App header -->
+  <rect x="30" y="40" width="340" height="60" rx="5" ry="5" fill="#2c3e50" />
+  <text x="50" y="80" font-family="Arial" font-size="18" fill="white">PTZ Camera Controller</text>
+  <circle cx="340" cy="70" r="15" fill="#3498db" />
+  <rect x="332" y="67" width="16" height="3" fill="white" />
+  <rect x="332" y="73" width="16" height="3" fill="white" />
+  
+  <!-- Video stream area -->
+  <rect x="40" y="110" width="320" height="240" rx="5" ry="5" fill="#000" />
+  
+  <!-- Camera switching buttons -->
+  <rect x="40" y="360" width="150" height="40" rx="5" ry="5" fill="#3498db" />
+  <text x="70" y="385" font-family="Arial" font-size="14" fill="white">RGB Mode</text>
+  
+  <rect x="210" y="360" width="150" height="40" rx="5" ry="5" fill="#444" />
+  <text x="235" y="385" font-family="Arial" font-size="14" fill="white">IR Mode</text>
+  
+  <!-- PTZ controls -->
+  <circle cx="200" cy="460" r="60" fill="#eee" stroke="#ccc" stroke-width="2" />
+  <circle cx="200" cy="460" r="20" fill="#3498db" />
+  
+  <!-- Direction indicators -->
+  <text x="200" y="420" font-family="Arial" font-size="12" fill="#555" text-anchor="middle">Pan/Tilt</text>
+  <polygon points="200,430 210,440 190,440" fill="#555" />
+  <polygon points="200,490 210,480 190,480" fill="#555" />
+  <polygon points="170,460 180,470 180,450" fill="#555" />
+  <polygon points="230,460 220,470 220,450" fill="#555" />
+  
+  <!-- Zoom slider -->
+  <rect x="40" y="540" width="320" height="30" rx="15" ry="15" fill="#eee" />
+  <rect x="40" y="540" width="160" height="30" rx="15" ry="15" fill="#3498db" />
+  <circle cx="200" cy="555" r="15" fill="white" stroke="#3498db" stroke-width="2" />
+  <text x="50" y="530" font-family="Arial" font-size="12" fill="#555">Zoom</text>
+  
+  <!-- Status indicator -->
+  <circle cx="40" cy="580" r="8" fill="#2ecc71" />
+  <text x="55" y="584" font-family="Arial" font-size="12" fill="#555">Connected to 192.168.1.100</text>
+</svg>

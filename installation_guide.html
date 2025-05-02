@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTZ Camera Controller - Installation Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .qr-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .steps {
+            align-self: flex-start;
+            width: 100%;
+        }
+        .step {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .step h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .note {
+            padding: 10px;
+            background-color: #ffe5e5;
+            border-left: 4px solid #ff7070;
+            margin: 20px 0;
+        }
+        .tip {
+            padding: 10px;
+            background-color: #e5f5ff;
+            border-left: 4px solid #70b8ff;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PTZ Camera Controller</h1>
+        <h2>Android Tablet Installation Guide</h2>
+        
+        <div class="qr-container">
+            <h3>Scan this QR code to download the app</h3>
+            <p>(Once the APK is hosted online, replace this with an actual download link QR code)</p>
+            <!-- Placeholder QR code image that links to Android developer resources -->
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://developer.android.com/develop/ui/views/layout/webapps/load" alt="Installation QR Code">
+            <p><strong>Or visit:</strong> <a href="https://developer.android.com/develop/ui/views/layout/webapps/load">https://developer.android.com/</a></p>
+        </div>
+        
+        <div class="steps">
+            <div class="step">
+                <h3>Step 1: Prepare your Android tablet</h3>
+                <ul>
+                    <li>Ensure your tablet is running Android 6.0 (Marshmallow) or higher</li>
+                    <li>Go to <strong>Settings → Security</strong> and enable <strong>"Unknown Sources"</strong> to allow installation of apps from sources other than the Play Store</li>
+                    <li>Make sure your tablet has sufficient storage space (at least 50MB)</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <h3>Step 2: Download the APK</h3>
+                <ul>
+                    <li>Scan the QR code above with your tablet's camera</li>
+                    <li>If prompted, select "Download" or "Open in Browser"</li>
+                    <li>The APK file will begin downloading</li>
+                </ul>
+                <div class="note">
+                    <p><strong>Note:</strong> If the QR code doesn't work, you can download the APK directly from the URL shown above.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <h3>Step 3: Install the app</h3>
+                <ul>
+                    <li>Once the download completes, tap on the notification or find the APK file in your Downloads folder</li>
+                    <li>Tap the APK file to begin installation</li>
+                    <li>Review the permissions and tap "Install"</li>
+                    <li>Wait for the installation to complete, then tap "Open"</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <h3>Step 4: Connect to the camera server</h3>
+                <ul>
+                    <li>Ensure the PTZ Camera Server is running on your onboard computer (Raspberry Pi or Jetson)</li>
+                    <li>Make sure both your tablet and the onboard computer are on the same network</li>
+                    <li>Open the PTZ Camera Control app</li>
+                    <li>Enter the IP address of your onboard computer and tap "Connect"</li>
+                </ul>
+                <div class="tip">
+                    <p><strong>Tip:</strong> You can find the IP address of your onboard computer by running <code>hostname -I</code> in the terminal.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <h3>Step 5: Start controlling your camera</h3>
+                <ul>
+                    <li>Once connected, you'll see the camera controls and video stream</li>
+                    <li>Use the pan, tilt, and zoom controls to adjust the camera position</li>
+                    <li>Switch between RGB and IR/Thermal camera modes as needed</li>
+                    <li>Adjust stream quality settings if you experience lag or performance issues</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tip">
+            <h3>Troubleshooting Tips</h3>
+            <ul>
+                <li><strong>Connection issues:</strong> Verify that your tablet and onboard computer are on the same network</li>
+                <li><strong>Streaming problems:</strong> Try switching to the low-quality stream in settings</li>
+                <li><strong>Control lag:</strong> Check your network connection and reduce the control sensitivity in settings</li>
+                <li><strong>App crashes:</strong> Ensure your tablet meets the minimum system requirements</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

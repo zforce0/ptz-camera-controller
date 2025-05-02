@@ -1,4 +1,4 @@
-modules = ["python-3.11"]
+modules = ["python-3.11", "openjdk11"]
 
 [nix]
 channel = "stable-24_05"
@@ -14,19 +14,23 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "PTZ Camera Server"
+args = "QR Code Server"
 
 [[workflows.workflow]]
-name = "PTZ Camera Server"
+name = "QR Code Server"
 author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd onboard && pip install -r requirements.txt && python camera_server.py"
-waitForPort = 8000
+args = "python -m http.server 5000 --bind 0.0.0.0"
+waitForPort = 5000
 
 [deployment]
 run = ["sh", "-c", "cd onboard && pip install -r requirements.txt && python camera_server.py"]
+
+[[ports]]
+localPort = 5000
+externalPort = 5000
 
 [[ports]]
 localPort = 8000

@@ -25,6 +25,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger('camera_server')
 
+# Try to import the local stream viewer for debugging with a connected monitor
+try:
+    from local_stream_viewer import LocalStreamViewer
+    HAS_LOCAL_VIEWER = True
+except ImportError:
+    logger.warning("Local stream viewer module not available, monitor display disabled")
+    HAS_LOCAL_VIEWER = False
+
 class CameraServer:
     """Main server class for PTZ camera control"""
     
@@ -37,6 +45,9 @@ class CameraServer:
             'control_port': 8000,
             'enable_bluetooth': True,
             'enable_wifi': True,
+            'enable_local_viewer': False,
+            'local_viewer_mode': 'rgb',
+            'local_viewer_quality': 'main',
             'log_level': 'INFO'
         }
         
@@ -94,7 +105,21 @@ class CameraServer:
         if not self.wifi_server and not self.bt_server:
             logger.error("No communication methods available, exiting")
             raise RuntimeError("Failed to initialize any communication method")
-            
+           
+        # Initialize the local stream viewer if enabled
+        self.local_viewer = None
+        if self.config.get('enable_local_viewer', False) and HAS_LOCAL_VIEWER:
+            try:
+                self.local_viewer = LocalStreamViewer(
+                    camera_mode=self.config.get('local_viewer_mode', 'rgb'),
+                    stream_quality=self.config.get('local_viewer_quality', 'main'),
+                    port=self.config.get('control_port', 8000)
+                )
+                logger.info(f"Local stream viewer initialized with {self.config.get('local_viewer_mode', 'rgb')} mode")
+            except Exception as e:
+                logger.error(f"Failed to initialize local stream viewer: {e}")
+                self.local_viewer = None
+                
         logger.info("Camera Server initialized successfully")
         
     def start(self):
@@ -113,12 +138,28 @@ class CameraServer:
             
         if self.bt_server:
             self.bt_server.start()
+        
+        # Start local stream viewer if available
+        if self.local_viewer:
+            try:
+                self.local_viewer.start()
+                logger.info("Local stream viewer started")
+            except Exception as e:
+                logger.error(f"Failed to start local stream viewer: {e}")
             
         logger.info("All services started")
         
     def stop(self):
         """Stop all services"""
         logger.info("Stopping Camera Server services")
+        
+        # Stop local stream viewer if it's running
+        if self.local_viewer:
+            try:
+                self.local_viewer.stop()
+                logger.info("Local stream viewer stopped")
+            except Exception as e:
+                logger.error(f"Error stopping local stream viewer: {e}")
         
         # Stop communication servers
         if self.wifi_server:
@@ -157,18 +198,33 @@ def parse_arguments():
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(description='PTZ Camera Server for Android Controller')
     
+    # Device configuration
     parser.add_argument('--rgb-device', type=str, default='/dev/video0',
                         help='RGB camera device path (default: /dev/video0)')
     parser.add_argument('--ir-device', type=str, default='/dev/video1',
                         help='IR/Thermal camera device path (default: /dev/video1)')
+    
+    # Network configuration
     parser.add_argument('--stream-port', type=int, default=8554,
                         help='RTSP streaming port (default: 8554)')
     parser.add_argument('--control-port', type=int, default=8000,
                         help='HTTP/TCP control port (default: 8000)')
+    
+    # Communication methods
     parser.add_argument('--no-bluetooth', action='store_true',
                         help='Disable Bluetooth communication')
     parser.add_argument('--no-wifi', action='store_true',
                         help='Disable WiFi communication')
+    
+    # Local monitoring options
+    parser.add_argument('--enable-local-viewer', action='store_true',
+                        help='Enable local stream viewer for debugging with a monitor')
+    parser.add_argument('--local-viewer-mode', type=str, choices=['rgb', 'ir'], 
+                        default='rgb', help='Camera mode for local viewer: rgb or ir (default: rgb)')
+    parser.add_argument('--local-viewer-quality', type=str, choices=['main', 'sub'], 
+                        default='main', help='Stream quality: main (high) or sub (low) (default: main)')
+    
+    # General settings
     parser.add_argument('--log-level', type=str, choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'], 
                         default='INFO', help='Logging level (default: INFO)')
     
@@ -178,14 +234,29 @@ def main():
     """Main function"""
     args = parse_arguments()
     
+    # Create simulation directories if they don't exist
+    os.makedirs('/tmp/camera_sim', exist_ok=True)
+    
     # Prepare configuration
     config = {
+        # Device configuration
         'rgb_device': args.rgb_device,
         'ir_device': args.ir_device,
+        
+        # Network configuration
         'stream_port': args.stream_port,
         'control_port': args.control_port,
+        
+        # Communication methods
         'enable_bluetooth': not args.no_bluetooth,
         'enable_wifi': not args.no_wifi,
+        
+        # Local monitoring options
+        'enable_local_viewer': args.enable_local_viewer,
+        'local_viewer_mode': args.local_viewer_mode,
+        'local_viewer_quality': args.local_viewer_quality,
+        
+        # General settings
         'log_level': args.log_level
     }
     

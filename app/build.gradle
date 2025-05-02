@@ -16,10 +16,20 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     
+    signingConfigs {
+        release {
+            storeFile file("../keystore/release.keystore")
+            storePassword "ptzcontroller"
+            keyAlias "ptzcontroller"
+            keyPassword "ptzcontroller"
+        }
+    }
+    
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     
