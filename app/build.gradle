@@ -7,7 +7,7 @@ android {
     namespace 'com.ptzcontroller'
     compileSdk 34
     ndkVersion "25.2.9519653"
-    
+
     buildFeatures {
         buildConfig true
     }
@@ -18,33 +18,9 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
-        
-        // Additional configurations for CI environments
+
         buildConfigField "String", "BUILD_TIMESTAMP", "\"${System.currentTimeMillis()}\""
         buildConfigField "String", "BUILD_VERSION_NAME", "\"${versionName}\""
-    }
-    
-    // Configuration for Replit and CI environments
-    lint {
-        abortOnError = false
-        checkReleaseBuilds = false
-        disable += 'MissingTranslation'
-    }
-    
-    // Skip resource processing in CI environment to speed up builds
-    if (System.getenv('CI') != null || System.getenv('REPLIT') != null) {
-        aaptOptions {
-            cruncherEnabled = false
-        }
-        
-        // Reduce build time by excluding certain tasks
-        tasks.whenTaskAdded { task ->
-            if (task.name.contains('lint') || 
-                task.name.contains('Lint') || 
-                task.name.contains('Test')) {
-                task.enabled = false
-            }
-        }
     }
 
     buildTypes {
@@ -53,10 +29,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+        disable += 'MissingTranslation'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = '17'
     }
@@ -69,15 +53,3 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.exoplayer:exoplayer:2.19.1'
 }
-// Configure SDK location if needed
-ext {
-    // Check if ANDROID_HOME environment variable is set
-    if (System.getenv('ANDROID_HOME') != null) {
-        sdkDir = System.getenv('ANDROID_HOME')
-    } 
-    // Otherwise use the path from local.properties if it exists
-    else if (new File(rootDir, "local.properties").exists()) {
-        Properties properties = new Properties()
-        properties.load(new FileInputStream(new File(rootDir, "local.properties")))
-        sdkDir = properties.getProperty('sdk.dir')
-    }
