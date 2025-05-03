@@ -1,17 +1,16 @@
-
 buildscript {
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
-        // Add jcenter as fallback for Android plugin dependencies
-        jcenter()
+        // Use Maven Central for dependencies
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.0'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0'
     }
-    
+
     // Configure SDK location if needed
     ext {
         // Check if ANDROID_HOME environment variable is set
@@ -32,10 +31,10 @@ allprojects {
         google()
         mavenCentral()
         gradlePluginPortal()
-        // Add jcenter as fallback for dependencies
-        jcenter()
+        // Use Maven Central for dependencies
+        mavenCentral()
     }
-    
+
     // Ensure JDK 17 compatibility across all projects
     plugins.withType(JavaPlugin).configureEach {
         java {
@@ -44,7 +43,7 @@ allprojects {
             }
         }
     }
-    
+
     // Add global configuration for Android projects to be more resilient
     plugins.withId('com.android.application') {
         android {
@@ -52,7 +51,7 @@ allprojects {
                 abortOnError false
                 checkReleaseBuilds false
             }
-            
+
             // Skip some validations in headless environments
             if (System.getenv('CI') != null || System.getenv('REPLIT') != null) {
                 aaptOptions {

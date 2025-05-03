@@ -24,11 +24,10 @@ android {
     }
     
     // Configuration for Replit and CI environments
-    lintOptions {
-        abortOnError false
-        checkReleaseBuilds false
-        // Skip checking for missing translations in development
-        disable 'MissingTranslation'
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
+        disable += 'MissingTranslation'
     }
     
     // Skip resource processing in CI environment to speed up builds
