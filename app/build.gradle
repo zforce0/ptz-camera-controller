@@ -6,6 +6,7 @@ plugins {
 android {
     namespace 'com.ptzcontroller'
     compileSdk 33
+    ndkVersion "21.3.6528147"
     
     buildFeatures {
         buildConfig true
