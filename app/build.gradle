@@ -1,72 +1,39 @@
 plugins {
-    id 'com.android.application' version '8.1.0'
-    id 'org.jetbrains.kotlin.android' version '1.9.0'
+    id 'com.android.application'
+    id 'kotlin-android'
 }
 
 android {
-    namespace "com.ptzcontroller"
-    compileSdk 31
-    
+    namespace 'com.ptzcontroller'
+    compileSdk 34
+
     defaultConfig {
         applicationId "com.ptzcontroller"
-        minSdk 23
-        targetSdk 31
+        minSdk 24
+        targetSdk 34
         versionCode 1
         versionName "1.0"
-        
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    
-    signingConfigs {
-        release {
-            // These will be overridden by the values provided in the GitHub workflow
-            // Check if we're in GitHub Actions
-            def keystorePath = System.getenv("GITHUB_ACTIONS") ? "../keystore.jks" : "../keystore/release.keystore"
-            storeFile file(keystorePath)
-            storePassword System.getenv("KEYSTORE_PASSWORD") ?: "ptzcontroller"
-            keyAlias System.getenv("KEY_ALIAS") ?: "ptzcontroller"
-            keyPassword System.getenv("KEY_PASSWORD") ?: "ptzcontroller"
-        }
-    }
-    
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
     }
-    
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
-    
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '1.8'
     }
 }
 
 dependencies {
-    // Core Android libraries
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
-    
-    // Material Design
-    implementation 'com.google.android.material:material:1.4.0'
-    
-    // ExoPlayer for video streaming
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.15.1'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.15.1'
-    implementation 'com.google.android.exoplayer:exoplayer-rtsp:2.15.1'
-    
-    // Kotlin coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
-    
-    // Testing libraries
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.exoplayer:exoplayer:2.19.1'
 }
