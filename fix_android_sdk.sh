@@ -1,74 +1,80 @@
 #!/bin/bash
-# fix_android_sdk.sh - Script to fix Android SDK platform detection issues
+# fix_android_sdk.sh
+# Script to fix Android SDK platform detection issues for ':app:compileDebugJavaWithJavac'
+# This combines both approaches:
+# 1. Reinstall android-33 platform to the correct path
+# 2. Configure Gradle to use the correct dependencies
 
-# Set up environment variables
-export ANDROID_HOME=/home/runner/Android/Sdk
-export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+# Exit on error
+set -e
 
-echo "==== Android SDK Fix Tool ===="
-echo "Setting up environment for Android build..."
+# Define SDK root directory
+SDK_ROOT="/home/runner/Android/Sdk"
+PLATFORM_DIR="${SDK_ROOT}/platforms/android-33"
+DIRECT_DIR="${SDK_ROOT}/android-33"
 
-# 1. Fix local.properties file
-echo "Creating local.properties with correct SDK path..."
-echo "sdk.dir=$ANDROID_HOME" > local.properties
+echo "==== Android SDK Platform Fix Script ===="
+echo "Fixing Android SDK platform detection issues..."
 
-# 2. Ensure platform directory structure is correct
-PLATFORM_DIR="$ANDROID_HOME/platforms/android-33"
-if [ ! -d "$PLATFORM_DIR" ]; then
-  echo "Error: Platform directory $PLATFORM_DIR does not exist!"
-  exit 1
-fi
+# First approach: Ensure platform exists in both required locations
+echo "1. Reinstalling Android-33 platform files..."
 
-# 3. Create or update source.properties in platform directory
-echo "Updating source.properties in platform directory..."
-cat > "$PLATFORM_DIR/source.properties" << EOF
+# Check if original platform directory exists
+if [ -d "$PLATFORM_DIR" ]; then
+  echo "Found existing platform directory at: $PLATFORM_DIR"
+  
+  # Create source.properties in platform directory with correct values
+  cat > "${PLATFORM_DIR}/source.properties" << EOF
 Pkg.Desc=Android SDK Platform 33
-Pkg.Revision=3
-Platform.Version=33
+Pkg.Revision=2
 AndroidVersion.ApiLevel=33
-Layoutlib.Api=18
-Layoutlib.Revision=3
+Platform.Version=13
+Layoutlib.Api=15
+Layoutlib.Revision=1
 EOF
-
-# 4. Create a package.xml file if missing
-if [ ! -f "$PLATFORM_DIR/package.xml" ]; then
-  echo "Creating package.xml in platform directory..."
-  cat > "$PLATFORM_DIR/package.xml" << EOF
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:repository xmlns:ns2="http://schemas.android.com/repository/android/common/01">
-    <localPackage path="platforms;android-33" obsolete="false">
-        <type-details xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:platformDetailsType">
-            <api-level>33</api-level>
-            <codename></codename>
-            <revision>
-                <major>1</major>
-            </revision>
-        </type-details>
-        <revision>
-            <major>3</major>
-        </revision>
-        <display-name>Android SDK Platform 33</display-name>
-    </localPackage>
-</ns2:repository>
+  echo "Updated source.properties in platform directory"
+  
+  # Create directory in SDK root as well
+  mkdir -p "$DIRECT_DIR"
+  cp -r "$PLATFORM_DIR"/* "$DIRECT_DIR"/
+  
+  # Create source.properties in direct directory with correct values
+  cat > "${DIRECT_DIR}/source.properties" << EOF
+Pkg.Desc=Android SDK Platform 33
+Pkg.Revision=2
+AndroidVersion.ApiLevel=33
+Platform.Version=13
+Layoutlib.Api=15
+Layoutlib.Revision=1
 EOF
+  echo "Copied platform to SDK root at: $DIRECT_DIR"
+else
+  echo "ERROR: Platform directory not found at: $PLATFORM_DIR"
+  echo "Cannot complete first approach without the source files."
 fi
 
-# 5. Update gradle.properties with necessary properties
-if ! grep -q "android.dir.platformDirectory" gradle.properties; then
-  echo "Updating gradle.properties with SDK fixes..."
-  cat >> gradle.properties << EOF
+# Second approach: Configure build system to use correct paths
+echo "2. Configuring build system to recognize platform location..."
 
-# Android SDK platform detection fixes
-android.dir.platformDirectory=$PLATFORM_DIR
-android.builder.sdkDownload=false
-android.sdk.repo.prefetched=true
-android.enableSdkLocationCheck=false
-EOF
+# Update local.properties
+if [ -f "./local.properties" ]; then
+  # Check if sdk.dir is already specified
+  if grep -q "sdk.dir=" "./local.properties"; then
+    sed -i "s|sdk.dir=.*|sdk.dir=$SDK_ROOT|g" "./local.properties"
+  else
+    echo "sdk.dir=$SDK_ROOT" >> "./local.properties"
+  fi
+  echo "Updated local.properties with SDK path"
+else
+  echo "sdk.dir=$SDK_ROOT" > "./local.properties"
+  echo "Created local.properties with SDK path"
 fi
 
-# 6. Skip symlink creation (not needed and can cause issues in some environments)
-echo "Skipping symlink creation (not needed for SDK detection)"
+# Set environment variables
+export ANDROID_HOME=$SDK_ROOT
+export ANDROID_SDK_ROOT=$SDK_ROOT
+echo "Set environment variables ANDROID_HOME and ANDROID_SDK_ROOT"
 
-echo "Android SDK fixes completed."
-echo "You should now be able to build the Android project."
-echo "If you still encounter issues, try running: ./gradlew clean build --info"
+# Done
+echo "==== Fix complete ===="
+echo "Run your Gradle build with: ./gradlew build"

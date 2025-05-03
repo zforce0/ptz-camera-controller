@@ -8,6 +8,21 @@ android {
     compileSdk 33
     ndkVersion "21.3.6528147"
     
+    // Explicitly set SDK directory to ensure platform is found
+    sdkDirectory = new File("/home/runner/Android/Sdk")
+    
+    // Add specific configuration for compileDebugJavaWithJavac task
+    tasks.whenTaskAdded { task ->
+        if (task.name == 'compileDebugJavaWithJavac') {
+            task.doFirst {
+                println "Configuring compileDebugJavaWithJavac to use platform from: ${sdkDirectory}/android-33"
+                options.bootClasspath = [
+                    "${sdkDirectory}/android-33/android.jar"
+                ]
+            }
+        }
+    }
+    
     buildFeatures {
         buildConfig true
     }
