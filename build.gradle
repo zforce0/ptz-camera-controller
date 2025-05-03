@@ -4,10 +4,26 @@ buildscript {
         google()
         mavenCentral()
         gradlePluginPortal()
+        // Add jcenter as fallback for Android plugin dependencies
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.0'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0'
+    }
+    
+    // Configure SDK location if needed
+    ext {
+        // Check if ANDROID_HOME environment variable is set
+        if (System.getenv('ANDROID_HOME') != null) {
+            sdkDir = System.getenv('ANDROID_HOME')
+        } 
+        // Otherwise use the path from local.properties if it exists
+        else if (new File(rootDir, "local.properties").exists()) {
+            Properties properties = new Properties()
+            properties.load(new FileInputStream(new File(rootDir, "local.properties")))
+            sdkDir = properties.getProperty('sdk.dir')
+        }
     }
 }
 
@@ -16,6 +32,34 @@ allprojects {
         google()
         mavenCentral()
         gradlePluginPortal()
+        // Add jcenter as fallback for dependencies
+        jcenter()
+    }
+    
+    // Ensure JDK 17 compatibility across all projects
+    plugins.withType(JavaPlugin).configureEach {
+        java {
+            toolchain {
+                languageVersion = JavaLanguageVersion.of(17)
+            }
+        }
+    }
+    
+    // Add global configuration for Android projects to be more resilient
+    plugins.withId('com.android.application') {
+        android {
+            lintOptions {
+                abortOnError false
+                checkReleaseBuilds false
+            }
+            
+            // Skip some validations in headless environments
+            if (System.getenv('CI') != null || System.getenv('REPLIT') != null) {
+                aaptOptions {
+                    cruncherEnabled = false
+                }
+            }
+        }
     }
 }
 

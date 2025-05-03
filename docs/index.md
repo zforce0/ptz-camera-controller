@@ -10,6 +10,7 @@ Welcome to the documentation for the PTZ Camera Controller system. This document
 | [Communication Flow](communication_flow.md) | Sequence diagrams showing how components communicate |
 | [Deployment Architecture](deployment_architecture.md) | Physical deployment across devices and hardware interfaces |
 | [Development Roadmap](development_roadmap.md) | Planned features and development timeline |
+| [JDK 17 Upgrade Notes](release_notes_jdk17.md) | Details on the migration from JDK 11 to JDK 17 |
 
 ## Additional Resources
 
