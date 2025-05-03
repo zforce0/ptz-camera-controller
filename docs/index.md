@@ -1,48 +1,46 @@
-# PTZ Camera Controller
+# PTZ Camera Controller Documentation
 
-An advanced Android tablet application for controlling PTZ cameras connected to a Raspberry Pi or NVIDIA Jetson.
+Welcome to the documentation for the PTZ Camera Controller system. This documentation provides comprehensive information about the system architecture, communication flows, and deployment considerations.
 
-## Quick Installation
+## Core Documentation
 
-Scan this QR code with your Android tablet to download the app:
+| Document | Description |
+|----------|-------------|
+| [System Architecture](system_architecture.md) | Overall system structure and component interactions |
+| [Communication Flow](communication_flow.md) | Sequence diagrams showing how components communicate |
+| [Deployment Architecture](deployment_architecture.md) | Physical deployment across devices and hardware interfaces |
+| [Development Roadmap](development_roadmap.md) | Planned features and development timeline |
 
-![QR Code for Installation](../screenshots/qr_code_placeholder.svg)
+## Additional Resources
 
-## Features
+- [Project README](../README.md) - Main project overview and getting started guide
+- [Installation Guide](../installation_guide.html) - Detailed installation instructions
+- [QR Code Installer](../qr_code_installer.html) - QR code for easy Android app installation
+- [Release Build Instructions](../release_build_instructions.md) - Instructions for building release versions
 
-- **Dual-mode video streaming** - Support for both RGB and IR/Thermal cameras
-- **Flexible connectivity** - Connect via WiFi or Bluetooth
-- **Intuitive controls** - Simple pan, tilt, and zoom controls with touch interface
-- **Camera mode switching** - Easily switch between RGB and IR/Thermal modes
-- **Adaptive quality** - Adjust video quality based on network conditions
-- **Preset positions** - Save and load camera position presets
-- **Local monitoring** - Optional local video monitoring on the connected display
+## Development References
 
-## Documentation
+The PTZ Camera Controller system is divided into two main components:
 
-- [Installation Guide](installation_guide.md)
-- [User Manual](user_manual.md)
-- [FAQ](faq.md)
+1. **Android Application** - User interface for controlling cameras and viewing video streams
+2. **Onboard Python Server** - Backend software running on the onboard computer (Raspberry Pi or NVIDIA Jetson)
 
-## System Requirements
+### Android App Structure
 
-### Android Tablet
-- Android 6.0 (Marshmallow) or higher
-- 2GB RAM (minimum)
-- Bluetooth 4.0+ and/or WiFi capability
+The Android application is built using Kotlin and follows a fragment-based architecture:
 
-### Onboard Computer
-- Raspberry Pi 3/4 or NVIDIA Jetson Nano/Xavier NX
-- Python 3.6 or higher
-- USB or CSI camera for RGB video
-- FLIR or similar camera for thermal imaging (optional)
-- Network connectivity (WiFi or Ethernet)
+- MainActivity - Entry point and navigation controller
+- CameraControlFragment - PTZ controls user interface
+- VideoStreamFragment - Video streaming display
+- SettingsFragment - Configuration options
 
-## For Developers
+### Onboard Server Structure
 
-- [GitHub Release Guide](github_release_guide.md)
-- [Keystore Setup Guide](keystore_setup_guide.md)
+The onboard server is built using Python and follows a modular architecture:
 
-## Support
-
-If you encounter any issues or have questions, please [open an issue](https://github.com/zforce0/ptz-camera-controller/issues) on GitHub.
+- camera_server.py - Main server application
+- camera_controller.py - Camera hardware interface
+- video_streamer.py - Video streaming management
+- wifi_server.py - WiFi communication interface
+- bt_server.py - Bluetooth communication interface
+- local_stream_viewer.py - Optional local monitoring

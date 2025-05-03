@@ -4,6 +4,16 @@ A comprehensive Android application for controlling PTZ (Pan-Tilt-Zoom) cameras 
 
 ![PTZ Camera Controller Screenshot](screenshots/app_screenshot_placeholder.jpg)
 
+## Documentation
+
+Comprehensive documentation is available for this project:
+
+- [Documentation Index](docs/index.md) - Complete documentation overview
+- [System Architecture](docs/system_architecture.md) - Component structure and interactions
+- [Communication Flow](docs/communication_flow.md) - Sequence diagrams showing data flow
+- [Deployment Architecture](docs/deployment_architecture.md) - Physical deployment details
+- [Development Roadmap](docs/development_roadmap.md) - Planned features and timeline
+
 ## Features
 
 - **Dual-mode video streaming** - Support for both RGB and IR/Thermal cameras
