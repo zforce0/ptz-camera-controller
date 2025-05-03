@@ -1,8 +1,8 @@
-modules = ["python-3.11", "openjdk11"]
+modules = ["python-3.11", "openjdk17"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["freetype", "lcms2", "libGL", "libGLU", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "tcl", "tk", "zlib", "zulu11", "gradle"]
+packages = ["freetype", "lcms2", "libGL", "libGLU", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "tcl", "tk", "zlib", "zulu17", "gradle"]
 
 [workflows]
 runButton = "Project"
