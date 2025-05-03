@@ -1,15 +1,16 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'com.android.application' version '8.1.0'
+    id 'org.jetbrains.kotlin.android' version '1.9.0'
 }
 
 android {
-    compileSdkVersion 31
+    namespace "com.ptzcontroller"
+    compileSdk 31
     
     defaultConfig {
         applicationId "com.ptzcontroller"
-        minSdkVersion 23
-        targetSdkVersion 31
+        minSdk 23
+        targetSdk 31
         versionCode 1
         versionName "1.0"
         
@@ -19,10 +20,12 @@ android {
     signingConfigs {
         release {
             // These will be overridden by the values provided in the GitHub workflow
-            storeFile file("../keystore/release.keystore")
-            storePassword "ptzcontroller"
-            keyAlias "ptzcontroller"
-            keyPassword "ptzcontroller"
+            // Check if we're in GitHub Actions
+            def keystorePath = System.getenv("GITHUB_ACTIONS") ? "../keystore.jks" : "../keystore/release.keystore"
+            storeFile file(keystorePath)
+            storePassword System.getenv("KEYSTORE_PASSWORD") ?: "ptzcontroller"
+            keyAlias System.getenv("KEY_ALIAS") ?: "ptzcontroller"
+            keyPassword System.getenv("KEY_PASSWORD") ?: "ptzcontroller"
         }
     }
     
@@ -35,12 +38,12 @@ android {
     }
     
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
 }
 

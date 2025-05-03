@@ -1,16 +1,8 @@
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.4'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
-    }
-}
+// Note: All repositories are now defined in settings.gradle
 
-allprojects {
-    // Repositories are now defined in settings.gradle
-}
-
+// For Gradle 8.2+ compatibility
 tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
