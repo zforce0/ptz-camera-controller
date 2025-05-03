@@ -1,0 +1,77 @@
+~/workspace$ ./gradlew clean build
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Calculating task graph as no configuration cache is available for tasks: clean build
+
+0 problems were found storing the configuration cache.
+
+See the complete report at file:///home/runner/workspace/build/reports/configuration-cache/7yf1kbp1u60p7rlne33mf505q/f2f34rqoar9riekhnourz3gm5/configuration-cache-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> Could not determine the dependencies of null.
+   > SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/home/runner/workspace/local.properties'.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 9s
+Configuration cache entry stored.
+~/workspace$ ./gradlew clean build --scan
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Calculating task graph as no configuration cache is available for tasks: clean build
+Checking the license for package Android SDK Build-Tools 33.0.1 in /home/runner/Android/Sdk/licenses
+License for package Android SDK Build-Tools 33.0.1 accepted.
+Preparing "Install Android SDK Build-Tools 33.0.1 v.33.0.1".
+Warning: Package "Android SDK Build-Tools 33.0.1" (build-tools;33.0.1) should be installed in 
+"/home/runner/Android/Sdk/build-tools/33.0.1" but 
+it already exists.
+Installing in "/home/runner/Android/Sdk/build-tools/33.0.1-6" instead.
+"Install Android SDK Build-Tools 33.0.1 v.33.0.1" ready.
+Installing Android SDK Build-Tools 33.0.1 in /home/runner/Android/Sdk/build-tools/33.0.1-6
+"Install Android SDK Build-Tools 33.0.1 v.33.0.1" complete.
+"Install Android SDK Build-Tools 33.0.1 v.33.0.1" finished.
+Checking the license for package Android SDK Platform 33 in /home/runner/Android/Sdk/licenses
+License for package Android SDK Platform 33 accepted.
+Preparing "Install Android SDK Platform 33 (revision 3)".
+Warning: Package "Android SDK Platform 33" (platforms;android-33) should be installed in 
+"/home/runner/Android/Sdk/platforms/android-33" but 
+it already exists.
+Installing in "/home/runner/Android/Sdk/platforms/android-33-5" instead.
+"Install Android SDK Platform 33 (revision 3)" ready.
+Installing Android SDK Platform 33 in /home/runner/Android/Sdk/platforms/android-33-5
+"Install Android SDK Platform 33 (revision 3)" complete.
+"Install Android SDK Platform 33 (revision 3)" finished.
+
+0 problems were found storing the configuration cache.
+
+See the complete report at file:///home/runner/workspace/build/reports/configuration-cache/58osjii1uoamtg3akrxp3tfdf/77mcs3pqywjg1oa4v07xr3esh/configuration-cache-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugJavaWithJavac'.
+> Could not determine the dependencies of null.
+   > Failed to find target with hash string 'android-33' in: /home/runner/Android/Sdk
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 32s
+
+Publishing a build scan to scans.gradle.com requires accepting the Gradle Terms of Service defined at https://gradle.com/terms-of-service. Do you accept these terms? [yes, no] yes
+
+Gradle Terms of Service accepted.
+
+Publishing build scan...
+https://gradle.com/s/rwapbzoql34w4
+
+Configuration cache entry stored.
