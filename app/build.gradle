@@ -8,9 +8,6 @@ android {
     compileSdk 33
     ndkVersion "21.3.6528147"
     
-    // Explicitly set SDK directory to fix platform detection issues
-    sdkDirectory = new File("/home/runner/Android/Sdk")
-    
     buildFeatures {
         buildConfig true
     }
@@ -18,7 +15,7 @@ android {
     defaultConfig {
         applicationId "com.ptzcontroller"
         minSdk 24
-        targetSdk 34
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         
