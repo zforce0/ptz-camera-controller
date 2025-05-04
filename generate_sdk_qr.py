@@ -28,7 +28,7 @@ def get_sdk_info():
         "sdk_location": None,
         "jdk_version": "17",
         "gradle_version": None,
-        "build_tools_version": None,
+        "build_tools_version": "34.0.0",  # Set default value for build tools (matches compile SDK)
         "compile_sdk": None
     }
     
