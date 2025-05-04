@@ -1,4 +1,24 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""
+Simple HTTP Server to serve the QR code
+"""
+
+import os
+import http.server
+import socketserver
+
+PORT = 5000
+
+class SimpleHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    """Simple request handler that displays directory contents"""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+# Create output directory if it doesn't exist
+os.makedirs("qr_output", exist_ok=True)
+
+# Create a basic HTML page
+html_content = """<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -79,3 +99,23 @@
     </div>
 </body>
 </html>
+"""
+
+# Generate a simple QR code
+import qrcode
+import json
+qr_data = json.dumps({"wifi": "localhost:8000"})
+img = qrcode.make(qr_data)
+img.save("qr_code.png")
+
+# Write HTML file
+with open("index.html", "w") as f:
+    f.write(html_content)
+
+print("Starting HTTP server on port", PORT)
+print("Access the QR code at http://localhost:5000")
+
+# Start HTTP server
+Handler = http.server.SimpleHTTPRequestHandler
+httpd = socketserver.TCPServer(("0.0.0.0", PORT), Handler)
+httpd.serve_forever()

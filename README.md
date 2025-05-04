@@ -1,175 +1,90 @@
-# PTZ Camera Controller
+# PTZ Camera Controller System
 
-A comprehensive Android application for controlling PTZ (Pan-Tilt-Zoom) cameras through an onboard computer such as a Raspberry Pi or NVIDIA Jetson.
+This repository contains the controller system for PTZ (Pan-Tilt-Zoom) cameras, consisting of two main components:
 
-![PTZ Camera Controller Screenshot](screenshots/app_screenshot_placeholder.svg)
+1. An Android application for user interface and control
+2. An onboard Python server for hardware interface and video streaming
 
-## Documentation
+## Android Application
 
-Comprehensive documentation is available for this project:
+The Android app provides an interface for controlling the PTZ cameras and viewing video streams. It supports:
 
-- [Documentation Index](docs/index.md) - Complete documentation overview
-- [System Architecture](docs/system_architecture.md) - Component structure and interactions
-- [Communication Flow](docs/communication_flow.md) - Sequence diagrams showing data flow
-- [Deployment Architecture](docs/deployment_architecture.md) - Physical deployment details
-- [Development Roadmap](docs/development_roadmap.md) - Planned features and timeline
-- [Android SDK Setup](docs/android_sdk_setup.md) - Detailed Android SDK configuration guide
+- WiFi and Bluetooth connections to the camera server
+- Pan, tilt, and zoom controls with adjustable speed
+- Video streaming with support for RGB and IR/Thermal modes
+- Easy configuration via QR code scanning
 
-## Development Setup
+### Current Development Status
 
-This project uses JDK 17 and Gradle for building the Android application. We provide simplified scripts for building and configuring the Android SDK.
+The Android app is currently under development with the following components implemented:
 
-### Android SDK Setup
+- Basic UI framework with bottom navigation
+- Connection management for WiFi and Bluetooth
+- Camera control interface
+- Video streaming interface (using dummy displays for compilation)
+- Settings screen
 
-The project requires Android SDK with build tools version 34.0.0 and compile SDK version 34. We provide a streamlined setup process:
+To compile and build the Android app:
 
-1. Run `./simplified_build.sh sdk-check` to verify your SDK setup
-2. Run `./simplified_build.sh generate-qr` to generate a QR code with SDK configuration details
-3. Scan the QR code to get detailed setup instructions for your development environment
+1. Open the project in Android Studio
+2. Build and run the app on an Android device or emulator
+3. Use the Connection tab to connect to the camera server
 
-### Build Scripts
+## Onboard Python Server
 
-We provide several build scripts to simplify development:
+The onboard server runs on the camera hardware (Raspberry Pi or NVIDIA Jetson) and handles:
 
-```bash
-# Verify SDK setup
-./simplified_build.sh sdk-check
+- Camera hardware interface
+- Video streaming via RTSP
+- Communication with the Android app via WiFi or Bluetooth
 
-# Generate QR code with SDK configuration
-./simplified_build.sh generate-qr
+### Current Development Status
 
-# Quick project check without running Gradle
-./simplified_build.sh minimal-check
+The onboard server code includes:
 
-# Show project structure and tasks
-./simplified_build.sh project-info
+- Camera controller for PTZ operations
+- Video streamer for RTSP video streams
+- WiFi server for HTTP/TCP communication
+- Bluetooth server for RFCOMM communication
+- Local stream viewer for debugging
 
-# Compile without building APK
-./simplified_build.sh compile
+## QR Code Configuration
 
-# Build debug APK
-./simplified_build.sh debug 
+For easy configuration of the Android app, we've implemented a QR code based setup system:
 
-# Resolve dependencies
-./simplified_build.sh dependencies
-
-# Check project structure
-./simplified_build.sh check-project
-```
-
-These scripts are designed to work efficiently in CI/CD environments and handle SDK location resolution automatically.
-
-## Features
-
-- **Dual-mode video streaming** - Support for both RGB and IR/Thermal cameras
-- **Flexible connectivity** - Connect via WiFi or Bluetooth
-- **Intuitive controls** - Simple pan, tilt, and zoom controls with touch interface
-- **Camera mode switching** - Easily switch between RGB and IR/Thermal modes
-- **Adaptive quality** - Adjust video quality based on network conditions
-- **Preset positions** - Save and load camera position presets
-- **Local monitoring** - Optional local video monitoring on the connected display
-
-## Installation
-
-### Android Tablet
-
-#### Option 1: Install via QR Code (Recommended)
-
-Scan this QR code with your Android tablet to download the latest APK:
-
-![QR Code for APK Download](https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/zforce0/ptz-camera-controller/releases/latest/download/ptz-camera-controller.apk)
-
-This QR code will automatically update when new releases are published, always linking to the latest version.
-
-#### Option 2: Direct Download
-
-Download the APK directly from our [GitHub Releases page](https://github.com/zforce0/ptz-camera-controller/releases).
-
-Each release includes:
-- APK file for direct installation
-- QR code image for easy sharing
-- Release notes with changes and improvements
-- Installation instructions
-
-#### Installation Steps:
-
-1. Download the APK file to your Android tablet
-2. Enable installation from unknown sources in Settings > Security
-3. Open the downloaded APK file to install
-4. Launch the app and follow the setup instructions
-
-#### Automatic Updates:
-
-The app will periodically check for new releases on GitHub and notify you when updates are available.
-
-### Onboard Computer (Raspberry Pi / Nvidia Jetson)
-
-1. Clone this repository:
+1. Run the QR code server:
    ```
-   git clone https://github.com/zforce0/ptz-camera-controller.git
-   cd ptz-camera-controller
+   python qr_server.py --wifi <server_ip>:<port>
    ```
+   
+2. Access the QR code at:
+   http://localhost:5001
+   
+3. Scan the QR code with the Android app to automatically configure connection settings
 
-2. Install the required dependencies:
-   ```
-   pip install -r onboard/requirements.txt
-   ```
+### Customizing QR Codes
 
-3. Start the camera server:
-   ```
-   cd onboard
-   python camera_server.py
-   ```
+You can generate custom QR codes with different connection settings:
 
-4. For local monitoring (if a display is connected):
-   ```
-   python camera_server.py --enable-local-viewer
-   ```
+- For WiFi connection:
+  http://localhost:5001/generate?wifi=192.168.1.100:8000
+  
+- For Bluetooth connection:
+  http://localhost:5001/generate?bluetooth=PTZ_Camera_Controller
+  
+- For both connection types:
+  http://localhost:5001/generate?wifi=192.168.1.100:8000&bluetooth=PTZ_Camera_Controller
 
-## Connection Guide
+## Development Workflow
 
-1. Start the server on your onboard computer
-2. Launch the PTZ Camera Controller app on your tablet
-3. For WiFi connection:
-   - Enter the IP address of your onboard computer
-   - Default port is 8000
-4. For Bluetooth connection:
-   - Ensure Bluetooth is enabled on both devices
-   - Select "PTZCameraServer" from the list of available devices
-5. Once connected, you'll see the live camera feed and controls
+1. Make changes to the Android app or onboard server code
+2. Test with dummy implementations first
+3. Gradually replace dummy implementations with actual functionality
+4. Use the QR code for easy configuration during testing
 
-## System Requirements
+## Next Steps
 
-### Android Tablet
-- Android 6.0 (Marshmallow) or higher
-- 2GB RAM (minimum)
-- Bluetooth 4.0+ and/or WiFi capability
-
-### Onboard Computer
-- Raspberry Pi 3/4 or NVIDIA Jetson Nano/Xavier NX
-- Python 3.6 or higher
-- USB or CSI camera for RGB video
-- FLIR or similar camera for thermal imaging (optional)
-- Network connectivity (WiFi or Ethernet)
-
-## Troubleshooting
-
-If you experience connection issues:
-1. Ensure the tablet and onboard computer are on the same network (for WiFi connection)
-2. Check that the correct IP address and port are entered
-3. Verify Bluetooth is enabled on both devices (for Bluetooth connection)
-4. Check the server logs for any error messages
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## Acknowledgments
-
-- ExoPlayer library for video streaming
-- OpenCV for computer vision capabilities
-- All contributors who have helped with the project
+- Complete dummy implementations for remaining app components
+- Implement QR code scanning functionality in the app
+- Add unit tests for core functionality
+- Integrate with actual camera hardware

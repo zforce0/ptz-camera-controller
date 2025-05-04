@@ -4,19 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
 import androidx.fragment.app.Fragment
+import android.widget.TextView
+import android.content.pm.PackageManager
+import android.widget.Button
+import android.widget.Toast
 
+/**
+ * Settings Fragment for the PTZ Camera Controller App
+ * This provides app settings and information
+ */
 class SettingsFragment : Fragment() {
 
+    private lateinit var versionTextView: TextView
+    private lateinit var scanQrButton: Button
     private lateinit var connectionManager: ConnectionManager
-    
-    // UI components
-    private lateinit var editDefaultIp: EditText
-    private lateinit var editDefaultPort: EditText
-    private lateinit var spinnerConnectionType: Spinner
-    private lateinit var spinnerVideoQuality: Spinner
-    private lateinit var btnSaveSettings: Button
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,60 +34,26 @@ class SettingsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         
-        // Initialize UI components
-        editDefaultIp = view.findViewById(R.id.edit_default_ip)
-        editDefaultPort = view.findViewById(R.id.edit_default_port)
-        spinnerConnectionType = view.findViewById(R.id.spinner_connection_type)
-        spinnerVideoQuality = view.findViewById(R.id.spinner_video_quality)
-        btnSaveSettings = view.findViewById(R.id.btn_save_settings)
+        // Find views
+        versionTextView = view.findViewById(R.id.version_text)
+        scanQrButton = view.findViewById(R.id.scan_qr_button)
         
-        // Set up connection type spinner
-        val connectionTypes = arrayOf("WiFi", "Bluetooth")
-        val connectionAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, connectionTypes)
-        connectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerConnectionType.adapter = connectionAdapter
+        // Set app version
+        try {
+            val packageInfo = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
+            val versionName = packageInfo.versionName
+            val versionCode = packageInfo.versionCode
+            versionTextView.text = "Version: $versionName ($versionCode)"
+        } catch (e: PackageManager.NameNotFoundException) {
+            versionTextView.text = "Version: Unknown"
+        }
         
-        // Set up video quality spinner
-        val videoQualities = arrayOf("Low", "Medium", "High")
-        val qualityAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, videoQualities)
-        qualityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerVideoQuality.adapter = qualityAdapter
-        
-        // Load saved settings
-        loadSettings()
-        
-        // Set up save button
-        btnSaveSettings.setOnClickListener {
-            saveSettings()
+        // QR code scanner button
+        scanQrButton.setOnClickListener {
+            // This would normally launch the QR scanner
+            Toast.makeText(context, "QR scanner not implemented yet", Toast.LENGTH_SHORT).show()
         }
         
         return view
-    }
-    
-    private fun loadSettings() {
-        val sharedPrefs = requireActivity().getSharedPreferences("PTZControllerPrefs", 0)
-        
-        editDefaultIp.setText(sharedPrefs.getString("default_ip", "192.168.1.100"))
-        editDefaultPort.setText(sharedPrefs.getString("default_port", "8000"))
-        
-        val defaultConnectionType = sharedPrefs.getInt("connection_type", 0) // 0 for WiFi, 1 for Bluetooth
-        spinnerConnectionType.setSelection(defaultConnectionType)
-        
-        val defaultVideoQuality = sharedPrefs.getInt("video_quality", 1) // 0 for Low, 1 for Medium, 2 for High
-        spinnerVideoQuality.setSelection(defaultVideoQuality)
-    }
-    
-    private fun saveSettings() {
-        val sharedPrefs = requireActivity().getSharedPreferences("PTZControllerPrefs", 0)
-        val editor = sharedPrefs.edit()
-        
-        editor.putString("default_ip", editDefaultIp.text.toString())
-        editor.putString("default_port", editDefaultPort.text.toString())
-        editor.putInt("connection_type", spinnerConnectionType.selectedItemPosition)
-        editor.putInt("video_quality", spinnerVideoQuality.selectedItemPosition)
-        
-        editor.apply()
-        
-        Toast.makeText(context, "Settings saved", Toast.LENGTH_SHORT).show()
     }
 }
