@@ -70,6 +70,8 @@ layout fragment_connection
 layout fragment_settings
 layout fragment_video_stream
 menu bottom_navigation_menu
+mipmap ic_launcher
+mipmap ic_launcher_round
 string action_settings
 string app_name
 string connect_available_devices

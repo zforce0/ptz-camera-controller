@@ -4,26 +4,7 @@
             "outputFile": "com.ptzcontroller.app-mergeDebugResources-33:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f71f553886ff96540cda439f31b93faf/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "4",
-                        "endColumns": "12",
-                        "endOffsets": "200"
-                    },
-                    "to": {
-                        "startLines": "50",
-                        "startColumns": "4",
-                        "startOffsets": "3232",
-                        "endLines": "52",
-                        "endColumns": "12",
-                        "endOffsets": "3377"
-                    }
-                },
-                {
-                    "source": "/Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f86d68ca425cb9a4c575a54b299ace3b/transformed/appcompat-1.6.1/res/values-v23/values-v23.xml",
+                    "source": "/Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b04c451f9196e2760b06b7a2fa1dfd84/transformed/appcompat-1.6.1/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -34,7 +15,7 @@
                     }
                 },
                 {
-                    "source": "/Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9899818b48e4dd1e89dc1ac0180d6d67/transformed/material-1.11.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9387850ac48dbe0a844f407b5557acb7/transformed/material-1.11.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -50,6 +31,25 @@
                         "endLines": "55,59,63,66,69,72,75,78,82,86",
                         "endColumns": "10,10,10,10,10,10,10,10,10,10",
                         "endOffsets": "3593,3735,3896,4106,4313,4520,4723,4925,5190,5463"
+                    }
+                },
+                {
+                    "source": "/Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/7bb2251a2d6bc8f5b3ba5f03f56d45b8/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "50",
+                        "startColumns": "4",
+                        "startOffsets": "3232",
+                        "endLines": "52",
+                        "endColumns": "12",
+                        "endOffsets": "3377"
                     }
                 }
             ]
