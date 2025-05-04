@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.ptzcontroller.app-debug-35:/layout_activity_main.xml.flat",
+        "source": "com.ptzcontroller.app-main-37:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-35:/menu_bottom_navigation_menu.xml.flat",
+        "source": "com.ptzcontroller.app-main-37:/menu/bottom_navigation_menu.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-35:/layout_fragment_settings.xml.flat",
+        "source": "com.ptzcontroller.app-main-37:/layout/fragment_settings.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-35:/layout_fragment_camera_control.xml.flat",
+        "source": "com.ptzcontroller.app-main-37:/layout/fragment_camera_control.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-35:/layout_fragment_connection.xml.flat",
+        "source": "com.ptzcontroller.app-main-37:/layout/fragment_connection.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-35:/layout_fragment_video_stream.xml.flat",
+        "source": "com.ptzcontroller.app-main-37:/layout/fragment_video_stream.xml"
+    }
+]

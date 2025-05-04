@@ -1,0 +1,4 @@
+com.ptzcontroller.test.app-androidTest-0 /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build/generated/res/resValues/androidTest/debug
+com.ptzcontroller.test.app-mergeDebugAndroidTestResources-1 /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.ptzcontroller.test.app-mergeDebugAndroidTestResources-2 /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.ptzcontroller.test.app-debugAndroidTest-3 /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources
