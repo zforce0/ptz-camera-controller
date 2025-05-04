@@ -51,15 +51,12 @@ mkdir -p "$ANDROID_SDK_DIR/build-tools/$FALLBACK_BUILD_TOOLS_VERSION/lib"
 touch "$ANDROID_SDK_DIR/build-tools/$BUILD_TOOLS_VERSION/lib/d8.jar"
 touch "$ANDROID_SDK_DIR/build-tools/$FALLBACK_BUILD_TOOLS_VERSION/lib/d8.jar"
 
-# Set environment variables
+# Set environment variables for current session only
+# We're not modifying .bashrc due to permission issues
 export ANDROID_HOME="$ANDROID_SDK_DIR"
 export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/tools/bin:$PATH"
-
-# Add environment variables to bashrc for persistence
-{
-  echo "export ANDROID_HOME=$ANDROID_SDK_DIR"
-  echo 'export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/tools/bin:$PATH'
-} >> ~/.bashrc
+echo "Environment variables set for current session:"
+echo "ANDROID_HOME=$ANDROID_HOME"
 
 # Create local.properties file
 echo "sdk.dir=$ANDROID_SDK_DIR" > local.properties

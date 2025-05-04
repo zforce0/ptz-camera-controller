@@ -1,9 +1,32 @@
 #!/bin/bash
 # optimized_build.sh - Script for optimized Android builds in resource-constrained environments
 
-# Source find_android_sdk.sh to locate and set up the Android SDK
-echo "Locating Android SDK..."
-source ./find_android_sdk.sh
+# Set up Android SDK environment
+export ANDROID_HOME=/home/runner/Android/Sdk
+echo "Using Android SDK at $ANDROID_HOME"
+
+# Check if SDK directory exists
+if [ ! -d "$ANDROID_HOME" ]; then
+  echo "Android SDK directory not found at $ANDROID_HOME"
+  echo "Creating minimal SDK structure..."
+  
+  # Create directory structure
+  mkdir -p "$ANDROID_HOME/platforms/android-34"
+  mkdir -p "$ANDROID_HOME/build-tools/33.0.1"
+  mkdir -p "$ANDROID_HOME/platform-tools"
+  mkdir -p "$ANDROID_HOME/licenses"
+  
+  # Create license files
+  echo "8933bad161af4178b1185d1a37fbf41ea5269c55
+24333f8a63b6825ea9c5514f83c2829b004d1fee" > "$ANDROID_HOME/licenses/android-sdk-license"
+  
+  echo "d56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+  
+  # Create local.properties file
+  echo "sdk.dir=$ANDROID_HOME" > local.properties
+  
+  echo "Created minimal SDK structure"
+fi
 
 # Check for JAVA_HOME, set if needed
 if [ -z "$JAVA_HOME" ]; then

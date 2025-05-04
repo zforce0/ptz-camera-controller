@@ -33,6 +33,21 @@
     <string name="control_preset_save">Save Preset</string>
     <string name="control_preset_load">Load Preset</string>
     
+    <!-- Camera control fragment strings -->
+    <string name="camera_controls">Camera Controls</string>
+    <string name="pan_tilt_controls">Pan/Tilt Controls</string>
+    <string name="up">Up</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="down">Down</string>
+    <string name="zoom_controls">Zoom Controls</string>
+    <string name="zoom_out">Zoom Out</string>
+    <string name="zoom_in">Zoom In</string>
+    <string name="movement_speed">Movement Speed</string>
+    <string name="camera_mode">Camera Mode</string>
+    <string name="rgb_mode">RGB</string>
+    <string name="ir_mode">IR</string>
+    
     <!-- Stream screen strings -->
     <string name="stream_title">Video Stream</string>
     <string name="stream_quality">Stream Quality</string>

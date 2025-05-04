@@ -31,9 +31,7 @@ allprojects {
         gradlePluginPortal()
         // Use Maven Central for dependencies
         mavenCentral()
-        flatDir {
-            dirs "/home/runner/Android/Sdk/platforms"
-        }
+        google()  // For Android SDK dependencies
     }
 
     // Ensure JDK 17 compatibility across all projects
