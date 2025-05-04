@@ -82,18 +82,11 @@ def generate_qr_code(sdk_info, output_dir="."):
     # Prepare data for QR code
     qr_data = json.dumps(sdk_info, indent=2)
     
-    # Generate QR code
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=4,
-    )
-    qr.add_data(qr_data)
-    qr.make(fit=True)
+    # Generate QR code - using qrcode's simpler API to avoid LSP issues
+    # while maintaining the same functionality
+    qr_img = qrcode.make(qr_data)
     
-    # Create QR code image
-    qr_img = qr.make_image(fill_color="black", back_color="white")
+    # The make() function returns a PIL Image object directly
     
     # Save the QR code image
     qr_img_path = os.path.join(output_dir, "android_sdk_info_qr.png")
