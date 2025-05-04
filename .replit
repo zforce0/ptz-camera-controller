@@ -5,7 +5,7 @@ channel = "stable-24_05"
 packages = ["freetype", "gradle", "lcms2", "libGL", "libGLU", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "nano", "openjpeg", "tcl", "tk", "zlib", "zulu17"]
 
 [workflows]
-runButton = "Android Build and Test"
+runButton = "Project"
 
 [[workflows.workflow]]
 name = "Project"
@@ -22,7 +22,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python http_server.py"
+args = "python flask_qr_server.py"
 waitForPort = 5000
 
 [[workflows.workflow]]
@@ -50,9 +50,17 @@ localPort = 5002
 externalPort = 3001
 
 [[ports]]
+localPort = 5555
+externalPort = 3002
+
+[[ports]]
 localPort = 8000
 externalPort = 8000
 
 [[ports]]
 localPort = 8001
 externalPort = 80
+
+[[ports]]
+localPort = 8080
+externalPort = 8080

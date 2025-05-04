@@ -1,4 +1,30 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""
+Simple QR Code Server for Android PTZ Camera Controller
+"""
+import os
+import http.server
+import socketserver
+import qrcode
+import json
+
+# The port the server will run on
+PORT = 5000
+
+def generate_qr():
+    """Generate QR code with configuration data"""
+    # Create output directory if it doesn't exist
+    os.makedirs("qr_output", exist_ok=True)
+    
+    # QR code data
+    qr_data = json.dumps({"wifi": "localhost:8000"})
+    
+    # Generate and save QR code
+    img = qrcode.make(qr_data)
+    img.save("qr_code.png")
+    
+    # Create a basic HTML page
+    html_content = """<!DOCTYPE html>
     <html>
     <head>
         <meta charset="UTF-8">
@@ -27,7 +53,7 @@
                 <tr><th>Setting</th><th>Value</th></tr>
                 <tr><td>Connection Type</td><td>WiFi</td></tr>
                 <tr><td>IP Address</td><td>localhost</td></tr>
-                <tr><td>Port</td><td>8080</td></tr>
+                <tr><td>Port</td><td>8000</td></tr>
             </table>
         </div>
         
@@ -46,4 +72,30 @@
         </div>
     </body>
     </html>
+    """
     
+    # Write HTML file
+    with open("index.html", "w") as f:
+        f.write(html_content)
+
+def run_server():
+    """Run the HTTP server"""
+    # Generate QR code and HTML
+    generate_qr()
+    
+    # Set up server
+    handler = http.server.SimpleHTTPRequestHandler
+    
+    # Create and start server
+    try:
+        with socketserver.TCPServer(("", PORT), handler) as httpd:
+            print(f"Starting server on port {PORT}")
+            print(f"Access the QR code at http://localhost:{PORT}")
+            httpd.serve_forever()
+    except OSError as e:
+        print(f"Error starting server: {e}")
+        if "Address already in use" in str(e):
+            print("Try using a different port")
+
+if __name__ == "__main__":
+    run_server()

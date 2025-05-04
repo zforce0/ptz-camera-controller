@@ -7,7 +7,7 @@ import os
 import http.server
 import socketserver
 
-PORT = 5000
+PORT = 5555  # Using a less common port to avoid conflicts
 
 class SimpleHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     """Simple request handler that displays directory contents"""
@@ -113,7 +113,7 @@ with open("index.html", "w") as f:
     f.write(html_content)
 
 print("Starting HTTP server on port", PORT)
-print("Access the QR code at http://localhost:5000")
+print("Access the QR code at http://localhost:5555")
 
 # Start HTTP server
 Handler = http.server.SimpleHTTPRequestHandler
