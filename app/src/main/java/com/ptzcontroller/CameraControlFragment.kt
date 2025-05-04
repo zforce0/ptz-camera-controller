@@ -101,15 +101,15 @@ class CameraControlFragment : Fragment(), View.OnClickListener, View.OnTouchList
         }
         return false
     }
-    
+
     private fun sendCommand(type: String, value: Int) {
         if (!connectionManager.isConnected()) {
             Toast.makeText(context, "Not connected to camera", Toast.LENGTH_SHORT).show()
             return
         }
-        
+
         val command = CameraCommand(type, value)
-        connectionManager.sendCommand(command)
+        connectionManager.sendCommand(command.toString())  // Convert to string
     }
     
     private fun switchCameraMode(mode: String) {
@@ -117,9 +117,9 @@ class CameraControlFragment : Fragment(), View.OnClickListener, View.OnTouchList
             Toast.makeText(context, "Not connected to camera", Toast.LENGTH_SHORT).show()
             return
         }
-        
+
         val command = CameraCommand("mode", if (mode == "rgb") 0 else 1)
-        connectionManager.sendCommand(command)
+        connectionManager.sendCommand(command.toString())
         
         Toast.makeText(
             context, 

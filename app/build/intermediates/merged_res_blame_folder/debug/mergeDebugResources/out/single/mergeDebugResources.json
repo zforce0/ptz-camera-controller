@@ -1,50 +1,62 @@
 [
     {
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/menu_bottom_navigation_menu.xml.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/menu/bottom_navigation_menu.xml"
+    },
+    {
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
         "merged": "com.ptzcontroller.app-debug-35:/menu_bottom_navigation_menu.xml.flat",
         "source": "com.ptzcontroller.app-main-37:/menu/bottom_navigation_menu.xml"
     },
     {
-        "merged": "com.ptzcontroller.app-debug-35:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.ptzcontroller.app-main-37:/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.ptzcontroller.app-debug-35:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.ptzcontroller.app-main-37:/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/layout_activity_main.xml.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/layout/activity_main.xml"
     },
     {
-        "merged": "com.ptzcontroller.app-debug-35:/layout_fragment_camera_control.xml.flat",
-        "source": "com.ptzcontroller.app-main-37:/layout/fragment_camera_control.xml"
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/layout_fragment_settings.xml.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/layout/fragment_settings.xml"
     },
     {
-        "merged": "com.ptzcontroller.app-debug-35:/layout_fragment_video_stream.xml.flat",
-        "source": "com.ptzcontroller.app-main-37:/layout/fragment_video_stream.xml"
-    },
-    {
-        "merged": "com.ptzcontroller.app-debug-35:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.ptzcontroller.app-main-37:/mipmap-xhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "com.ptzcontroller.app-debug-35:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.ptzcontroller.app-main-37:/mipmap-mdpi/ic_launcher_round.png"
-    },
-    {
-        "merged": "com.ptzcontroller.app-debug-35:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.ptzcontroller.app-main-37:/mipmap-mdpi/ic_launcher.png"
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/mipmap-mdpi/ic_launcher.png"
     },
     {
         "merged": "com.ptzcontroller.app-debug-35:/layout_activity_main.xml.flat",
         "source": "com.ptzcontroller.app-main-37:/layout/activity_main.xml"
     },
     {
-        "merged": "com.ptzcontroller.app-debug-35:/layout_fragment_settings.xml.flat",
-        "source": "com.ptzcontroller.app-main-37:/layout/fragment_settings.xml"
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "com.ptzcontroller.app-debug-35:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.ptzcontroller.app-main-37:/mipmap-hdpi/ic_launcher.png"
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
         "merged": "com.ptzcontroller.app-debug-35:/layout_fragment_connection.xml.flat",
         "source": "com.ptzcontroller.app-main-37:/layout/fragment_connection.xml"
+    },
+    {
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/layout_fragment_connection.xml.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/layout/fragment_connection.xml"
+    },
+    {
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/layout_fragment_camera_control.xml.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/layout/fragment_camera_control.xml"
+    },
+    {
+        "merged": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-debug-35:/layout_fragment_video_stream.xml.flat",
+        "source": "/Users/jbc-zeph21/.gradle/daemon/8.11.1/com.ptzcontroller.app-main-37:/layout/fragment_video_stream.xml"
     }
 ]

@@ -35,8 +35,8 @@ class SettingsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         
         // Find views
-        versionTextView = view.findViewById(R.id.version_text)
-        scanQrButton = view.findViewById(R.id.scan_qr_button)
+//        versionTextView = view.findViewById(R.id.version_text)
+//        scanQrButton = view.findViewById(R.id.scan_qr_button)
         
         // Set app version
         try {

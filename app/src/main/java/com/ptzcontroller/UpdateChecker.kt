@@ -68,9 +68,12 @@ class UpdateChecker(
                     val latestVersion = json.getString("tag_name").removePrefix("v")
                     val releaseNotes = json.getString("body")
                     val downloadUrl = json.getString("html_url")
-                    
+
                     if (isNewerVersion(latestVersion)) {
                         showUpdateDialog(latestVersion, releaseNotes, downloadUrl)
+                    } else {
+                        // No update needed
+                        Log.d(TAG, "App is up to date (current: $currentVersion, latest: $latestVersion)")
                     }
                 } catch (e: Exception) {
                     Log.e(TAG, "Error parsing update response", e)
@@ -86,10 +89,14 @@ class UpdateChecker(
         try {
             val current = currentVersion.split(".").map { it.toInt() }
             val latest = latestVersion.split(".").map { it.toInt() }
-            
+
             for (i in 0 until minOf(current.size, latest.size)) {
-                if (latest[i] > current[i]) return true
-                if (latest[i] < current[i]) return false
+                if (latest[i] > current[i]) {
+                    return true
+                }
+                if (latest[i] < current[i]) {
+                    return false
+                }
             }
             
             return latest.size > current.size

@@ -10,7 +10,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -21,7 +20,7 @@ import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.google.android.material.button.MaterialButtonToggleGroup
-
+import com.google.android.exoplayer2.PlaybackException
 class VideoStreamFragment : Fragment(), Player.Listener {
 
     private lateinit var connectionManager: ConnectionManager
@@ -130,11 +129,11 @@ class VideoStreamFragment : Fragment(), Player.Listener {
         
         // Determine stream URL based on connection type and current mode
         val host = when (connectionManager.getConnectionType()) {
-            ConnectionType.WIFI -> {
+            ConnectionManager.ConnectionType.WIFI-> {
                 val ipParts = connectionManager.getConnectedDeviceName().split(":")
                 ipParts[0]
             }
-            ConnectionType.BLUETOOTH -> {
+            ConnectionManager.ConnectionType.BLUETOOTH -> {
                 // For Bluetooth, use a default IP (localhost)
                 "127.0.0.1"
             }
@@ -194,7 +193,7 @@ class VideoStreamFragment : Fragment(), Player.Listener {
         // Send command to switch camera mode
         val modeValue = if (mode == "rgb") 0 else 1
         val command = CameraCommand("mode", modeValue)
-        connectionManager.sendCommand(command)
+        connectionManager.sendCommand(command.toString())  // Convert to string
         
         // Reconnect to the new stream
         connectToStream()
@@ -234,8 +233,8 @@ class VideoStreamFragment : Fragment(), Player.Listener {
             Player.STATE_IDLE -> showError("Stream idle")
         }
     }
-    
-    override fun onPlayerError(error: com.google.android.exoplayer2.ExoPlaybackException) {
+
+    override fun onPlayerError(error: PlaybackException) {
         showError("Stream error: ${error.message}")
     }
 }
