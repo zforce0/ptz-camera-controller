@@ -5,7 +5,7 @@ channel = "stable-24_05"
 packages = ["freetype", "gradle", "lcms2", "libGL", "libGLU", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "nano", "openjpeg", "tcl", "tk", "zlib", "zulu17"]
 
 [workflows]
-runButton = "Project"
+runButton = "Android Build and Test"
 
 [[workflows.workflow]]
 name = "Project"
@@ -22,8 +22,17 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python -m http.server 5000 --bind 0.0.0.0"
+args = "python http_server.py"
 waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Android Build and Test"
+author = 37115865
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./simplified_build.sh debug"
 
 [deployment]
 run = ["sh", "-c", "cd onboard && pip install -r requirements.txt && python camera_server.py"]
@@ -31,6 +40,14 @@ run = ["sh", "-c", "cd onboard && pip install -r requirements.txt && python came
 [[ports]]
 localPort = 5000
 externalPort = 5000
+
+[[ports]]
+localPort = 5001
+externalPort = 3000
+
+[[ports]]
+localPort = 5002
+externalPort = 3001
 
 [[ports]]
 localPort = 8000
