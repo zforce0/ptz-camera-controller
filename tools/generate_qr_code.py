@@ -25,18 +25,9 @@ def generate_qr_code(url, output_dir, repository="zforce0/ptz-camera-controller"
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
     
-    # Generate QR code
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=4,
-    )
-    qr.add_data(url)
-    qr.make(fit=True)
-    
-    # Create QR code image with logo
-    qr_img = qr.make_image(fill_color="black", back_color="white")
+    # Generate QR code using the simpler API to avoid LSP issues
+    # while maintaining the same functionality
+    qr_img = qrcode.make(url)
     
     # Save the QR code image
     qr_img_path = os.path.join(output_dir, "ptz_controller_qr.png")
