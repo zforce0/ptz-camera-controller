@@ -2,7 +2,7 @@
 
 A comprehensive Android application for controlling PTZ (Pan-Tilt-Zoom) cameras through an onboard computer such as a Raspberry Pi or NVIDIA Jetson.
 
-![PTZ Camera Controller Screenshot](screenshots/app_screenshot_placeholder.jpg)
+![PTZ Camera Controller Screenshot](screenshots/app_screenshot_placeholder.svg)
 
 ## Documentation
 
@@ -13,6 +13,51 @@ Comprehensive documentation is available for this project:
 - [Communication Flow](docs/communication_flow.md) - Sequence diagrams showing data flow
 - [Deployment Architecture](docs/deployment_architecture.md) - Physical deployment details
 - [Development Roadmap](docs/development_roadmap.md) - Planned features and timeline
+- [Android SDK Setup](docs/android_sdk_setup.md) - Detailed Android SDK configuration guide
+
+## Development Setup
+
+This project uses JDK 17 and Gradle for building the Android application. We provide simplified scripts for building and configuring the Android SDK.
+
+### Android SDK Setup
+
+The project requires Android SDK with build tools version 34.0.0 and compile SDK version 34. We provide a streamlined setup process:
+
+1. Run `./simplified_build.sh sdk-check` to verify your SDK setup
+2. Run `./simplified_build.sh generate-qr` to generate a QR code with SDK configuration details
+3. Scan the QR code to get detailed setup instructions for your development environment
+
+### Build Scripts
+
+We provide several build scripts to simplify development:
+
+```bash
+# Verify SDK setup
+./simplified_build.sh sdk-check
+
+# Generate QR code with SDK configuration
+./simplified_build.sh generate-qr
+
+# Quick project check without running Gradle
+./simplified_build.sh minimal-check
+
+# Show project structure and tasks
+./simplified_build.sh project-info
+
+# Compile without building APK
+./simplified_build.sh compile
+
+# Build debug APK
+./simplified_build.sh debug 
+
+# Resolve dependencies
+./simplified_build.sh dependencies
+
+# Check project structure
+./simplified_build.sh check-project
+```
+
+These scripts are designed to work efficiently in CI/CD environments and handle SDK location resolution automatically.
 
 ## Features
 
