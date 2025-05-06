@@ -1,18 +1,17 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Night mode colors (darker theme) -->
-    <color name="primary">#2E7D32</color>
-    <color name="primary_dark">#1B5E20</color>
-    <color name="primary_light">#388E3C</color>
-    <color name="primary_variant">#0A3D0A</color>
+    <!-- App theme colors (night mode) -->
+    <color name="colorPrimary">#0D47A1</color>
+    <color name="colorPrimaryDark">#002171</color>
+    <color name="colorAccent">#D81B60</color>
     
-    <color name="accent">#FF9800</color>
-    <color name="accent_dark">#F57C00</color>
+    <!-- Status indicator colors (night mode) -->
+    <color name="status_error">#E57373</color>
+    <color name="status_good">#81C784</color>
+    <color name="status_idle">#FFF59D</color>
     
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#B3FFFFFF</color>
-    <color name="text_hint">#80FFFFFF</color>
-    
-    <color name="status_bar">#1B5E20</color>
-    <color name="navigation_bar">#121212</color>
+    <!-- Camera mode colors (night mode) -->
+    <color name="mode_rgb">#7986CB</color>
+    <color name="mode_ir">#BA68C8</color>
 </resources>
