@@ -1,10 +1,12 @@
-package com.ptzcontroller
+package com.ptzcontroller.data.repository
 
 import android.bluetooth.BluetoothDevice
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
+import com.ptzcontroller.data.network.BluetoothClient
+import com.ptzcontroller.data.network.NetworkClient
 import com.ptzcontroller.utils.PreferenceManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -215,6 +217,81 @@ class ConnectionRepository(private val context: Context) {
                 Log.e("ConnectionRepository", "Error checking connection status", e)
                 false
             }
+        }
+    }
+    
+    /**
+     * Check if using Bluetooth fallback
+     * @return true if using Bluetooth instead of WiFi
+     */
+    suspend fun isUsingBluetoothFallback(): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                // Check if we're connected at all
+                if (!isConnected()) {
+                    return@withContext false
+                }
+                
+                // Check if we're connected via WiFi
+                if (networkClient != null && isWiFiConnected()) {
+                    val wifiConnected = networkClient?.testConnection() ?: false
+                    if (wifiConnected) {
+                        return@withContext false // Using WiFi, not Bluetooth
+                    }
+                }
+                
+                // Not connected via WiFi, check if using Bluetooth
+                if (bluetoothClient != null) {
+                    return@withContext bluetoothClient?.isConnected() ?: false
+                }
+                
+                false
+            } catch (e: Exception) {
+                Log.e("ConnectionRepository", "Error checking Bluetooth fallback status", e)
+                false
+            }
+        }
+    }
+    
+    /**
+     * Ping the server to test connection
+     * @return true if ping successful
+     */
+    suspend fun ping(): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                val pingCommand = JSONObject().apply {
+                    put("type", "ping")
+                }
+                
+                val response = sendCommand(pingCommand)
+                response?.optBoolean("success", false) ?: false
+            } catch (e: Exception) {
+                Log.e("ConnectionRepository", "Error pinging server", e)
+                false
+            }
+        }
+    }
+    
+    /**
+     * Parse QR code content
+     * @param qrContent Content scanned from QR code
+     * @return Pair of IP address and port, or null if invalid format
+     */
+    fun parseQRCodeContent(qrContent: String): Pair<String, Int>? {
+        return try {
+            val data = JSONObject(qrContent)
+            val ipAddress = data.optString("ip", "")
+            val port = data.optInt("port", 0)
+            
+            if (ipAddress.isNotEmpty() && port > 0) {
+                Pair(ipAddress, port)
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("ConnectionRepository", "Error parsing QR code content", e)
+            null
         }
     }
 }

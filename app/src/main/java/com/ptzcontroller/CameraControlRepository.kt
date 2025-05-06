@@ -1,7 +1,8 @@
-package com.ptzcontroller
+package com.ptzcontroller.data.repository
 
 import android.content.Context
 import android.util.Log
+import com.ptzcontroller.ui.control.CameraMode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -12,7 +13,7 @@ import org.json.JSONObject
  */
 class CameraControlRepository(private val context: Context) {
 
-    private val connectionRepository = ConnectionRepository(context)
+    private val connectionRepository = com.ptzcontroller.data.repository.ConnectionRepository(context)
     
     /**
      * Set pan speed
@@ -74,6 +75,43 @@ class CameraControlRepository(private val context: Context) {
      */
     suspend fun isConnected(): Boolean {
         return connectionRepository.isConnected()
+    }
+    
+    /**
+     * Check if using Bluetooth fallback
+     * @return true if using Bluetooth instead of WiFi
+     */
+    suspend fun isUsingBluetoothFallback(): Boolean {
+        return connectionRepository.isUsingBluetoothFallback()
+    }
+    
+    /**
+     * Ping the server
+     * @return true if ping successful
+     */
+    suspend fun ping(): Boolean {
+        return connectionRepository.ping()
+    }
+    
+    /**
+     * Send pan and tilt commands simultaneously
+     * @param pan Pan value (-100 to 100)
+     * @param tilt Tilt value (-100 to 100) 
+     * @return true if command sent successfully
+     */
+    suspend fun sendPanTilt(pan: Int, tilt: Int): Boolean {
+        val panSuccess = sendControlCommand("pan", pan)
+        val tiltSuccess = sendControlCommand("tilt", tilt)
+        return panSuccess && tiltSuccess
+    }
+    
+    /**
+     * Set zoom level (alias for setZoomLevel)
+     * @param zoom Zoom level from 0 to 100
+     * @return true if command sent successfully
+     */
+    suspend fun sendZoom(zoom: Int): Boolean {
+        return setZoomLevel(zoom)
     }
     
     /**

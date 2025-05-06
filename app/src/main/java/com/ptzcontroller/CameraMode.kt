@@ -1,4 +1,4 @@
-package com.ptzcontroller
+package com.ptzcontroller.ui.control
 
 /**
  * Enum for camera modes

@@ -48,6 +48,12 @@ class CameraControlViewModel(
         value = false
     }
     val isUsingBluetooth: LiveData<Boolean> = _isUsingBluetooth
+    
+    // Connection status text
+    private val _connectionStatus = MutableLiveData<String>().apply {
+        value = "Disconnected"
+    }
+    val connectionStatus: LiveData<String> = _connectionStatus
 
     /**
      * Set pan and tilt position
@@ -132,5 +138,68 @@ class CameraControlViewModel(
         val connected = cameraControlRepository.ping()
         _isConnected.postValue(connected)
         connected
+    }
+    
+    /**
+     * Handle joystick movement
+     * Converts angle and strength to pan/tilt values
+     * @param angle Angle in degrees (0-360, where 0 is up)
+     * @param strength Strength (0-100)
+     */
+    fun handleJoystickMove(angle: Int, strength: Int) {
+        // Convert angle and strength to pan and tilt values (-100 to 100)
+        // For pan: 0° = 0, 90° = 100, 270° = -100
+        // For tilt: 0° = -100, 180° = 100
+        
+        val panValue = when (angle) {
+            in 0..90 -> (angle * strength) / 90
+            in 91..180 -> (2 * 90 - angle) * strength / 90
+            in 181..270 -> -((angle - 180) * strength) / 90
+            else -> -((360 - angle) * strength) / 90
+        }
+        
+        val tiltValue = when (angle) {
+            in 0..180 -> -((180 - angle) * strength) / 90
+            else -> ((angle - 180) * strength) / 90
+        }
+        
+        // Clip values to -100 to 100 range
+        val clippedPan = panValue.coerceIn(-100, 100)
+        val clippedTilt = tiltValue.coerceIn(-100, 100)
+        
+        // Update the model and send to camera
+        setPanTilt(clippedPan, clippedTilt)
+    }
+    
+    /**
+     * Handle joystick release (stop all movement)
+     */
+    fun handleJoystickRelease() {
+        setPanTilt(0, 0)
+    }
+    
+    /**
+     * Set zoom level for slider
+     */
+    fun setZoomLevel(level: Int) {
+        setZoom(level)
+    }
+    
+    /**
+     * Zoom in (increment zoom level)
+     */
+    fun zoomIn() {
+        val currentZoom = _zoomLevel.value ?: 0
+        val newZoom = (currentZoom + 10).coerceAtMost(100)
+        setZoom(newZoom)
+    }
+    
+    /**
+     * Zoom out (decrement zoom level)
+     */
+    fun zoomOut() {
+        val currentZoom = _zoomLevel.value ?: 0
+        val newZoom = (currentZoom - 10).coerceAtLeast(0)
+        setZoom(newZoom)
     }
 }

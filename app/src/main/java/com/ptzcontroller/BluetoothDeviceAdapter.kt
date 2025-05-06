@@ -9,10 +9,11 @@ import com.ptzcontroller.databinding.ItemBluetoothDeviceBinding
 
 /**
  * Adapter for displaying Bluetooth devices in a RecyclerView
+ * Uses the modern ListAdapter pattern with DiffUtil
  */
-class BluetoothDeviceAdapter(
+class BluetoothDeviceInfoAdapter(
     private val onDeviceClickListener: (BluetoothDeviceInfo) -> Unit
-) : ListAdapter<BluetoothDeviceInfo, BluetoothDeviceAdapter.ViewHolder>(BluetoothDeviceDiffCallback()) {
+) : ListAdapter<BluetoothDeviceInfo, BluetoothDeviceInfoAdapter.ViewHolder>(BluetoothDeviceDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemBluetoothDeviceBinding.inflate(
