@@ -4,166 +4,146 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.stream.VideoStreamFragment">
+    android:background="@color/background">
 
-    <!-- Video Player (ExoPlayer) -->
+    <!-- Video player view -->
     <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/video_player"
+        android:id="@+id/video_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/controls_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:resize_mode="fit"
-        app:surface_type="surface_view"
-        app:use_controller="false" />
+        app:use_controller="true" />
 
-    <!-- Floating status card -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/stream_status_card"
-        android:layout_width="wrap_content"
+    <!-- Status overlay -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/status_overlay"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/surface"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
+        android:background="#80000000"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_stream_status_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:text="Status:"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_stream_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Disconnected"
+            android:textColor="@color/status_error"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_stream_status_label"
+            app:layout_constraintStart_toEndOf="@id/tv_stream_status_label"
+            app:layout_constraintTop_toTopOf="@id/tv_stream_status_label" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stream_status"
-                    android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_stream_quality_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Quality:"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_stream_status_label"
+            app:layout_constraintStart_toEndOf="@id/tv_stream_status"
+            app:layout_constraintTop_toTopOf="@id/tv_stream_status_label" />
 
-                <TextView
-                    android:id="@+id/stream_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Connected"
-                    android:textColor="@color/status_good" />
-            </LinearLayout>
+        <TextView
+            android:id="@+id/tv_stream_quality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Medium"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_stream_quality_label"
+            app:layout_constraintStart_toEndOf="@id/tv_stream_quality_label"
+            app:layout_constraintTop_toTopOf="@id/tv_stream_quality_label" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_stream_resolution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="1280x720"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_stream_status_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_stream_status_label" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stream_resolution"
-                    android:textStyle="bold" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/stream_resolution"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="1920x1080" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stream_fps"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/stream_fps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="30" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stream_quality"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/stream_quality"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Good"
-                    android:textColor="@color/status_good" />
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- Control buttons -->
-    <LinearLayout
+    <!-- Loading indicator -->
+    <ProgressBar
+        android:id="@+id/progress_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/video_view"
+        app:layout_constraintEnd_toEndOf="@id/video_view"
+        app:layout_constraintStart_toStartOf="@id/video_view"
+        app:layout_constraintTop_toTopOf="@id/video_view"
+        tools:visibility="visible" />
+
+    <!-- Controls layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/controls_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/surface"
-        android:orientation="vertical"
-        android:padding="8dp"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btn_reconnect"
-            style="@style/Widget.PTZCameraController.Button.OutlinedButton"
-            android:layout_width="wrap_content"
+            style="@style/Widget.PTZCameraController.Button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/stream_reconnect" />
+            android:text="@string/stream_reconnect"
+            app:layout_constraintEnd_toStartOf="@id/btn_snapshot"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btn_snapshot"
-            style="@style/Widget.PTZCameraController.Button.OutlinedButton"
-            android:layout_width="wrap_content"
+            style="@style/Widget.PTZCameraController.Button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/stream_snapshot" />
+            android:layout_marginStart="8dp"
+            android:text="@string/stream_snapshot"
+            app:layout_constraintEnd_toStartOf="@id/btn_record"
+            app:layout_constraintStart_toEndOf="@id/btn_reconnect"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btn_record"
             style="@style/Widget.PTZCameraController.Button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/stream_record" />
-    </LinearLayout>
+            android:layout_marginStart="8dp"
+            android:text="@string/stream_record"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_snapshot"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Loading spinner (initially hidden) -->
-    <ProgressBar
-        android:id="@+id/loading_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

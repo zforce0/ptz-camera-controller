@@ -3,120 +3,99 @@ package com.example.ptzcameracontroller.ui.stream
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ptzcameracontroller.ui.control.ConnectionStatus
+import androidx.lifecycle.viewModelScope
+import com.example.ptzcameracontroller.data.repository.ConnectionRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-// Stream status enum
-enum class StreamStatus(val description: String) {
-    IDLE("Idle"),
-    CONNECTING("Connecting..."),
-    BUFFERING("Buffering..."),
-    PLAYING("Playing"),
-    STOPPED("Stopped"),
-    ERROR("Error"),
-    DISCONNECTED("Disconnected")
-}
-
-// Stream quality enum
-enum class StreamQuality(val description: String) {
-    GOOD("Good"),
-    FAIR("Fair"),
-    POOR("Poor")
-}
-
-class VideoStreamViewModel : ViewModel() {
-
-    // Stream repository - will be injected later
-    private lateinit var streamRepository: StreamRepository
+class VideoStreamViewModel(
+    private val connectionRepository: ConnectionRepository
+) : ViewModel() {
 
     // Stream URL
-    private val _streamUrl = MutableLiveData<String>()
-    
-    // Stream status
-    private val _streamStatus = MutableLiveData<StreamStatus>().apply {
-        value = StreamStatus.IDLE
-    }
-    val streamStatus: LiveData<StreamStatus> = _streamStatus
-    
-    // Stream resolution
-    private val _streamResolution = MutableLiveData<String>().apply {
-        value = "N/A"
-    }
-    val streamResolution: LiveData<String> = _streamResolution
-    
-    // Stream FPS
-    private val _streamFps = MutableLiveData<Int>().apply {
-        value = 0
-    }
-    val streamFps: LiveData<Int> = _streamFps
-    
-    // Stream quality
-    private val _streamQuality = MutableLiveData<StreamQuality>().apply {
-        value = StreamQuality.GOOD
-    }
-    val streamQuality: LiveData<StreamQuality> = _streamQuality
-    
-    // Frame drop counter (for quality calculation)
-    private var frameDrops = 0
-    
-    // Quality check interval (in frames)
-    private val qualityCheckInterval = 30
-    
-    // Quality threshold
-    private val poorQualityThreshold = 5  // frame drops per interval
-    private val fairQualityThreshold = 2  // frame drops per interval
+    private val _streamUrl = MutableLiveData<String?>()
+    val streamUrl: LiveData<String?> = _streamUrl
     
     // Connection status
-    private val _connectionStatus = MutableLiveData<ConnectionStatus>().apply {
-        value = ConnectionStatus.DISCONNECTED
+    private val _isConnected = MutableLiveData<Boolean>().apply {
+        value = false
     }
-    val connectionStatus: LiveData<ConnectionStatus> = _connectionStatus
+    val isConnected: LiveData<Boolean> = _isConnected
     
-    // Get the stream URL (real implementation would get from repository)
-    fun getStreamUrl(): String {
-        return _streamUrl.value ?: "rtsp://192.168.1.100:8554/stream"
+    // Stream quality (0 = low, 1 = medium, 2 = high)
+    private val _streamQuality = MutableLiveData<Int>().apply {
+        value = 1 // Default: medium
     }
+    val streamQuality: LiveData<Int> = _streamQuality
     
-    // Set stream status
-    fun setStreamStatus(status: StreamStatus) {
-        _streamStatus.postValue(status)
-        
-        // Update connection status based on stream status
-        when (status) {
-            StreamStatus.PLAYING -> _connectionStatus.postValue(ConnectionStatus.CONNECTED)
-            StreamStatus.CONNECTING, StreamStatus.BUFFERING -> _connectionStatus.postValue(ConnectionStatus.CONNECTING)
-            else -> _connectionStatus.postValue(ConnectionStatus.DISCONNECTED)
+    // Current FPS
+    private val _currentFps = MutableLiveData<Int>().apply {
+        value = 0
+    }
+    val currentFps: LiveData<Int> = _currentFps
+    
+    // Stream resolution (e.g., "1280x720")
+    private val _streamResolution = MutableLiveData<String>()
+    val streamResolution: LiveData<String> = _streamResolution
+    
+    /**
+     * Check connection status
+     */
+    fun checkConnectionStatus() {
+        viewModelScope.launch {
+            val connected = connectionRepository.isWiFiConnected()
+            _isConnected.postValue(connected)
+            
+            if (connected && _streamUrl.value == null) {
+                // If connected but no stream URL, try to get it
+                getStreamUrl()
+            }
         }
     }
     
-    // Set stream information
-    fun setStreamInfo(width: Int, height: Int, fps: Int) {
-        _streamResolution.postValue("${width}x${height}")
-        _streamFps.postValue(fps)
-    }
-    
-    // Set stream URL
-    fun setStreamUrl(url: String) {
-        _streamUrl.postValue(url)
-    }
-    
-    // Report frame drops (for quality calculation)
-    fun reportFrameDrop() {
-        frameDrops++
-        
-        // Check quality every qualityCheckInterval frames
-        if (frameDrops % qualityCheckInterval == 0) {
-            calculateStreamQuality(frameDrops / qualityCheckInterval)
-            frameDrops = 0
+    /**
+     * Get stream URL from the server
+     * @return Stream URL or null if not available
+     */
+    suspend fun getStreamUrl(): String? {
+        return try {
+            val url = connectionRepository.getStreamUrl()
+            _streamUrl.postValue(url)
+            url
+        } catch (e: Exception) {
+            _streamUrl.postValue(null)
+            null
         }
     }
     
-    // Calculate stream quality based on frame drops
-    private fun calculateStreamQuality(dropsPerInterval: Int) {
-        val quality = when {
-            dropsPerInterval >= poorQualityThreshold -> StreamQuality.POOR
-            dropsPerInterval >= fairQualityThreshold -> StreamQuality.FAIR
-            else -> StreamQuality.GOOD
+    /**
+     * Set stream quality
+     * @param quality Quality index (0 = low, 1 = medium, 2 = high)
+     */
+    fun setStreamQuality(quality: Int) {
+        if (quality in 0..2) {
+            _streamQuality.value = quality
+            // Update stream URL with new quality parameter
+            refreshStreamUrl()
         }
-        _streamQuality.postValue(quality)
+    }
+    
+    /**
+     * Refresh stream URL (e.g., when quality changes)
+     */
+    private fun refreshStreamUrl() {
+        viewModelScope.launch {
+            getStreamUrl()
+        }
+    }
+    
+    /**
+     * Update stream metrics
+     * @param fps Current frames per second
+     * @param resolution Current resolution (e.g., "1280x720")
+     */
+    fun updateStreamMetrics(fps: Int, resolution: String) {
+        _currentFps.value = fps
+        _streamResolution.value = resolution
     }
 }

@@ -38,10 +38,15 @@ class CameraControlFragment : Fragment() {
     ): View {
         _binding = FragmentCameraControlBinding.inflate(inflater, container, false)
         
-        // Set up ViewModel with repository
-        val cameraControlRepository = CameraControlRepository()
-        val factory = CameraControlViewModelFactory(cameraControlRepository)
+        // Set up real ViewModel with repository
+        val preferenceManager = PreferenceManager(requireContext())
+        val lastIpAddress = preferenceManager.getLastIpAddress()
+        val lastPort = preferenceManager.getLastPort()
         
+        // Create the repository (create new instance to avoid issues with singleton pattern)
+        val cameraControlRepository = CameraControlRepository()
+        
+        val factory = CameraControlViewModelFactory(cameraControlRepository)
         viewModel = ViewModelProvider(this, factory)[CameraControlViewModel::class.java]
         
         // Set up UI components
