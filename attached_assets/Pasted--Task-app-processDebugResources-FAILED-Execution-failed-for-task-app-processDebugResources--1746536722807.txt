@@ -1,0 +1,29 @@
+> Task :app:processDebugResources FAILED
+
+Execution failed for task ':app:processDebugResources'.
+> A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction
+   > Android resource linking failed
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7145: error: resource color/text_primary (aka com.ptzcontroller:color/text_primary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7146: error: resource color/text_primary (aka com.ptzcontroller:color/text_primary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7148: error: resource color/text_primary (aka com.ptzcontroller:color/text_primary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7149: error: resource color/text_secondary (aka com.ptzcontroller:color/text_secondary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7145: error: resource color/text_primary (aka com.ptzcontroller:color/text_primary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7146: error: resource color/text_primary (aka com.ptzcontroller:color/text_primary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7148: error: resource color/text_primary (aka com.ptzcontroller:color/text_primary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7149: error: resource color/text_secondary (aka com.ptzcontroller:color/text_secondary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7167: error: resource color/text_primary (aka com.ptzcontroller:color/text_primary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7168: error: resource color/text_secondary (aka com.ptzcontroller:color/text_secondary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7167: error: resource color/text_primary (aka com.ptzcontroller:color/text_primary) not found.
+     com.ptzcontroller.app-mergeDebugResources-56:/values/values.xml:7168: error: resource color/text_secondary (aka com.ptzcontroller:color/text_secondary) not found.
+     error: failed linking references.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+BUILD FAILED in 1s
+31 actionable tasks: 9 executed, 22 up-to-date
+Configuration cache entry reused.
+
+
