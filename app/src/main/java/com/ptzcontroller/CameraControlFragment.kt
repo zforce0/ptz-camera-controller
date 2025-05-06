@@ -2,142 +2,201 @@ package com.ptzcontroller
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.SeekBar
 import android.widget.Toast
-import android.widget.ToggleButton
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.ptzcontroller.databinding.FragmentCameraControlBinding
+import com.ptzcontroller.utils.PreferenceManager
 
-class CameraControlFragment : Fragment(), View.OnClickListener, View.OnTouchListener, SeekBar.OnSeekBarChangeListener {
+class CameraControlFragment : Fragment() {
 
-    private lateinit var connectionManager: ConnectionManager
+    private var _binding: FragmentCameraControlBinding? = null
+    private val binding get() = _binding!!
     
-    // Control buttons
-    private lateinit var btnPanLeft: Button
-    private lateinit var btnPanRight: Button
-    private lateinit var btnTiltUp: Button
-    private lateinit var btnTiltDown: Button
-    private lateinit var btnZoomIn: Button
-    private lateinit var btnZoomOut: Button
-    private lateinit var toggleCameraMode: ToggleButton
-    private lateinit var seekBarSpeed: SeekBar
-    
-    private var currentSpeed: Int = 50 // Default speed 50%
-    
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            connectionManager = it.getSerializable("connectionManager") as ConnectionManager
-        }
-    }
+    private lateinit var viewModel: CameraControlViewModel
+    private lateinit var preferenceManager: PreferenceManager
     
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_camera_control, container, false)
+    ): View {
+        _binding = FragmentCameraControlBinding.inflate(inflater, container, false)
         
-        // Initialize buttons
-        btnPanLeft = view.findViewById(R.id.btn_pan_left)
-        btnPanRight = view.findViewById(R.id.btn_pan_right)
-        btnTiltUp = view.findViewById(R.id.btn_tilt_up)
-        btnTiltDown = view.findViewById(R.id.btn_tilt_down)
-        btnZoomIn = view.findViewById(R.id.btn_zoom_in)
-        btnZoomOut = view.findViewById(R.id.btn_zoom_out)
-        toggleCameraMode = view.findViewById(R.id.toggle_camera_mode)
-        seekBarSpeed = view.findViewById(R.id.seekbar_speed)
+        // Initialize preference manager
+        preferenceManager = PreferenceManager(requireContext())
         
-        // Set touch listeners for continuous movement
-        btnPanLeft.setOnTouchListener(this)
-        btnPanRight.setOnTouchListener(this)
-        btnTiltUp.setOnTouchListener(this)
-        btnTiltDown.setOnTouchListener(this)
-        btnZoomIn.setOnTouchListener(this)
-        btnZoomOut.setOnTouchListener(this)
+        // Initialize ViewModel
+        val cameraControlRepository = CameraControlRepository(requireContext())
+        val factory = CameraControlViewModelFactory(cameraControlRepository)
+        viewModel = ViewModelProvider(this, factory)[CameraControlViewModel::class.java]
         
-        // Set click listener for mode toggle
-        toggleCameraMode.setOnClickListener(this)
-        
-        // Set seek bar listener
-        seekBarSpeed.setOnSeekBarChangeListener(this)
-        
-        return view
+        return binding.root
     }
     
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.toggle_camera_mode -> {
-                val newMode = if (toggleCameraMode.isChecked) "ir" else "rgb"
-                switchCameraMode(newMode)
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+        // Set up the joystick
+        setupJoystick()
+        
+        // Set up zoom control
+        setupZoomControl()
+        
+        // Set up camera mode toggles
+        setupCameraModeToggles()
+        
+        // Set up preset buttons
+        setupPresetButtons()
+        
+        // Observe the ViewModel
+        observeViewModel()
+    }
+    
+    private fun setupJoystick() {
+        // Set up joystick sensitivity from preferences
+        val sensitivity = when (preferenceManager.getControlSensitivity()) {
+            0 -> 0.5f  // Low sensitivity
+            1 -> 1.0f  // Medium sensitivity
+            2 -> 2.0f  // High sensitivity
+            else -> 1.0f
+        }
+        
+        binding.joystickView.setSensitivity(sensitivity)
+        
+        binding.joystickView.setOnMoveListener { angle, strength ->
+            // Convert joystick angle and strength to pan/tilt values
+            // Angle is in degrees (0-360, where 0 is up, 90 is right, etc.)
+            // Strength is 0-100
+            viewModel.handleJoystickMove(angle, strength)
+        }
+        
+        binding.joystickView.setOnReleaseListener {
+            // Stop movement when joystick is released
+            viewModel.handleJoystickRelease()
         }
     }
     
-    override fun onTouch(v: View, event: MotionEvent): Boolean {
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                when (v.id) {
-                    R.id.btn_pan_left -> sendCommand("pan", -currentSpeed)
-                    R.id.btn_pan_right -> sendCommand("pan", currentSpeed)
-                    R.id.btn_tilt_up -> sendCommand("tilt", currentSpeed)
-                    R.id.btn_tilt_down -> sendCommand("tilt", -currentSpeed)
-                    R.id.btn_zoom_in -> sendCommand("zoom", currentSpeed)
-                    R.id.btn_zoom_out -> sendCommand("zoom", -currentSpeed)
+    private fun setupZoomControl() {
+        // Zoom in button
+        binding.btnZoomIn.setOnClickListener {
+            viewModel.zoomIn()
+        }
+        
+        // Zoom out button
+        binding.btnZoomOut.setOnClickListener {
+            viewModel.zoomOut()
+        }
+        
+        // Zoom slider
+        binding.zoomSlider.setOnSeekBarChangeListener(object : android.widget.SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: android.widget.SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    viewModel.setZoomLevel(progress)
                 }
-                return true
             }
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                when (v.id) {
-                    R.id.btn_pan_left, R.id.btn_pan_right -> sendCommand("pan", 0)
-                    R.id.btn_tilt_up, R.id.btn_tilt_down -> sendCommand("tilt", 0)
-                    R.id.btn_zoom_in, R.id.btn_zoom_out -> sendCommand("zoom", 0)
-                }
-                return true
+            
+            override fun onStartTrackingTouch(seekBar: android.widget.SeekBar?) {
+                // Not used
             }
-        }
-        return false
-    }
-
-    private fun sendCommand(type: String, value: Int) {
-        if (!connectionManager.isConnected()) {
-            Toast.makeText(context, "Not connected to camera", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val command = CameraCommand(type, value)
-        connectionManager.sendCommand(command.toString())  // Convert to string
+            
+            override fun onStopTrackingTouch(seekBar: android.widget.SeekBar?) {
+                // Not used
+            }
+        })
     }
     
-    private fun switchCameraMode(mode: String) {
-        if (!connectionManager.isConnected()) {
-            Toast.makeText(context, "Not connected to camera", Toast.LENGTH_SHORT).show()
-            return
+    private fun setupCameraModeToggles() {
+        // RGB/IR toggle
+        binding.rgbModeButton.setOnClickListener {
+            viewModel.setCameraMode(CameraMode.RGB)
+            updateCameraModeUI(CameraMode.RGB)
         }
-
-        val command = CameraCommand("mode", if (mode == "rgb") 0 else 1)
-        connectionManager.sendCommand(command.toString())
         
-        Toast.makeText(
-            context, 
-            "Switching to ${if (mode == "rgb") "RGB" else "IR/Thermal"} mode", 
-            Toast.LENGTH_SHORT
-        ).show()
+        binding.irModeButton.setOnClickListener {
+            viewModel.setCameraMode(CameraMode.IR)
+            updateCameraModeUI(CameraMode.IR)
+        }
     }
     
-    // SeekBar listener methods
-    override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-        currentSpeed = progress
+    private fun updateCameraModeUI(mode: CameraMode) {
+        when (mode) {
+            CameraMode.RGB -> {
+                binding.rgbModeButton.isSelected = true
+                binding.irModeButton.isSelected = false
+            }
+            CameraMode.IR -> {
+                binding.rgbModeButton.isSelected = false
+                binding.irModeButton.isSelected = true
+            }
+        }
+        
+        val modeText = if (mode == CameraMode.RGB) "RGB" else "IR"
+        Toast.makeText(context, getString(R.string.msg_camera_mode_changed, modeText), Toast.LENGTH_SHORT).show()
     }
     
-    override fun onStartTrackingTouch(seekBar: SeekBar) {
-        // Not needed
+    private fun setupPresetButtons() {
+        // Save preset
+        binding.btnSavePreset.setOnClickListener {
+            val presetNumber = binding.presetNumberInput.text.toString().toIntOrNull()
+            if (presetNumber != null && presetNumber in 1..255) {
+                viewModel.savePreset(presetNumber)
+                Toast.makeText(context, getString(R.string.msg_preset_saved, presetNumber), Toast.LENGTH_SHORT).show()
+            } else {
+                binding.presetNumberInput.error = "Enter a number between 1 and 255"
+            }
+        }
+        
+        // Go to preset
+        binding.btnGotoPreset.setOnClickListener {
+            val presetNumber = binding.presetNumberInput.text.toString().toIntOrNull()
+            if (presetNumber != null && presetNumber in 1..255) {
+                viewModel.gotoPreset(presetNumber)
+                Toast.makeText(context, getString(R.string.msg_going_to_preset, presetNumber), Toast.LENGTH_SHORT).show()
+            } else {
+                binding.presetNumberInput.error = "Enter a number between 1 and 255"
+            }
+        }
     }
     
-    override fun onStopTrackingTouch(seekBar: SeekBar) {
-        // Not needed
+    private fun observeViewModel() {
+        // Observe connection status
+        viewModel.connectionStatus.observe(viewLifecycleOwner) { status ->
+            binding.connectionStatusText.text = status
+            
+            // Update UI based on connection status
+            val isConnected = status == "Connected"
+            binding.joystickView.isEnabled = isConnected
+            binding.zoomSlider.isEnabled = isConnected
+            binding.btnZoomIn.isEnabled = isConnected
+            binding.btnZoomOut.isEnabled = isConnected
+            binding.rgbModeButton.isEnabled = isConnected
+            binding.irModeButton.isEnabled = isConnected
+            binding.btnSavePreset.isEnabled = isConnected
+            binding.btnGotoPreset.isEnabled = isConnected
+        }
+        
+        // Observe zoom level
+        viewModel.zoomLevel.observe(viewLifecycleOwner) { zoomLevel ->
+            binding.zoomSlider.progress = zoomLevel
+        }
+        
+        // Observe camera mode
+        viewModel.cameraMode.observe(viewLifecycleOwner) { mode ->
+            updateCameraModeUI(mode)
+        }
+    }
+    
+    override fun onResume() {
+        super.onResume()
+        // Check connection status
+        viewModel.checkConnectionStatus()
+    }
+    
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

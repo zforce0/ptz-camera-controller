@@ -16,6 +16,10 @@ author = "agent"
 task = "workflow.run"
 args = "QR Code Server"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "QR Code Server With Auto-Detect"
+
 [[workflows.workflow]]
 name = "QR Code Server"
 author = "agent"
@@ -42,6 +46,15 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd android_app && ./gradlew assembleDebug"
+
+[[workflows.workflow]]
+name = "QR Code Server With Auto-Detect"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python flask_qr_server.py --auto-detect-ip --port 5001"
+waitForPort = 5001
 
 [deployment]
 run = ["sh", "-c", "cd onboard && pip install -r requirements.txt && python camera_server.py"]

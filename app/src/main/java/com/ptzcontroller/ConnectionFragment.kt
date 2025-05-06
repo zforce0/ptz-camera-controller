@@ -1,262 +1,198 @@
 package com.ptzcontroller
 
-import android.Manifest
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.ptzcontroller.databinding.FragmentConnectionBinding
+import com.ptzcontroller.utils.PreferenceManager
 
-/**
- * ConnectionFragment handles UI and logic for connecting to the camera server
- * via WiFi or Bluetooth
- */
 class ConnectionFragment : Fragment() {
+
+    private var _binding: FragmentConnectionBinding? = null
+    private val binding get() = _binding!!
     
-    companion object {
-        @JvmStatic
-        fun newInstance(connectionManager: ConnectionManager): ConnectionFragment {
-            val fragment = ConnectionFragment()
-            val args = Bundle()
-            args.putSerializable("connectionManager", connectionManager)
-            fragment.arguments = args
-            return fragment
-        }
-    }
-    
-    private lateinit var connectionManager: ConnectionManager
-    
-    // UI components
-    private lateinit var radioWifi: RadioButton
-    private lateinit var radioBluetooth: RadioButton
-    private lateinit var editIpAddress: EditText
-    private lateinit var editPort: EditText
-    private lateinit var spinnerBtDevices: Spinner
-    private lateinit var btnConnect: Button
-    private lateinit var btnDisconnect: Button
-    private lateinit var btnScan: Button
-    private lateinit var layoutWifi: LinearLayout
-    private lateinit var layoutBluetooth: LinearLayout
-    private lateinit var statusTextView: TextView
-    
-    // Using a dummy BluetoothAdapter for compilation
-    private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
-    private val devicesList = ArrayList<DummyBluetoothDevice>()
-    private lateinit var devicesAdapter: ArrayAdapter<String>
-    
-    // Constants
-    private val REQUEST_ENABLE_BT = 1
-    private val REQUEST_PERMISSIONS = 2
-    
-    // Dummy BluetoothDevice for compilation
-    class DummyBluetoothDevice {
-        var name: String = "Dummy Device"
-        var address: String = "00:00:00:00:00:00"
-    }
-    
-    // Dummy receiver for Bluetooth device discovery
-    private val receiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            // Dummy implementation
-        }
-    }
-    
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            connectionManager = it.getSerializable("connectionManager") as ConnectionManager
-        }
-        
-        // Register for dummy broadcasts
-        val filter = IntentFilter()
-        requireActivity().registerReceiver(receiver, filter)
-    }
+    private lateinit var viewModel: ConnectionViewModel
+    private lateinit var preferenceManager: PreferenceManager
     
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_connection, container, false)
+    ): View {
+        _binding = FragmentConnectionBinding.inflate(inflater, container, false)
         
-        // Initialize UI components
-        radioWifi = view.findViewById(R.id.radio_wifi)
-        radioBluetooth = view.findViewById(R.id.radio_bluetooth)
-        editIpAddress = view.findViewById(R.id.edit_ip_address)
-        editPort = view.findViewById(R.id.edit_port)
-        spinnerBtDevices = view.findViewById(R.id.spinner_bt_devices)
-        btnConnect = view.findViewById(R.id.btn_connect)
-        btnDisconnect = view.findViewById(R.id.btn_disconnect)
-        btnScan = view.findViewById(R.id.btn_scan)
-        layoutWifi = view.findViewById(R.id.layout_wifi)
-        layoutBluetooth = view.findViewById(R.id.layout_bluetooth)
-        statusTextView = view.findViewById(R.id.status_text)
+        // Initialize preference manager
+        preferenceManager = PreferenceManager(requireContext())
         
-        // Initialize Bluetooth devices adapter
-        devicesAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, ArrayList<String>())
-        devicesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerBtDevices.adapter = devicesAdapter
+        // Initialize ViewModel
+        val connectionRepository = ConnectionRepository(requireContext())
+        val factory = ConnectionViewModelFactory(connectionRepository)
+        viewModel = ViewModelProvider(this, factory)[ConnectionViewModel::class.java]
         
-        // Add some dummy devices for testing
-        addDummyDevices()
-        
-        // Set up connection type radio buttons
-        radioWifi.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                layoutWifi.visibility = View.VISIBLE
-                layoutBluetooth.visibility = View.GONE
-            }
-        }
-        
-        radioBluetooth.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                layoutWifi.visibility = View.GONE
-                layoutBluetooth.visibility = View.VISIBLE
-                
-                // Check if Bluetooth is available and enabled
-                if (bluetoothAdapter == null) {
-                    Toast.makeText(context, "Bluetooth is not available on this device", Toast.LENGTH_SHORT).show()
-                    radioWifi.isChecked = true
-                } else if (bluetoothAdapter.isEnabled) {
-                    // Bluetooth is enabled, we're good to go
-                } else {
-                    // Request to enable Bluetooth
-                    val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
-                }
-            }
-        }
-        
-        // Set up scan button
-        btnScan.setOnClickListener {
-            // Dummy scan operation that adds a new device
-            val newDevice = DummyBluetoothDevice()
-            newDevice.name = "PTZ Camera ${(devicesList.size + 1)}"
-            newDevice.address = "00:00:00:00:00:${devicesList.size + 1}"
-            
-            devicesList.add(newDevice)
-            devicesAdapter.add("${newDevice.name} (${newDevice.address})")
-            devicesAdapter.notifyDataSetChanged()
-            
-            Toast.makeText(context, "Scanning for devices...", Toast.LENGTH_SHORT).show()
-        }
-        
-        // Set up connect button
-        btnConnect.setOnClickListener {
-            if (radioWifi.isChecked) {
-                // Connect via WiFi
-                val ip = editIpAddress.text.toString()
-                val portStr = editPort.text.toString()
-                
-                if (ip.isEmpty()) {
-                    Toast.makeText(context, "Please enter an IP address", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-                
-                if (portStr.isEmpty()) {
-                    Toast.makeText(context, "Please enter a port number", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-                
-                val port = portStr.toInt()
-                
-                val success = connectionManager.connectWifi(ip, port)
-                
-                if (success) {
-                    updateConnectionStatus(true)
-                    Toast.makeText(context, "Connected to $ip:$port", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "Failed to connect", Toast.LENGTH_SHORT).show()
-                }
-                
-            } else {
-                // Connect via Bluetooth
-                val position = spinnerBtDevices.selectedItemPosition
-                
-                if (position < 0 || position >= devicesList.size) {
-                    Toast.makeText(context, "Please select a device", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-                
-                val device = devicesList[position]
-                val success = connectionManager.connectBluetooth(device.address)
-                
-                if (success) {
-                    updateConnectionStatus(true)
-                    Toast.makeText(context, "Connected to ${device.name}", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "Failed to connect", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-        
-        // Set up disconnect button
-        btnDisconnect.setOnClickListener {
-            val success = connectionManager.disconnect()
-            
-            if (success) {
-                updateConnectionStatus(false)
-                Toast.makeText(context, "Disconnected", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, "Failed to disconnect", Toast.LENGTH_SHORT).show()
-            }
-        }
-        
-        // Set default values
-        editIpAddress.setText("192.168.1.100")
-        editPort.setText("8000")
-        
-        // Initialize connection status
-        updateConnectionStatus(connectionManager.isConnected())
-        
-        return view
+        return binding.root
     }
     
-    override fun onDestroy() {
-        super.onDestroy()
-        requireActivity().unregisterReceiver(receiver)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+        // Set up WiFi connection section
+        setupWiFiSection()
+        
+        // Set up Bluetooth connection section
+        setupBluetoothSection()
+        
+        // Set up QR code scanning
+        setupQRCodeScanning()
+        
+        // Observe ViewModel
+        observeViewModel()
+    }
+    
+    private fun setupWiFiSection() {
+        // Get saved WiFi preferences
+        val savedIpAddress = preferenceManager.getWiFiIpAddress()
+        val savedPort = preferenceManager.getWiFiPort()
+        
+        // Set IP address and port input fields
+        binding.ipAddressInput.setText(savedIpAddress)
+        binding.portInput.setText(savedPort.toString())
+        
+        // WiFi connect button
+        binding.btnWifiConnect.setOnClickListener {
+            val ipAddress = binding.ipAddressInput.text.toString()
+            val port = binding.portInput.text.toString().toIntOrNull() ?: 0
+            
+            if (ipAddress.isNotEmpty() && port > 0) {
+                // Save to preferences
+                preferenceManager.setWiFiIpAddress(ipAddress)
+                preferenceManager.setWiFiPort(port)
+                
+                // Connect
+                viewModel.connectWiFi(ipAddress, port)
+            } else {
+                // Show error
+                if (ipAddress.isEmpty()) {
+                    binding.ipAddressInput.error = "Enter a valid IP address"
+                }
+                if (port <= 0) {
+                    binding.portInput.error = "Enter a valid port number"
+                }
+            }
+        }
+        
+        // WiFi disconnect button
+        binding.btnWifiDisconnect.setOnClickListener {
+            viewModel.disconnectWiFi()
+        }
+    }
+    
+    private fun setupBluetoothSection() {
+        // Set up Bluetooth device recycler view
+        val bluetoothDeviceAdapter = BluetoothDeviceAdapter { device ->
+            // Connect to selected device
+            viewModel.connectBluetooth(device)
+        }
+        
+        binding.recyclerBtDevices.adapter = bluetoothDeviceAdapter
+        
+        // Scan button
+        binding.btnScanDevices.setOnClickListener {
+            startBluetoothScan()
+        }
+        
+        // Disconnect button
+        binding.btnBtDisconnect.setOnClickListener {
+            viewModel.disconnectBluetooth()
+        }
+        
+        // Update adapter when device list changes
+        viewModel.pairedDevices.observe(viewLifecycleOwner) { devices ->
+            bluetoothDeviceAdapter.submitList(devices)
+            binding.recyclerBtDevices.visibility = if (devices.isEmpty()) View.GONE else View.VISIBLE
+            binding.textNoDevices.visibility = if (devices.isEmpty()) View.VISIBLE else View.GONE
+        }
+    }
+    
+    private fun setupQRCodeScanning() {
+        binding.btnScanQrCode.setOnClickListener {
+            // Start QR code scanner
+            viewModel.startQRCodeScanner(requireActivity())
+        }
+    }
+    
+    private fun startBluetoothScan() {
+        // Show scanning indicator
+        binding.btScanIndicator.visibility = View.VISIBLE
+        binding.textScanning.visibility = View.VISIBLE
+        binding.btnScanDevices.isEnabled = false
+        
+        // Start scan
+        viewModel.scanBluetoothDevices()
+    }
+    
+    private fun observeViewModel() {
+        // WiFi connection status
+        viewModel.wifiStatus.observe(viewLifecycleOwner) { status ->
+            binding.wifiStatusText.text = status
+            
+            // Update UI based on connection status
+            val isConnected = status == getString(R.string.wifi_status_connected)
+            binding.btnWifiConnect.isEnabled = !isConnected
+            binding.btnWifiDisconnect.isEnabled = isConnected
+            binding.ipAddressInput.isEnabled = !isConnected
+            binding.portInput.isEnabled = !isConnected
+        }
+        
+        // Bluetooth connection status
+        viewModel.bluetoothStatus.observe(viewLifecycleOwner) { status ->
+            binding.btStatusText.text = status
+            
+            // Update UI based on connection status
+            val isConnected = status == getString(R.string.bt_status_connected)
+            binding.btnScanDevices.isEnabled = !isConnected
+            binding.btnBtDisconnect.isEnabled = isConnected
+            binding.recyclerBtDevices.isEnabled = !isConnected
+        }
+        
+        // Bluetooth scanning status
+        viewModel.isScanning.observe(viewLifecycleOwner) { scanning ->
+            if (!scanning) {
+                binding.btScanIndicator.visibility = View.GONE
+                binding.textScanning.visibility = View.GONE
+                binding.btnScanDevices.isEnabled = true
+            }
+        }
+        
+        // Connection errors
+        viewModel.connectionError.observe(viewLifecycleOwner) { error ->
+            if (error.isNotEmpty()) {
+                Toast.makeText(context, error, Toast.LENGTH_LONG).show()
+            }
+        }
+        
+        // QR code scan result
+        viewModel.qrScanResult.observe(viewLifecycleOwner) { result ->
+            if (result.isNotEmpty()) {
+                Toast.makeText(context, "QR code scanned: $result", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     
     override fun onResume() {
         super.onResume()
-        updateConnectionStatus(connectionManager.isConnected())
-    }
-    
-    private fun updateConnectionStatus(connected: Boolean) {
-        if (connected) {
-            statusTextView.text = "Connected to: ${connectionManager.getConnectedDeviceName()}"
-            statusTextView.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark))
-            btnConnect.isEnabled = false
-            btnDisconnect.isEnabled = true
-        } else {
-            statusTextView.text = getString(R.string.status_not_connected)
-            statusTextView.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
-            btnConnect.isEnabled = true
-            btnDisconnect.isEnabled = false
-        }
-    }
-    
-    private fun addDummyDevices() {
-        // Add some dummy Bluetooth devices for testing
-        for (i in 1..3) {
-            val device = DummyBluetoothDevice()
-            device.name = "PTZ Camera $i"
-            device.address = "00:00:00:00:00:0$i"
-            
-            devicesList.add(device)
-            devicesAdapter.add("${device.name} (${device.address})")
-        }
+        // Check connection status
+        viewModel.checkConnectionStatus()
         
-        devicesAdapter.notifyDataSetChanged()
+        // Load paired devices
+        viewModel.loadPairedDevices()
+    }
+    
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
