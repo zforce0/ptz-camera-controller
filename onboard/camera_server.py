@@ -13,6 +13,7 @@ import argparse
 import threading
 from time import sleep
 
+# Import our components
 from camera_controller import CameraController
 from video_streamer import VideoStreamer
 from wifi_server import WifiServer
@@ -38,234 +39,212 @@ class CameraServer:
     
     def __init__(self, config=None):
         """Initialize the camera server with a given configuration"""
-        self.config = config or {
-            'rgb_device': '/dev/video0',
-            'ir_device': '/dev/video1',
-            'stream_port': 8554,
-            'control_port': 8000,
-            'enable_bluetooth': True,
-            'enable_wifi': True,
-            'enable_local_viewer': False,
-            'local_viewer_mode': 'rgb',
-            'local_viewer_quality': 'main',
-            'log_level': 'INFO'
+        # Set default configuration
+        self.config = {
+            "rgb_device": "/dev/video0",
+            "ir_device": "/dev/video1",
+            "wifi_port": 8000,
+            "rtsp_port": 8554,
+            "use_bluetooth": True,
+            "use_local_viewer": False
         }
         
-        # Set up logging
-        numeric_level = getattr(logging, self.config.get('log_level', 'INFO').upper(), None)
-        if isinstance(numeric_level, int):
-            logger.setLevel(numeric_level)
+        # Update with provided configuration
+        if config:
+            self.config.update(config)
             
-        logger.info("Initializing Camera Server")
+        logger.info(f"Initializing camera server with config: {json.dumps(self.config)}")
         
-        # Initialize camera controller
-        try:
-            self.camera_controller = CameraController(
-                rgb_device=self.config.get('rgb_device'),
-                ir_device=self.config.get('ir_device')
-            )
-        except Exception as e:
-            logger.error(f"Failed to initialize camera controller: {e}")
-            raise
-            
-        # Initialize video streamer
-        try:
-            self.video_streamer = VideoStreamer(
-                camera_controller=self.camera_controller,
-                port=self.config.get('stream_port', 8554)
-            )
-        except Exception as e:
-            logger.error(f"Failed to initialize video streamer: {e}")
-            raise
-            
-        # Initialize communication servers
+        # Create components
+        self.camera_controller = None
+        self.video_streamer = None
         self.wifi_server = None
         self.bt_server = None
-        
-        if self.config.get('enable_wifi', True):
-            try:
-                self.wifi_server = WifiServer(
-                    camera_controller=self.camera_controller,
-                    port=self.config.get('control_port', 8000)
-                )
-            except Exception as e:
-                logger.error(f"Failed to initialize WiFi server: {e}")
-                self.wifi_server = None
-                
-        if self.config.get('enable_bluetooth', True):
-            try:
-                self.bt_server = BluetoothServer(
-                    camera_controller=self.camera_controller
-                )
-            except Exception as e:
-                logger.error(f"Failed to initialize Bluetooth server: {e}")
-                self.bt_server = None
-                
-        # Check if at least one communication method is available
-        if not self.wifi_server and not self.bt_server:
-            logger.error("No communication methods available, exiting")
-            raise RuntimeError("Failed to initialize any communication method")
-           
-        # Initialize the local stream viewer if enabled
         self.local_viewer = None
-        if self.config.get('enable_local_viewer', False) and HAS_LOCAL_VIEWER:
-            try:
-                self.local_viewer = LocalStreamViewer(
-                    camera_mode=self.config.get('local_viewer_mode', 'rgb'),
-                    stream_quality=self.config.get('local_viewer_quality', 'main'),
-                    port=self.config.get('control_port', 8000)
-                )
-                logger.info(f"Local stream viewer initialized with {self.config.get('local_viewer_mode', 'rgb')} mode")
-            except Exception as e:
-                logger.error(f"Failed to initialize local stream viewer: {e}")
-                self.local_viewer = None
-                
-        logger.info("Camera Server initialized successfully")
+        
+        # Initialize components
+        self._init_components()
+        
+    def _init_components(self):
+        """Initialize all server components"""
+        logger.info("Initializing camera controller")
+        self.camera_controller = CameraController(
+            rgb_device=self.config["rgb_device"],
+            ir_device=self.config["ir_device"]
+        )
+        
+        logger.info("Initializing video streamer")
+        self.video_streamer = VideoStreamer(
+            camera_controller=self.camera_controller,
+            port=self.config["rtsp_port"]
+        )
+        
+        logger.info("Initializing WiFi server")
+        self.wifi_server = WifiServer(
+            camera_controller=self.camera_controller,
+            video_streamer=self.video_streamer,
+            port=self.config["wifi_port"]
+        )
+        
+        if self.config["use_bluetooth"]:
+            logger.info("Initializing Bluetooth server")
+            self.bt_server = BluetoothServer(
+                camera_controller=self.camera_controller
+            )
+        
+        if HAS_LOCAL_VIEWER and self.config["use_local_viewer"]:
+            logger.info("Initializing local stream viewer")
+            self.local_viewer = LocalStreamViewer(
+                camera_controller=self.camera_controller,
+                video_streamer=self.video_streamer
+            )
         
     def start(self):
         """Start all services"""
-        logger.info("Starting Camera Server services")
+        logger.info("Starting all services")
         
-        # Start camera controller
-        self.camera_controller.start()
-        
-        # Start video streamer
-        self.video_streamer.start()
-        
-        # Start communication servers
-        if self.wifi_server:
+        try:
+            # Start camera controller
+            logger.info("Starting camera controller")
+            self.camera_controller.start()
+            
+            # Start video streamer
+            logger.info("Starting video streamer")
+            self.video_streamer.start()
+            
+            # Start WiFi server
+            logger.info("Starting WiFi server")
             self.wifi_server.start()
             
-        if self.bt_server:
-            self.bt_server.start()
-        
-        # Start local stream viewer if available
-        if self.local_viewer:
-            try:
+            # Start Bluetooth server if enabled
+            if self.bt_server:
+                logger.info("Starting Bluetooth server")
+                self.bt_server.start()
+                
+            # Start local viewer if enabled
+            if self.local_viewer:
+                logger.info("Starting local stream viewer")
                 self.local_viewer.start()
-                logger.info("Local stream viewer started")
-            except Exception as e:
-                logger.error(f"Failed to start local stream viewer: {e}")
+                
+            logger.info("All services started successfully")
+            return True
             
-        logger.info("All services started")
+        except Exception as e:
+            logger.error(f"Error starting services: {e}")
+            self.stop()
+            return False
         
     def stop(self):
         """Stop all services"""
-        logger.info("Stopping Camera Server services")
+        logger.info("Stopping all services")
         
-        # Stop local stream viewer if it's running
+        # Stop in reverse order
         if self.local_viewer:
             try:
+                logger.info("Stopping local stream viewer")
                 self.local_viewer.stop()
-                logger.info("Local stream viewer stopped")
             except Exception as e:
-                logger.error(f"Error stopping local stream viewer: {e}")
-        
-        # Stop communication servers
-        if self.wifi_server:
-            self.wifi_server.stop()
-            
+                logger.error(f"Error stopping local viewer: {e}")
+                
         if self.bt_server:
-            self.bt_server.stop()
+            try:
+                logger.info("Stopping Bluetooth server")
+                self.bt_server.stop()
+            except Exception as e:
+                logger.error(f"Error stopping Bluetooth server: {e}")
+                
+        try:
+            logger.info("Stopping WiFi server")
+            self.wifi_server.stop()
+        except Exception as e:
+            logger.error(f"Error stopping WiFi server: {e}")
             
-        # Stop video streamer
-        self.video_streamer.stop()
-        
-        # Stop camera controller
-        self.camera_controller.stop()
-        
+        try:
+            logger.info("Stopping video streamer")
+            self.video_streamer.stop()
+        except Exception as e:
+            logger.error(f"Error stopping video streamer: {e}")
+            
+        try:
+            logger.info("Stopping camera controller")
+            self.camera_controller.stop()
+        except Exception as e:
+            logger.error(f"Error stopping camera controller: {e}")
+            
         logger.info("All services stopped")
         
     def run(self):
         """Run the server in the main thread"""
-        try:
-            self.start()
+        if not self.start():
+            logger.error("Failed to start server")
+            return 1
             
-            # Keep the main thread alive
-            logger.info("Server running. Press Ctrl+C to stop.")
+        try:
+            # Print service info
+            wifi_addr = f"0.0.0.0:{self.config['wifi_port']}"
+            rtsp_url = self.video_streamer.get_stream_url()
+            
+            logger.info("========================================")
+            logger.info("PTZ Camera Controller Server")
+            logger.info("========================================")
+            logger.info(f"WiFi control: {wifi_addr}")
+            logger.info(f"Video stream: {rtsp_url}")
+            logger.info(f"Bluetooth: {'enabled' if self.bt_server else 'disabled'}")
+            logger.info(f"Local viewer: {'enabled' if self.local_viewer else 'disabled'}")
+            logger.info("----------------------------------------")
+            logger.info("Press Ctrl+C to stop the server")
+            logger.info("========================================")
+            
+            # Keep the main thread running
             while True:
                 sleep(1)
                 
         except KeyboardInterrupt:
-            logger.info("Keyboard interrupt received")
+            logger.info("Server interrupted by user")
         except Exception as e:
-            logger.error(f"Error in main loop: {e}")
+            logger.error(f"Server error: {e}")
         finally:
             self.stop()
             
+        return 0
 
 def parse_arguments():
     """Parse command line arguments"""
-    parser = argparse.ArgumentParser(description='PTZ Camera Server for Android Controller')
+    parser = argparse.ArgumentParser(description="PTZ Camera Controller Server")
     
-    # Device configuration
-    parser.add_argument('--rgb-device', type=str, default='/dev/video0',
-                        help='RGB camera device path (default: /dev/video0)')
-    parser.add_argument('--ir-device', type=str, default='/dev/video1',
-                        help='IR/Thermal camera device path (default: /dev/video1)')
-    
-    # Network configuration
-    parser.add_argument('--stream-port', type=int, default=8554,
-                        help='RTSP streaming port (default: 8554)')
-    parser.add_argument('--control-port', type=int, default=8000,
-                        help='HTTP/TCP control port (default: 8000)')
-    
-    # Communication methods
-    parser.add_argument('--no-bluetooth', action='store_true',
-                        help='Disable Bluetooth communication')
-    parser.add_argument('--no-wifi', action='store_true',
-                        help='Disable WiFi communication')
-    
-    # Local monitoring options
-    parser.add_argument('--enable-local-viewer', action='store_true',
-                        help='Enable local stream viewer for debugging with a monitor')
-    parser.add_argument('--local-viewer-mode', type=str, choices=['rgb', 'ir'], 
-                        default='rgb', help='Camera mode for local viewer: rgb or ir (default: rgb)')
-    parser.add_argument('--local-viewer-quality', type=str, choices=['main', 'sub'], 
-                        default='main', help='Stream quality: main (high) or sub (low) (default: main)')
-    
-    # General settings
-    parser.add_argument('--log-level', type=str, choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'], 
-                        default='INFO', help='Logging level (default: INFO)')
+    parser.add_argument("--rgb", dest="rgb_device", default="/dev/video0",
+                        help="RGB camera device (default: /dev/video0)")
+    parser.add_argument("--ir", dest="ir_device", default="/dev/video1",
+                        help="IR/Thermal camera device (default: /dev/video1)")
+    parser.add_argument("--wifi-port", dest="wifi_port", type=int, default=8000,
+                        help="WiFi server port (default: 8000)")
+    parser.add_argument("--rtsp-port", dest="rtsp_port", type=int, default=8554,
+                        help="RTSP streaming port (default: 8554)")
+    parser.add_argument("--no-bluetooth", dest="use_bluetooth", action="store_false",
+                        help="Disable Bluetooth server")
+    parser.add_argument("--local-viewer", dest="use_local_viewer", action="store_true",
+                        help="Enable local stream viewer for connected monitor")
     
     return parser.parse_args()
 
 def main():
     """Main function"""
+    # Parse command line arguments
     args = parse_arguments()
     
-    # Create simulation directories if they don't exist
-    os.makedirs('/tmp/camera_sim', exist_ok=True)
-    
-    # Prepare configuration
+    # Create configuration from arguments
     config = {
-        # Device configuration
-        'rgb_device': args.rgb_device,
-        'ir_device': args.ir_device,
-        
-        # Network configuration
-        'stream_port': args.stream_port,
-        'control_port': args.control_port,
-        
-        # Communication methods
-        'enable_bluetooth': not args.no_bluetooth,
-        'enable_wifi': not args.no_wifi,
-        
-        # Local monitoring options
-        'enable_local_viewer': args.enable_local_viewer,
-        'local_viewer_mode': args.local_viewer_mode,
-        'local_viewer_quality': args.local_viewer_quality,
-        
-        # General settings
-        'log_level': args.log_level
+        "rgb_device": args.rgb_device,
+        "ir_device": args.ir_device,
+        "wifi_port": args.wifi_port,
+        "rtsp_port": args.rtsp_port,
+        "use_bluetooth": args.use_bluetooth,
+        "use_local_viewer": args.use_local_viewer
     }
     
-    try:
-        server = CameraServer(config)
-        server.run()
-    except Exception as e:
-        logger.error(f"Fatal error: {e}")
-        sys.exit(1)
-        
+    # Create and run server
+    server = CameraServer(config)
+    return server.run()
+
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

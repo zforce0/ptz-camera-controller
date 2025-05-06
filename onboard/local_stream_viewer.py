@@ -8,328 +8,241 @@ for debugging purposes when a monitor is connected.
 import os
 import cv2
 import time
-import argparse
 import logging
 import threading
 import socket
 import json
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger('local_stream_viewer')
 
 class LocalStreamViewer:
-    """Displays camera streams on the local machine for debugging"""
+    """Local viewer for displaying camera streams on a connected monitor"""
     
-    def __init__(self, camera_mode="rgb", stream_quality="main", port=8000):
+    def __init__(self, camera_controller, video_streamer, window_title="PTZ Camera Stream"):
         """Initialize the local stream viewer
         
         Args:
-            camera_mode (str): "rgb" or "ir" camera mode
-            stream_quality (str): "main" (high) or "sub" (low) quality
-            port (int): Port for obtaining stream URLs from the server
+            camera_controller: CameraController instance
+            video_streamer: VideoStreamer instance
+            window_title: Title for the display window
         """
-        self.camera_mode = camera_mode
-        self.stream_quality = stream_quality
-        self.port = port
+        self.camera_controller = camera_controller
+        self.video_streamer = video_streamer
+        self.window_title = window_title
         self.running = False
         self.viewer_thread = None
-        self.stream_url = None
         
-        logger.info(f"Local stream viewer initialized for {camera_mode} camera, {stream_quality} quality")
-    
-    def get_stream_urls(self):
-        """Get stream URLs from the server"""
-        try:
-            # Try to get stream URLs via HTTP request to the server
-            import requests
-            response = requests.get(f"http://localhost:{self.port}/streams")
-            if response.status_code == 200:
-                return response.json()
-            
-            logger.warning(f"Failed to get stream URLs via HTTP: {response.status_code}")
-            return None
-        except Exception as e:
-            logger.warning(f"Could not get stream URLs via HTTP: {e}")
-            
-            # Fallback to get stream URLs from files
-            try:
-                if os.path.exists("/tmp/camera_sim/stream_urls.txt"):
-                    with open("/tmp/camera_sim/stream_urls.txt", "r") as f:
-                        lines = f.readlines()
-                        urls = {}
-                        for line in lines:
-                            if "RGB Stream URL:" in line:
-                                urls["rgb"] = line.split("RGB Stream URL:")[1].strip()
-                            elif "IR Stream URL:" in line:
-                                urls["ir"] = line.split("IR Stream URL:")[1].strip()
-                        
-                        if urls:
-                            return urls
-            except Exception as inner_e:
-                logger.warning(f"Could not get stream URLs from file: {inner_e}")
-            
-            # Return hardcoded fallback URLs as a last resort
-            return {
-                "rgb": "rtsp://demo.ptz-camera.com:8554/live/rgb-stream",
-                "ir": "rtsp://demo.ptz-camera.com:8555/live/ir-stream"
-            }
-    
     def start(self):
         """Start the local stream viewer"""
         if self.running:
             logger.warning("Local stream viewer is already running")
             return
-        
+            
         self.running = True
-        self.viewer_thread = threading.Thread(target=self._view_stream)
+        self.viewer_thread = threading.Thread(target=self._viewer_loop)
         self.viewer_thread.daemon = True
         self.viewer_thread.start()
+        
         logger.info("Local stream viewer started")
-    
+        
     def stop(self):
         """Stop the local stream viewer"""
         if not self.running:
             logger.warning("Local stream viewer is not running")
             return
-        
+            
         self.running = False
+        
+        # Wait for viewer thread to end
         if self.viewer_thread:
             self.viewer_thread.join(timeout=2.0)
-            self.viewer_thread = None
+            
+        # Close any open windows
+        cv2.destroyAllWindows()
+        
         logger.info("Local stream viewer stopped")
-    
-    def _view_stream(self):
-        """View the stream in a window on the local machine"""
-        logger.info("Starting stream viewing...")
         
-        # Get stream URLs
-        urls = self.get_stream_urls()
-        if not urls:
-            logger.error("Failed to get stream URLs")
-            self.running = False
-            return
+    def _viewer_loop(self):
+        """Main viewer loop that displays the camera stream"""
+        logger.info("Viewer loop started")
         
-        # Select URL based on camera mode
-        if self.camera_mode not in urls:
-            logger.warning(f"Unknown camera mode: {self.camera_mode}, using rgb")
-            self.camera_mode = "rgb"
-        
-        stream_url = urls[self.camera_mode]
-        logger.info(f"Using stream URL: {stream_url}")
-        
-        # Open the stream
-        window_name = f"PTZ Camera - {self.camera_mode.upper()} Stream ({self.stream_quality})"
-        cap = None
+        # Try to get RTSP stream URL from the video streamer
+        stream_url = self.video_streamer.get_stream_url()
+        logger.info(f"Opening stream URL: {stream_url}")
         
         try:
-            # Try to open the actual stream
+            # Alternative 1: Try to connect to the RTSP stream
             cap = cv2.VideoCapture(stream_url)
             
-            # Simple simulation for demo purposes if no real stream is available
+            # If RTSP connection fails, try connecting directly to the camera device
             if not cap.isOpened():
-                logger.warning("Could not open real stream, using simulation")
-                self._simulate_stream(window_name)
-                return
+                logger.warning(f"Failed to open RTSP stream, trying direct camera access")
+                device_path = self.camera_controller.get_current_camera_device()
+                
+                # Try to open the camera device directly
+                cap = cv2.VideoCapture(device_path)
+                
+                if not cap.isOpened():
+                    logger.error(f"Failed to open camera device: {device_path}")
+                    return
             
-            # Main streaming loop
+            # Get video properties
+            frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+            frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            fps = cap.get(cv2.CAP_PROP_FPS)
+            
+            logger.info(f"Stream properties: {frame_width}x{frame_height} at {fps} FPS")
+            
+            # Create window
+            cv2.namedWindow(self.window_title, cv2.WINDOW_NORMAL)
+            
+            # Main display loop
             frames_count = 0
             start_time = time.time()
             
             while self.running:
+                # Read a frame
                 ret, frame = cap.read()
                 
                 if not ret:
-                    logger.warning("Failed to receive frame, trying to reconnect...")
+                    logger.warning("Failed to read frame, attempting to reconnect...")
                     cap.release()
+                    
+                    # Try to reconnect
                     time.sleep(1)
+                    
+                    # Check if camera mode has changed
+                    device_path = self.camera_controller.get_current_camera_device()
+                    stream_url = self.video_streamer.get_stream_url()
+                    
+                    # Try RTSP first, then direct device
                     cap = cv2.VideoCapture(stream_url)
+                    if not cap.isOpened():
+                        cap = cv2.VideoCapture(device_path)
+                        
                     continue
                 
                 # Calculate FPS
                 frames_count += 1
                 elapsed_time = time.time() - start_time
                 if elapsed_time >= 5:  # Update FPS every 5 seconds
-                    fps = frames_count / elapsed_time
-                    logger.info(f"Stream FPS: {fps:.2f}")
+                    fps_actual = frames_count / elapsed_time
+                    cv2.setWindowTitle(self.window_title, f"PTZ Camera Stream - {fps_actual:.2f} FPS")
                     frames_count = 0
                     start_time = time.time()
                 
-                # Add info overlay
-                height, width = frame.shape[:2]
-                info_text = f"{self.camera_mode.upper()} - {self.stream_quality.upper()}"
-                cv2.putText(frame, info_text, (10, 30), 
-                           cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+                # Add camera mode indicator
+                camera_mode = "RGB" if self.camera_controller.get_camera_mode() == 0 else "IR/Thermal"
+                cv2.putText(
+                    frame, 
+                    f"Mode: {camera_mode}", 
+                    (10, 30), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 
+                    1, 
+                    (0, 255, 0), 
+                    2
+                )
                 
                 # Display the frame
-                cv2.imshow(window_name, frame)
+                cv2.imshow(self.window_title, frame)
                 
-                if cv2.waitKey(1) & 0xFF == ord('q'):
-                    logger.info("User pressed 'q', stopping stream")
+                # Check for key press (ESC or q to quit)
+                key = cv2.waitKey(1) & 0xFF
+                if key == 27 or key == ord('q'):
+                    logger.info("User requested to close the viewer")
                     break
-        
-        except KeyboardInterrupt:
-            logger.info("Stream viewing interrupted by user")
-        except Exception as e:
-            logger.error(f"Error viewing stream: {e}")
-        finally:
-            if cap:
-                cap.release()
-            cv2.destroyAllWindows()
-            self.running = False
-            logger.info("Stream viewing ended")
-    
-    def _simulate_stream(self, window_name):
-        """Simulate a stream for demonstration purposes"""
-        logger.info("Starting simulated stream for demonstration")
-        
-        # Import numpy here to avoid issues if it's not available
-        try:
-            import numpy as np
-        except ImportError:
-            logger.error("NumPy is required for simulation but not available")
-            return
-            
-        # Create a black canvas
-        height, width = 480, 640
-        
-        # Define colors based on camera mode
-        if self.camera_mode == "ir":
-            # Use a grayscale animation for IR mode
-            is_grayscale = True
-            overlay_color = (255, 255, 255)  # White text for IR mode
-            base_intensity = 128  # Mid-gray base for IR
-        else:
-            # Use a colored animation for RGB mode
-            is_grayscale = False
-            overlay_color = (0, 255, 0)  # Green text for RGB mode
-            # BGR format for OpenCV
-            base_color_b = 128  # Blue component
-            base_color_g = 0    # Green component
-            base_color_r = 0    # Red component
-        
-        start_time = time.time()
-        frame_count = 0
-        
-        try:
-            while self.running:
-                # Calculate pulsing effect
-                pulse_factor = 1 + time.time() % 2  # Value between 1-3
-                
-                # Create the base frame
-                if is_grayscale:
-                    # Grayscale simulation for IR
-                    intensity = int(base_intensity + 50 * pulse_factor)  # Pulsing effect
-                    # Ensure we don't exceed valid pixel values
-                    intensity = min(255, intensity)
-                    frame = np.ones((height, width), dtype=np.uint8) * intensity
-                else:
-                    # Color simulation for RGB
-                    r_val = int(base_color_r + 50 * pulse_factor)
-                    g_val = base_color_g
-                    b_val = base_color_b
-                    # Ensure we don't exceed valid pixel values
-                    r_val = min(255, r_val)
                     
-                    frame = np.zeros((height, width, 3), dtype=np.uint8)
-                    frame[:, :, 0] = b_val  # Blue channel
-                    frame[:, :, 1] = g_val  # Green channel
-                    frame[:, :, 2] = r_val  # Red channel
+                # Check for mode switch
+                elif key == ord('m'):
+                    new_mode = 1 if self.camera_controller.get_camera_mode() == 0 else 0
+                    logger.info(f"User requested to switch camera mode to {new_mode}")
+                    self.camera_controller.set_camera_mode(new_mode)
+                    
+                # Pan/tilt controls
+                elif key == ord('w'):  # Tilt up
+                    self.camera_controller.set_tilt(-50)
+                elif key == ord('s'):  # Tilt down
+                    self.camera_controller.set_tilt(50)
+                elif key == ord('a'):  # Pan left
+                    self.camera_controller.set_pan(-50)
+                elif key == ord('d'):  # Pan right
+                    self.camera_controller.set_pan(50)
+                elif key == ord(' '):  # Stop movement
+                    self.camera_controller.set_pan(0)
+                    self.camera_controller.set_tilt(0)
                 
-                # Add timestamp
-                timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-                cv2.putText(frame, timestamp, (width - 200, height - 20), 
-                           cv2.FONT_HERSHEY_SIMPLEX, 0.5, overlay_color, 1)
+                # Zoom controls
+                elif key == ord('+') or key == ord('='):  # Zoom in
+                    current_zoom = self.camera_controller.zoom_level
+                    self.camera_controller.set_zoom(min(current_zoom + 10, 100))
+                elif key == ord('-'):  # Zoom out
+                    current_zoom = self.camera_controller.zoom_level
+                    self.camera_controller.set_zoom(max(current_zoom - 10, 0))
                 
-                # Add stream info
-                info_text = f"SIMULATED {self.camera_mode.upper()} - {self.stream_quality.upper()}"
-                cv2.putText(frame, info_text, (10, 30), 
-                           cv2.FONT_HERSHEY_SIMPLEX, 0.8, overlay_color, 2)
-                
-                # Add artificial center target
-                cv2.circle(frame, (width // 2, height // 2), 20, overlay_color, 1)
-                cv2.line(frame, (width // 2 - 30, height // 2), (width // 2 + 30, height // 2), overlay_color, 1)
-                cv2.line(frame, (width // 2, height // 2 - 30), (width // 2, height // 2 + 30), overlay_color, 1)
-                
-                # Display the frame
-                cv2.imshow(window_name, frame)
-                
-                # Calculate FPS
-                frame_count += 1
-                elapsed_time = time.time() - start_time
-                if elapsed_time >= 5:  # Update FPS every 5 seconds
-                    fps = frame_count / elapsed_time
-                    logger.info(f"Simulation FPS: {fps:.2f}")
-                    frame_count = 0
-                    start_time = time.time()
-                
-                # Check for exit key
-                if cv2.waitKey(33) & 0xFF == ord('q'):
-                    logger.info("User pressed 'q', stopping simulation")
-                    break
-                
-                # Limit simulation to ~30 FPS
-                time.sleep(0.033)
-                
-        except KeyboardInterrupt:
-            logger.info("Simulation interrupted by user")
         except Exception as e:
-            logger.error(f"Error in simulation: {e}")
+            logger.error(f"Error in viewer loop: {e}")
         finally:
-            cv2.destroyAllWindows()
-            self.running = False
-            logger.info("Simulation ended")
-
-def parse_arguments():
-    """Parse command line arguments"""
-    parser = argparse.ArgumentParser(description='Local Stream Viewer for PTZ Camera')
-    
-    parser.add_argument('--mode', type=str, default='rgb',
-                        choices=['rgb', 'ir'],
-                        help='Camera mode: "rgb" or "ir/thermal"')
-    
-    parser.add_argument('--quality', type=str, default='main',
-                        choices=['main', 'sub'],
-                        help='Stream quality: "main" (high) or "sub" (low)')
-    
-    parser.add_argument('--port', type=int, default=8000,
-                        help='Port for obtaining stream URLs from the server')
-    
-    return parser.parse_args()
-
-def main():
-    """Main function"""
-    args = parse_arguments()
-    
-    try:
-        # Import NumPy here to avoid issues if it's not available
-        global np
-        import numpy as np
-        
-        viewer = LocalStreamViewer(
-            camera_mode=args.mode,
-            stream_quality=args.quality,
-            port=args.port
-        )
-        viewer.start()
-        
-        # Keep the main thread alive
-        try:
-            while viewer.running:
-                time.sleep(1)
-        except KeyboardInterrupt:
-            logger.info("Interrupted by user")
-        finally:
-            viewer.stop()
-            
-    except ImportError as e:
-        logger.error(f"Required package not found: {e}")
-        logger.error("Please install missing packages: pip install numpy opencv-python")
-    except Exception as e:
-        logger.error(f"Error in main: {e}")
+            # Clean up
+            try:
+                cap.release()
+                cv2.destroyAllWindows()
+            except:
+                pass
+                
+            logger.info("Viewer loop ended")
 
 if __name__ == "__main__":
-    main()
+    # Set up logging for standalone testing
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+    
+    # Mock classes for testing
+    class MockCameraController:
+        def __init__(self):
+            self.zoom_level = 50
+            self._mode = 0
+            
+        def get_current_camera_device(self):
+            return "/dev/video0"
+        def get_camera_mode(self):
+            return self._mode
+        def set_camera_mode(self, mode):
+            print(f"Switching to mode: {mode}")
+            self._mode = mode
+        def set_pan(self, speed):
+            print(f"Pan speed: {speed}")
+        def set_tilt(self, speed):
+            print(f"Tilt speed: {speed}")
+        def set_zoom(self, level):
+            self.zoom_level = level
+            print(f"Zoom level: {level}")
+    
+    class MockVideoStreamer:
+        def get_stream_url(self):
+            return "/dev/video0"  # Use device path for testing
+    
+    print("Starting local stream viewer test")
+    print("Controls:")
+    print("  w/a/s/d - Pan/tilt")
+    print("  +/- - Zoom in/out")
+    print("  Space - Stop movement")
+    print("  m - Switch camera mode")
+    print("  q/ESC - Quit")
+    
+    # Test the local stream viewer
+    camera_controller = MockCameraController()
+    video_streamer = MockVideoStreamer()
+    viewer = LocalStreamViewer(camera_controller, video_streamer)
+    viewer.start()
+    
+    try:
+        # Run until viewer thread ends
+        while viewer.viewer_thread and viewer.viewer_thread.is_alive():
+            time.sleep(0.1)
+    except KeyboardInterrupt:
+        print("Test interrupted")
+    finally:
+        viewer.stop()

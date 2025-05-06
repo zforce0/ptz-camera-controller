@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PTZ Camera Controller</string>
+    
+    <!-- Navigation Labels -->
+    <string name="nav_camera_control">Control</string>
+    <string name="nav_video_stream">Stream</string>
+    <string name="nav_connection">Connect</string>
+    <string name="nav_settings">Settings</string>
+    
+    <!-- Camera Control Fragment -->
+    <string name="control_camera">Camera Control</string>
+    <string name="connection_status">Connection Status</string>
+    <string name="zoom_control">Zoom Control</string>
+    <string name="camera_mode">Camera Mode</string>
+    <string name="preset_positions">Preset Positions</string>
+    <string name="mode_rgb">RGB</string>
+    <string name="mode_ir">IR</string>
+    <string name="zoom_in">Zoom In</string>
+    <string name="zoom_out">Zoom Out</string>
+    <string name="save_preset">Save</string>
+    <string name="goto_preset">Go To</string>
+    <string name="preset_number_hint">1-255</string>
+    <string name="msg_preset_saved">Preset %d saved</string>
+    <string name="msg_going_to_preset">Going to preset %d</string>
+    <string name="msg_camera_mode_changed">Camera mode changed to %s</string>
+    
+    <!-- Video Stream Fragment -->
+    <string name="video_stream">Video Stream</string>
+    <string name="stream_reconnect">Reconnect</string>
+    <string name="stream_snapshot">Snapshot</string>
+    <string name="stream_record">Record</string>
+    <string name="stream_stop_recording">Stop</string>
+    <string name="stream_resolution">Resolution</string>
+    <string name="stream_fps">FPS</string>
+    <string name="stream_quality">Quality</string>
+    <string name="msg_snapshot_saved">Snapshot saved to gallery</string>
+    <string name="msg_recording_started">Recording started</string>
+    <string name="msg_recording_stopped">Recording stopped</string>
+    
+    <!-- Connection Fragment -->
+    <string name="wifi_connection">WiFi Connection</string>
+    <string name="wifi_status_connected">Connected</string>
+    <string name="wifi_status_disconnected">Disconnected</string>
+    <string name="wifi_ip_address">IP Address</string>
+    <string name="wifi_port">Port</string>
+    <string name="bluetooth_connection">Bluetooth Connection</string>
+    <string name="bt_status_connected">Connected</string>
+    <string name="bt_status_disconnected">Disconnected</string>
+    <string name="paired_devices">Paired Devices</string>
+    <string name="scan_devices">Scan Devices</string>
+    <string name="scanning">Scanning...</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    
+    <!-- Settings Fragment -->
+    <string name="app_settings">App Settings</string>
+    <string name="stream_settings">Stream Settings</string>
+    <string name="connection_settings">Connection Settings</string>
+    <string name="controller_settings">Controller Settings</string>
+    <string name="setting_stream_quality">Stream Quality</string>
+    <string name="setting_show_status_overlay">Show Status Overlay</string>
+    <string name="setting_keep_screen_on">Keep Screen On</string>
+    <string name="setting_auto_reconnect">Auto Reconnect</string>
+    <string name="setting_connection_check_interval">Connection Check Interval</string>
+    <string name="setting_use_bluetooth_fallback">Use Bluetooth Fallback</string>
+    <string name="setting_wifi_timeout">WiFi Timeout (seconds)</string>
+    <string name="setting_control_sensitivity">Control Sensitivity</string>
+    <string name="setting_dark_mode">Dark Mode</string>
+    <string name="setting_about">About</string>
+    
+    <!-- Arrays -->
+    <string-array name="stream_quality_options">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+    
+    <string-array name="connection_check_interval_options">
+        <item>5 seconds</item>
+        <item>15 seconds</item>
+        <item>30 seconds</item>
+    </string-array>
+    
+    <string-array name="control_sensitivity_options">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+</resources>

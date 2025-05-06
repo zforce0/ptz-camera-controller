@@ -6,327 +6,430 @@ receiving control commands and sending status updates.
 """
 
 import os
-import json
+import time
 import logging
 import threading
-import time
+import json
+import socket
 
-# For demo, we'll simulate bluetooth rather than requiring PyBluez
-# try:
-#     import bluetooth as bt
-# except ImportError:
-#     bt = None
+logger = logging.getLogger('bt_server')
 
-# Mock bluetooth module for simulation
-class MockBluetooth:
-    """Mock implementation of PyBluez for simulation"""
-    RFCOMM = 1
-    PORT_ANY = 0
-    SERIAL_PORT_CLASS = "serial-port-class"
-    SERIAL_PORT_PROFILE = "serial-port-profile"
+# Try to import PyBluez
+try:
+    import bluetooth
+except ImportError:
+    logger.warning("PyBluez not available. Using mock implementation for development/testing.")
+    # Mock implementation for development/testing
+    class MockBluetooth:
+        """Mock implementation of PyBluez for simulation"""
+        RFCOMM = 1
+        PORT_ANY = 0
+        SERIAL_PORT_CLASS = "serial-port-class"
+        SERIAL_PORT_PROFILE = "serial-port-profile"
+        
+        class BluetoothSocket:
+            """Mock bluetooth socket"""
+            def __init__(self, protocol):
+                logger.info(f"Creating mock Bluetooth socket with protocol {protocol}")
+                self.protocol = protocol
+                self.bound = False
+                self.listening = False
+                self.port = None
+                self.closed = False
+                self.timeout = None
+                self.mock_client_data = [
+                    b'{"type":"pan","value":50}\n',
+                    b'{"type":"tilt","value":-30}\n',
+                    b'{"type":"zoom","value":75}\n',
+                    b'{"type":"mode","value":1}\n'
+                ]
+                self.mock_data_index = 0
+                
+            def bind(self, address):
+                """Simulate binding to an address"""
+                logger.info(f"Mock Bluetooth socket bound to {address}")
+                self.bound = True
+                
+            def listen(self, backlog):
+                """Simulate listening for connections"""
+                logger.info(f"Mock Bluetooth socket listening with backlog {backlog}")
+                self.listening = True
+                
+            def getsockname(self):
+                """Return a fake socket name with port"""
+                return ("00:00:00:00:00:00", 1)
+                
+            def settimeout(self, timeout):
+                """Set socket timeout"""
+                self.timeout = timeout
+                
+            def accept(self):
+                """Simulate accepting a connection"""
+                if not self.listening:
+                    raise Exception("Socket is not listening")
+                    
+                # Simulate timeout
+                time.sleep(self.timeout if self.timeout else 1.0)
+                
+                # Create mock client socket
+                client_sock = MockBluetooth.BluetoothSocket(self.protocol)
+                client_addr = "11:22:33:44:55:66"
+                
+                logger.info(f"Mock Bluetooth connection accepted from {client_addr}")
+                return client_sock, client_addr
+                
+            def recv(self, bufsize):
+                """Simulate receiving data"""
+                if self.closed:
+                    return b''
+                    
+                # Simulate timeout or no data
+                time.sleep(0.5)
+                
+                # Return mock data occasionally
+                if self.mock_data_index < len(self.mock_client_data) and time.time() % 10 < 3:
+                    data = self.mock_client_data[self.mock_data_index]
+                    self.mock_data_index = (self.mock_data_index + 1) % len(self.mock_client_data)
+                    return data
+                    
+                return b''
+                
+            def send(self, data):
+                """Simulate sending data"""
+                if self.closed:
+                    raise Exception("Socket is closed")
+                    
+                logger.debug(f"Mock Bluetooth socket sending {len(data)} bytes")
+                return len(data)
+                
+            def close(self):
+                """Close the socket"""
+                logger.info("Mock Bluetooth socket closed")
+                self.closed = True
+        
+        def advertise_service(sock, name, service_id, service_classes, profiles):
+            """Simulate advertising a Bluetooth service"""
+            logger.info(f"Advertising mock Bluetooth service '{name}' with UUID {service_id}")
     
-    class BluetoothSocket:
-        """Mock bluetooth socket"""
-        def __init__(self, protocol):
-            self.protocol = protocol
-            self.bound = False
-            self.listening = False
-            self.timeout = None
-            self.data_buffer = []
-            
-        def bind(self, address):
-            """Simulate binding to an address"""
-            self.bound = True
-            
-        def listen(self, backlog):
-            """Simulate listening for connections"""
-            self.listening = True
-            
-        def getsockname(self):
-            """Return a fake socket name with port"""
-            return ("00:11:22:33:44:55", 1)
-            
-        def settimeout(self, timeout):
-            """Set socket timeout"""
-            self.timeout = timeout
-            
-        def accept(self):
-            """Simulate accepting a connection"""
-            # Always time out so it doesn't block in a real loop
-            # But also return mock client data occasionally for simulation
-            if time.time() % 30 < 5:  # Only accept connections 5 seconds out of every 30
-                mock_client_sock = MockBluetooth.BluetoothSocket(MockBluetooth.RFCOMM)
-                mock_client_info = ("11:22:33:44:55:66", "MockClient")
-                return (mock_client_sock, mock_client_info)
-            else:
-                raise TimeoutError("Simulated timeout")
-                
-        def recv(self, bufsize):
-            """Simulate receiving data"""
-            # Simulate timeouts most of the time
-            if time.time() % 10 < 9:  # 90% of the time
-                raise TimeoutError("Simulated timeout")
-                
-            # Occasionally return some simulated commands
-            commands = [
-                '{"type":"pan", "value":50}',
-                '{"type":"tilt", "value":-30}',
-                '{"type":"zoom", "value":75}',
-                '{"type":"mode", "value":1}'
-            ]
-            
-            # Choose a random command
-            import random
-            command = random.choice(commands)
-            
-            # Log what we're simulating
-            logger.debug(f"Simulating received data: {command}")
-            
-            # Return it as bytes
-            return (command + '\n').encode('utf-8')
-            
-        def send(self, data):
-            """Simulate sending data"""
-            # Just log what would be sent
-            logger.debug(f"Would send: {data.decode('utf-8', errors='replace')}")
-            return len(data)  # Return number of bytes that would be sent
-            
-        def close(self):
-            """Close the socket"""
-            self.bound = False
-            self.listening = False
-            
-    @staticmethod
-    def advertise_service(sock, name, service_id, service_classes, profiles):
-        """Simulate advertising a Bluetooth service"""
-        logger.info(f"Simulating Bluetooth service advertisement: {name}")
-
-# Use the mock bluetooth module for simulation
-bt = MockBluetooth()
-
-logger = logging.getLogger('bluetooth_server')
+    # Use mock implementation
+    bluetooth = MockBluetooth()
 
 class BluetoothServer:
     """Bluetooth server for PTZ camera control"""
     
     def __init__(self, camera_controller, uuid="00001101-0000-1000-8000-00805F9B34FB"):
-        """Initialize the Bluetooth server"""
+        """Initialize the Bluetooth server
+        
+        Args:
+            camera_controller: CameraController instance
+            uuid: Service UUID (default: standard SPP UUID)
+        """
         self.camera_controller = camera_controller
         self.uuid = uuid
-        
-        # Since we're using a mock Bluetooth module for simulation,
-        # we don't need to check if it's available
-        logger.info("Using simulated Bluetooth module for demonstration")
-        
-        self.server_sock = None
-        self.client_sock = None
-        self.client_info = None
         self.running = False
         self.server_thread = None
+        self.server_socket = None
+        self.client_socket = None
+        self.client_address = None
+        self.client_handler_thread = None
         
-        # Lock for thread safety
-        self.lock = threading.Lock()
-        
-        logger.info("Bluetooth server initialized")
-    
     def start(self):
         """Start the Bluetooth server"""
-        with self.lock:
-            if self.running:
-                logger.warning("Bluetooth server is already running")
-                return
-                
-            self.running = True
-            self.server_thread = threading.Thread(target=self._server_loop)
-            self.server_thread.daemon = True
-            self.server_thread.start()
-            logger.info("Bluetooth server started")
-    
+        if self.running:
+            logger.warning("Bluetooth server is already running")
+            return
+            
+        self.running = True
+        self.server_thread = threading.Thread(target=self._server_loop)
+        self.server_thread.daemon = True
+        self.server_thread.start()
+        
+        logger.info("Bluetooth server started")
+        return True
+        
     def stop(self):
         """Stop the Bluetooth server"""
-        with self.lock:
-            if not self.running:
-                logger.warning("Bluetooth server is not running")
-                return
-                
-            self.running = False
+        if not self.running:
+            logger.warning("Bluetooth server is not running")
+            return
             
-            # Close client connection
-            if self.client_sock:
-                try:
-                    self.client_sock.close()
-                except Exception as e:
-                    logger.error(f"Error closing client socket: {e}")
-                self.client_sock = None
-                self.client_info = None
+        self.running = False
+        
+        # Close client connection
+        if self.client_socket:
+            try:
+                self.client_socket.close()
+            except:
+                pass
+            self.client_socket = None
+            self.client_address = None
             
-            # Close server socket
-            if self.server_sock:
-                try:
-                    self.server_sock.close()
-                except Exception as e:
-                    logger.error(f"Error closing server socket: {e}")
-                self.server_sock = None
+        # Close server socket
+        if self.server_socket:
+            try:
+                self.server_socket.close()
+            except:
+                pass
+            self.server_socket = None
             
-            # Wait for server thread to end
-            if self.server_thread:
-                self.server_thread.join(timeout=2.0)
-                self.server_thread = None
-                
-            logger.info("Bluetooth server stopped")
-    
+        # Wait for server thread to end
+        if self.server_thread:
+            self.server_thread.join(timeout=2.0)
+            
+        logger.info("Bluetooth server stopped")
+        
     def _server_loop(self):
         """Main server loop that handles Bluetooth connections"""
-        logger.info("Bluetooth server loop started")
-        
         try:
-            # Create a Bluetooth server socket
-            self.server_sock = bt.BluetoothSocket(bt.RFCOMM)
-            self.server_sock.bind(("", bt.PORT_ANY))
-            self.server_sock.listen(1)
+            # Create server socket
+            self.server_socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+            self.server_socket.bind(("", bluetooth.PORT_ANY))
+            self.server_socket.listen(1)  # Only one connection at a time
             
-            # Get the port and advertise the service
-            port = self.server_sock.getsockname()[1]
-            bt.advertise_service(
-                self.server_sock,
-                "PTZCameraServer",
-                service_id=self.uuid,
-                service_classes=[self.uuid, bt.SERIAL_PORT_CLASS],
-                profiles=[bt.SERIAL_PORT_PROFILE]
+            # Get the port number assigned to the socket
+            port = self.server_socket.getsockname()[1]
+            
+            # Advertise the service
+            bluetooth.advertise_service(
+                self.server_socket,
+                "PTZ Camera Controller",
+                self.uuid,
+                service_classes=[self.uuid, bluetooth.SERIAL_PORT_CLASS],
+                profiles=[bluetooth.SERIAL_PORT_PROFILE]
             )
             
-            logger.info(f"Bluetooth server listening on port {port}")
+            logger.info(f"Bluetooth server listening on RFCOMM channel {port}")
             
             while self.running:
-                # Set a timeout so we can check if we should exit
-                self.server_sock.settimeout(1.0)
+                # Wait for client connection
+                logger.info("Waiting for Bluetooth connection...")
+                
+                # Set timeout to allow for periodic checks
+                self.server_socket.settimeout(1.0)
                 
                 try:
-                    # Wait for a connection
-                    client_sock, client_info = self.server_sock.accept()
+                    client_sock, client_info = self.server_socket.accept()
+                    logger.info(f"Accepted Bluetooth connection from {client_info}")
                     
-                    with self.lock:
-                        self.client_sock = client_sock
-                        self.client_info = client_info
-                        
-                    logger.info(f"Accepted connection from {client_info}")
+                    # Store client info
+                    self.client_socket = client_sock
+                    self.client_address = client_info
                     
                     # Handle client in a separate thread
-                    client_thread = threading.Thread(
+                    self.client_handler_thread = threading.Thread(
                         target=self._handle_client,
                         args=(client_sock, client_info)
                     )
-                    client_thread.daemon = True
-                    client_thread.start()
+                    self.client_handler_thread.daemon = True
+                    self.client_handler_thread.start()
                     
-                except TimeoutError:
-                    # Timeout occurred, check if we should exit
-                    continue
+                except socket.timeout:
+                    # No new connections, continue
+                    pass
                 except Exception as e:
-                    logger.error(f"Error accepting connection: {e}")
-                    time.sleep(1)
-                    
-        except Exception as e:
-            logger.error(f"Error in Bluetooth server loop: {e}")
-            
-        finally:
-            # Make sure we clean up
-            if self.server_sock:
-                try:
-                    self.server_sock.close()
-                except Exception as e:
-                    logger.error(f"Error closing server socket: {e}")
-                self.server_sock = None
+                    if self.running:  # Only log if we're still supposed to be running
+                        logger.error(f"Error accepting Bluetooth connection: {e}")
                 
-            self.running = False
+                # Sleep briefly to prevent CPU hogging
+                time.sleep(0.01)
+                
+        except Exception as e:
+            logger.error(f"Bluetooth server error: {e}")
+        finally:
+            # Clean up
+            if self.server_socket:
+                try:
+                    self.server_socket.close()
+                except:
+                    pass
+                
             logger.info("Bluetooth server loop ended")
-    
+        
     def _handle_client(self, client_sock, client_info):
         """Handle communication with a connected client"""
-        logger.info(f"Handling client {client_info}")
+        logger.info(f"Bluetooth client handler started for {client_info}")
         
         try:
-            # Set socket options
+            # Set small timeout to allow checking running state
             client_sock.settimeout(0.5)
             
-            buffer = ""
-            
-            while self.running and client_sock == self.client_sock:
+            while self.running and self.client_socket == client_sock:
                 try:
-                    # Read data from the client
-                    data = client_sock.recv(1024).decode('utf-8')
+                    # Receive data
+                    data = client_sock.recv(1024)
                     
                     if not data:
-                        logger.info("Client disconnected")
+                        # Client disconnected
+                        logger.info(f"Bluetooth client disconnected: {client_info}")
                         break
                         
-                    # Append data to buffer
-                    buffer += data
-                    
-                    # Process complete commands (delimited by newlines)
-                    while '\n' in buffer:
-                        line, buffer = buffer.split('\n', 1)
-                        self._process_command(line.strip())
+                    # Process received data
+                    try:
+                        # Split data by newlines to handle multiple commands
+                        commands = data.decode('utf-8').strip().split('\n')
                         
-                except TimeoutError:
-                    # Timeout reading from client, try again
+                        for cmd_str in commands:
+                            if cmd_str:
+                                # Try to parse as JSON
+                                try:
+                                    command = json.loads(cmd_str)
+                                    self._process_command(command)
+                                except json.JSONDecodeError:
+                                    # Not valid JSON, try as text command
+                                    self._process_text_command(cmd_str)
+                    except Exception as e:
+                        logger.error(f"Error processing Bluetooth data: {e}")
+                    
+                except socket.timeout:
+                    # No data available, continue
                     continue
                 except Exception as e:
-                    logger.error(f"Error reading from client: {e}")
+                    logger.error(f"Error receiving Bluetooth data: {e}")
                     break
                     
         except Exception as e:
-            logger.error(f"Error handling client: {e}")
-            
+            logger.error(f"Bluetooth client handler error: {e}")
         finally:
-            # Clean up
+            # Close the client socket
             try:
                 client_sock.close()
-            except Exception as e:
-                logger.error(f"Error closing client socket: {e}")
+            except:
+                pass
                 
-            # Update server state
-            with self.lock:
-                if self.client_sock == client_sock:
-                    self.client_sock = None
-                    self.client_info = None
-                    
-            logger.info(f"Client {client_info} disconnected")
+            # Clear client info if this is still the current client
+            if self.client_socket == client_sock:
+                self.client_socket = None
+                self.client_address = None
+                
+            logger.info(f"Bluetooth client handler ended for {client_info}")
     
-    def _process_command(self, command_str):
+    def _process_command(self, command):
         """Process a command received from the client"""
-        logger.debug(f"Received command: {command_str}")
+        logger.debug(f"Received Bluetooth command: {command}")
+        
+        if not isinstance(command, dict):
+            logger.warning(f"Invalid command format: {command}")
+            return
+            
+        # Forward to camera controller
+        try:
+            self.camera_controller.process_command(command)
+        except Exception as e:
+            logger.error(f"Error processing Bluetooth command: {e}")
+    
+    def _process_text_command(self, command_str):
+        """Process a text command received from the client"""
+        logger.debug(f"Received Bluetooth text command: {command_str}")
+        
+        # Parse simple text commands (same as in WiFi server)
+        cmd_parts = command_str.split()
+        if not cmd_parts:
+            return
+            
+        cmd_type = cmd_parts[0].lower()
         
         try:
-            # Parse the JSON command
-            command = json.loads(command_str)
-            
-            # Forward the command to the camera controller
-            result = self.camera_controller.process_command(command)
-            
-            if result:
-                logger.debug(f"Command processed successfully: {command}")
-            else:
-                logger.warning(f"Failed to process command: {command}")
+            if cmd_type == "pan":
+                # pan <speed>
+                if len(cmd_parts) > 1:
+                    speed = int(cmd_parts[1])
+                    self.camera_controller.set_pan(speed)
+                    
+            elif cmd_type == "tilt":
+                # tilt <speed>
+                if len(cmd_parts) > 1:
+                    speed = int(cmd_parts[1])
+                    self.camera_controller.set_tilt(speed)
+                    
+            elif cmd_type == "zoom":
+                # zoom <level>
+                if len(cmd_parts) > 1:
+                    level = int(cmd_parts[1])
+                    self.camera_controller.set_zoom(level)
+                    
+            elif cmd_type == "mode":
+                # mode <0|1>
+                if len(cmd_parts) > 1:
+                    mode = int(cmd_parts[1])
+                    self.camera_controller.set_camera_mode(mode)
+                    
+            elif cmd_type == "stop":
+                # stop - stop all movement
+                self.camera_controller.set_pan(0)
+                self.camera_controller.set_tilt(0)
                 
-        except json.JSONDecodeError:
-            logger.error(f"Invalid JSON command: {command_str}")
         except Exception as e:
-            logger.error(f"Error processing command: {e}")
+            logger.error(f"Error processing Bluetooth text command: {e}")
     
     def send_status(self, status):
-        """Send a status update to the connected client"""
-        if not self.client_sock:
-            return False
+        """Send a status update to the connected client
+        
+        Args:
+            status: Status data dictionary to send
+        """
+        if not self.running or not self.client_socket:
+            return
             
+        # Convert to JSON
         try:
-            # Convert status to JSON
             status_json = json.dumps(status)
-            
-            # Send the status
-            self.client_sock.send(status_json.encode('utf-8') + b'\n')
-            return True
-            
         except Exception as e:
-            logger.error(f"Error sending status: {e}")
-            return False
+            logger.error(f"Error serializing status data: {e}")
+            return
+            
+        # Send to client
+        try:
+            message = status_json.encode('utf-8') + b'\n'
+            self.client_socket.send(message)
+        except Exception as e:
+            logger.warning(f"Error sending status via Bluetooth: {e}")
+            
+            # Close the connection if there was an error
+            try:
+                self.client_socket.close()
+            except:
+                pass
+                
+            self.client_socket = None
+            self.client_address = None
+
+if __name__ == "__main__":
+    # Set up logging for standalone testing
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+    
+    # Mock camera controller for testing
+    class MockCameraController:
+        def process_command(self, command):
+            print(f"Processing command: {command}")
+        def set_pan(self, speed):
+            print(f"Pan speed: {speed}")
+        def set_tilt(self, speed):
+            print(f"Tilt speed: {speed}")
+        def set_zoom(self, level):
+            print(f"Zoom level: {level}")
+        def set_camera_mode(self, mode):
+            print(f"Camera mode: {mode}")
+    
+    # Test the Bluetooth server
+    camera_controller = MockCameraController()
+    server = BluetoothServer(camera_controller)
+    
+    server.start()
+    
+    try:
+        print("Bluetooth server running")
+        print("Press Ctrl+C to stop...")
+        
+        # Keep running for testing
+        while True:
+            time.sleep(5)
+            if server.client_socket:
+                server.send_status({"heartbeat": time.time()})
+            
+    except KeyboardInterrupt:
+        print("Test interrupted")
+    finally:
+        server.stop()

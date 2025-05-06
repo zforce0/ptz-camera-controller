@@ -1,136 +1,136 @@
-# PTZ Camera Controller System Architecture
+# PTZ Camera Controller - System Architecture
 
-This document provides a comprehensive view of the PTZ Camera Controller system architecture, showing how components interact across both the Android tablet application and the onboard computer server.
+## Overview
 
-## System Overview
+The PTZ Camera Controller is a comprehensive system for controlling Pan-Tilt-Zoom (PTZ) cameras remotely using an Android tablet. The system consists of two main components:
 
-The PTZ Camera Controller system consists of two main parts:
-1. **Android Tablet Application**: User interface for controlling cameras and viewing video streams
-2. **Onboard Computer Server**: Backend software running on Raspberry Pi or NVIDIA Jetson that interfaces with the cameras
+1. **Android Tablet Application**: User interface for controlling the camera and viewing video streams
+2. **Onboard Python Server**: Backend server running on the camera hardware (Raspberry Pi or NVIDIA Jetson)
 
-The system supports dual communication methods (WiFi and Bluetooth) for flexibility and redundancy, and handles multiple camera types (RGB and IR/Thermal).
+## System Topology
 
-## Architecture Diagram
-
-```mermaid
-graph TD
-    %% Main System Components
-    AndroidApp[Android Tablet App]
-    OnboardServer[Onboard Computer Server]
-    
-    %% Android App Components
-    AndroidApp --> MainActivityKt[MainActivity.kt]
-    MainActivityKt --> CameraFragmentKt[CameraControlFragment.kt]
-    MainActivityKt --> StreamFragmentKt[VideoStreamFragment.kt]
-    MainActivityKt --> SettingsFragmentKt[SettingsFragment.kt]
-    MainActivityKt --> UpdateCheckerKt[UpdateChecker.kt]
-    
-    %% Android App Internal Components
-    CameraFragmentKt --> PTZController[PTZ Controls]
-    CameraFragmentKt --> ModeSwitcher[RGB/IR Mode Switching]
-    StreamFragmentKt --> ExoPlayer[ExoPlayer Video Player]
-    SettingsFragmentKt --> ConnectionSettings[Connection Settings]
-    
-    %% Onboard Server Components
-    OnboardServer --> CameraServerPy[camera_server.py]
-    
-    %% Camera Server Components
-    CameraServerPy --> CameraControllerPy[camera_controller.py]
-    CameraServerPy --> VideoStreamerPy[video_streamer.py]
-    CameraServerPy --> CommModulePy{Communication Modules}
-    
-    %% Communication Components
-    CommModulePy --> WifiServerPy[wifi_server.py]
-    CommModulePy --> BTServerPy[bt_server.py]
-    
-    %% Camera Controller Components
-    CameraControllerPy --> HWInterface[Hardware Interface]
-    HWInterface --> RGBCamera[RGB Camera]
-    HWInterface --> IRCamera[IR/Thermal Camera]
-    HWInterface --> PTZMotors[PTZ Motors]
-    
-    %% Video Streamer Components
-    VideoStreamerPy --> RTSPStreams[RTSP Streams]
-    RTSPStreams --> MainStream[High Quality Stream]
-    RTSPStreams --> SubStream[Low Quality Stream]
-    VideoStreamerPy --> LocalStreamViewerPy[local_stream_viewer.py]
-    
-    %% Communication Channels
-    AndroidApp <--WiFi/TCP--> WifiServerPy
-    AndroidApp <--Bluetooth--> BTServerPy
-    StreamFragmentKt <--RTSP Video Streams--> RTSPStreams
-    
-    %% Installation & Distribution
-    GitHubRelease[GitHub Releases]
-    QRCodeInstaller[QR Code Installer]
-    GitHubWorkflow[GitHub Actions Workflow]
-    
-    %% Distribution Flow
-    GitHubWorkflow --> GitHubRelease
-    GitHubRelease --> QRCodeInstaller
-    QRCodeInstaller --> AndroidApp
-    
-    %% Styling
-    classDef android fill:#a5d6a7,stroke:#1b5e20,color:#1b5e20
-    classDef python fill:#bbdefb,stroke:#0d47a1,color:#0d47a1
-    classDef hardware fill:#ffcc80,stroke:#e65100,color:#e65100
-    classDef deployment fill:#e1bee7,stroke:#4a148c,color:#4a148c
-    classDef communication fill:#fff59d,stroke:#f57f17,color:#f57f17
-    
-    %% Apply Styles
-    class AndroidApp,MainActivityKt,CameraFragmentKt,StreamFragmentKt,SettingsFragmentKt,UpdateCheckerKt,PTZController,ModeSwitcher,ExoPlayer,ConnectionSettings android
-    class OnboardServer,CameraServerPy,CameraControllerPy,VideoStreamerPy,WifiServerPy,BTServerPy,LocalStreamViewerPy python
-    class HWInterface,RGBCamera,IRCamera,PTZMotors hardware
-    class GitHubRelease,QRCodeInstaller,GitHubWorkflow deployment
-    class CommModulePy,RTSPStreams,MainStream,SubStream communication
+```
++---------------------------+           +---------------------------+           +---------------------------+
+|    Android Tablet App     |           |    Onboard Computer       |           |   PTZ Camera Hardware    |
+|    (User Interface)       |           |   (Pi/Jetson Server)      |           |                          |
++---------------------------+           +---------------------------+           +---------------------------+
+|                           |           |                           |           |                           |
+| +---------------------+   |           | +---------------------+   |           | +---------------------+   |
+| | Main Activity       |   |           | | Camera Server       |   |           | | RGB Camera Module   |   |
+| |                     |   |           | |                     |   |           | |                     |   |
+| | - Navigation        |   |           | | - Main controller   |   |           | | - 1080p/4K video    |   |
+| | - Fragment mgmt     |   |           | | - Component init    |   |           | | - Daylight mode     |   |
+| +---------------------+   |           | +---------------------+   |           | +---------------------+   |
+|           |               |           |           |               |           |           |               |
+| +---------------------+   |   WiFi    | +---------------------+   |           | +---------------------+   |
+| | Camera Control      |<------------->| | WiFi Server         |   |           | | IR/Thermal Camera   |   |
+| | Fragment            |   |           | |                     |   |           | |                     |   |
+| |                     |   |  (TCP/IP) | | - Command handling  |   |           | | - Thermal imaging   |   |
+| | - Control interface |   |           | | - Status updates    |   |   RTSP    | | - Night mode        |   |
+| | - Pan/tilt control  |   |           | +---------------------+   |  Stream   | +---------------------+   |
+| | - Zoom/mode control |   |           |           |               |           |           |               |
+| +---------------------+   |   BT      | +---------------------+   |           | +---------------------+   |
+|           |               |<- - - - ->| | BT Server           |   |    RS485  | | PTZ Motors          |   |
+| +---------------------+   | (Backup)  | |                     |   |<---------->|                     |   |
+| | Video Stream        |   |           | | - Backup comms      |   |  (Pelco-D) | | - Pan/tilt motors  |   |
+| | Fragment            |<------------->| | - Command handling  |   |  Protocol  | | - Zoom mechanism   |   |
+| |                     |   |   RTSP    | +---------------------+   |           | | - Preset positions  |   |
+| | - Video display     |   |  Stream   |           |               |           | +---------------------+   |
+| | - Stream controls   |   |           | +---------------------+   |           |                           |
+| | - Quality monitor   |   |           | | Camera Controller   |   |           |                           |
+| +---------------------+   |           | |                     |<----------------------+                   |
+|           |               |           | | - Direct hardware   |   |                                       |
+| +---------------------+   |   HTTP    | | - Camera switching  |   |                                       |
+| | Connection Setup    |<------------->| | - PTZ control       |   |                                       |
+| | Fragment            |   |  (QR Code)| +---------------------+   |                                       |
+| |                     |   |  Config   |           |               |                                       |
+| | - WiFi setup        |   |           | +---------------------+   |                                       |
+| | - Bluetooth setup   |   |           | | Video Streamer      |   |                                       |
+| | - QR code scanning  |   |           | |                     |   |                                       |
+| +---------------------+   |           | | - RTSP server       |   |                                       |
+|                           |           | | - Video encoding    |   |                                       |
+|                           |           | | - Quality monitor   |   |                                       |
+|                           |           | +---------------------+   |                                       |
+|                           |           |           |               |                                       |
+|                           |           | +---------------------+   |                                       |
+|                           |           | | Local Stream Viewer |   |                                       |
+|                           |           | | (Optional)          |   |                                       |
+|                           |           | | - Debug display     |   |                                       |
+|                           |           | | - Local control     |   |                                       |
+|                           |           | +---------------------+   |                                       |
+|                           |           |                           |                                       |
++---------------------------+           +---------------------------+                                       |
 ```
 
-## Component Descriptions
+## Software Components
 
-### Android Tablet Application
+### Android Application (Java/Kotlin)
 
-| Component | Description |
-|-----------|-------------|
-| **MainActivity.kt** | Main entry point for the Android app, handles navigation between fragments and overall app lifecycle. |
-| **CameraControlFragment.kt** | User interface for controlling pan, tilt, and zoom functions of the camera. |
-| **VideoStreamFragment.kt** | Displays the video stream from the active camera (RGB or IR/Thermal). |
-| **SettingsFragment.kt** | Configuration interface for connection settings, stream quality, and app preferences. |
-| **UpdateChecker.kt** | Checks for app updates from GitHub releases and notifies users. |
-| **ExoPlayer** | Android media player used to display RTSP video streams. |
+- **Main Activity**: Primary app container and navigation controller
+- **Camera Control Fragment**: UI for controlling pan, tilt, zoom, and camera mode
+- **Video Stream Fragment**: Displays video stream with quality monitoring
+- **Connection Setup Fragment**: Handles WiFi/Bluetooth connectivity and QR code scanning
+- **Settings Fragment**: Application configuration options
+- **Communication Managers**:
+  - **WiFi Manager**: Primary communication method
+  - **Bluetooth Manager**: Backup communication method
+  - **Connection Monitor**: Quality monitoring and auto-switching
 
-### Onboard Computer Server
+### Onboard Python Server
 
-| Component | Description |
-|-----------|-------------|
-| **camera_server.py** | Main server application that initializes and manages all server-side components. |
-| **camera_controller.py** | Interfaces with the physical cameras, handling pan, tilt, zoom operations and mode switching between RGB and IR. |
-| **video_streamer.py** | Manages video streaming from cameras to the Android tablet via RTSP protocol. |
-| **wifi_server.py** | Handles HTTP/TCP communication with the Android app for commands and status updates. |
-| **bt_server.py** | Provides Bluetooth communication capability as an alternative to WiFi. |
-| **local_stream_viewer.py** | Optional module for viewing camera streams directly on the onboard computer when a monitor is connected. |
+- **Camera Server**: Main server application that initializes and coordinates all components
+- **Camera Controller**: Interfaces with the PTZ camera hardware via RS-485/Pelco-D
+- **Video Streamer**: Manages video capture and streaming via RTSP
+- **WiFi Server**: TCP server for primary communication with the Android app
+- **Bluetooth Server**: Backup communication if WiFi fails
+- **Local Stream Viewer**: Optional component for local debugging with a connected monitor
 
-### Hardware Interface
+## Data Flow
 
-| Component | Description |
-|-----------|-------------|
-| **RGB Camera** | Daylight camera for normal operation. |
-| **IR/Thermal Camera** | Night vision or thermal camera for low-light or heat detection scenarios. |
-| **PTZ Motors** | Motors controlling the physical pan, tilt, and zoom movements of the camera system. |
+### Command Flow
+1. User interacts with the Android app UI (Camera Control Fragment)
+2. Commands are sent to the onboard server via WiFi (primary) or Bluetooth (backup)
+3. Camera Server processes commands 
+4. Camera Controller executes hardware control via Pelco-D protocol
+5. Status updates are sent back to the Android app
 
-### Deployment & Distribution
+### Video Flow
+1. Camera captures video (RGB or IR/Thermal mode)
+2. Video Streamer encodes and serves the video via RTSP
+3. Android app receives and displays the video stream
+4. Quality monitoring periodically checks stream quality
+5. If quality deteriorates, the system can switch cameras or restart the stream
 
-| Component | Description |
-|-----------|-------------|
-| **GitHub Actions Workflow** | Automated CI/CD pipeline for building the Android APK when new versions are tagged. |
-| **GitHub Releases** | Hosts the compiled APK files and release information. |
-| **QR Code Installer** | Generated QR codes that simplify installation on Android tablets. |
+### Configuration Flow
+1. QR Code Server generates configuration QR codes
+2. User scans QR code with Android app
+3. App automatically configures connection settings
+4. App connects to the onboard server with the new settings
 
-## Communication Flows
+## Connection Fault Tolerance
 
-1. **Control Commands**: Android app → WiFi/Bluetooth → Onboard server → Camera controller → PTZ motors
-2. **Video Feed**: Cameras → Video streamer → RTSP streams → Android app display
-3. **Status Updates**: Camera controller → Communication modules → Android app
+The system implements several fault tolerance mechanisms:
 
-For a detailed sequence diagram of the communication flow, see the [Communication Flow Documentation](communication_flow.md).
+1. **WiFi Quality Monitoring**: Checks stream quality periodically
+2. **Automatic Reconnection**: Attempts to reconnect if connection is lost
+3. **Bluetooth Fallback**: Switches to Bluetooth if WiFi fails for a period
+4. **Service Restart**: Can automatically restart services after multiple failures
+5. **WiFi Recovery**: Attempts to restore WiFi connection after Bluetooth fallback
 
-For information on how the system components are deployed across physical devices, see the [Deployment Architecture Documentation](deployment_architecture.md).
+## Software Architecture Patterns
+
+- **Client-Server Architecture**: Clear separation between the Android app (client) and onboard software (server)
+- **Component-Based Design**: Modular components with clear interfaces
+- **Observer Pattern**: For status updates and event notifications
+- **Command Pattern**: For camera control commands
+- **Strategy Pattern**: For different communication methods (WiFi/Bluetooth)
+- **Factory Pattern**: For creating different types of controllers and connections
+
+## Key Technologies
+
+- **Android SDK**: For the mobile application
+- **OpenCV**: For camera access and video processing
+- **Flask**: For the QR code configuration server
+- **PyBluez**: For Bluetooth communication
+- **RTSP**: For video streaming
+- **Pelco-D Protocol**: For camera control via RS-485
