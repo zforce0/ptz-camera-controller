@@ -1,0 +1,18 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Night mode colors (darker theme) -->
+    <color name="primary">#2E7D32</color>
+    <color name="primary_dark">#1B5E20</color>
+    <color name="primary_light">#388E3C</color>
+    
+    <color name="accent">#FF9800</color>
+    <color name="accent_dark">#F57C00</color>
+    
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="text_hint">#80FFFFFF</color>
+    
+    <color name="status_bar">#1B5E20</color>
+    <color name="navigation_bar">#121212</color>
+</resources>
