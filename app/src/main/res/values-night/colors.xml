@@ -14,4 +14,9 @@
     <!-- Camera mode colors (night mode) -->
     <color name="mode_rgb">#7986CB</color>
     <color name="mode_ir">#BA68C8</color>
+
+    <!-- Text colors (night mode) -->
+    <color name="text_primary">#DEFFFFFF</color>
+    <color name="text_secondary">#99FFFFFF</color>
+    <color name="text_hint">#61FFFFFF</color>
 </resources>
