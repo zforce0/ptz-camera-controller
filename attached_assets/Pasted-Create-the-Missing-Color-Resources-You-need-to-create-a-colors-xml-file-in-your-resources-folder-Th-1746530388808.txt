@@ -1,0 +1,53 @@
+Create the Missing Color Resources
+You need to create a colors.xml file in your resources folder. This file will define all the missing color resources.
+
+Steps to Fix:
+Create or edit the file app/src/main/res/values/colors.xml with the following content:
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary colors -->
+    <color name="primary">#4CAF50</color>
+    <color name="primary_dark">#388E3C</color>
+    <color name="primary_light">#C8E6C9</color>
+    
+    <!-- Accent colors -->
+    <color name="accent">#FF9800</color>
+    <color name="accent_dark">#F57C00</color>
+    
+    <!-- Text colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+    
+    <!-- Other general colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="divider">#DEDEDE</color>
+    
+    <!-- Status bar and navigation colors -->
+    <color name="status_bar">#388E3C</color>
+    <color name="navigation_bar">#212121</color>
+</resources>
+You may also need to define night-specific colors for night mode. Create or edit the file app/src/main/res/values-night/colors.xml:
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Night mode colors (darker theme) -->
+    <color name="primary">#2E7D32</color>
+    <color name="primary_dark">#1B5E20</color>
+    <color name="primary_light">#388E3C</color>
+    
+    <color name="accent">#FF9800</color>
+    <color name="accent_dark">#F57C00</color>
+    
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="text_hint">#80FFFFFF</color>
+    
+    <color name="status_bar">#1B5E20</color>
+    <color name="navigation_bar">#121212</color>
+</resources>
+After adding these files, rebuild your app:
+./gradlew clean assembleDebug
+The colors I've provided are a standard green/orange Material Design color scheme often used for Android apps. Feel free to modify the hex color values to match your PTZ Camera Controller's desired brand colors.
+
+These color resources will be used by your styles and themes to define the visual appearance of your app. The error you're seeing occurs because your styles are referencing these color resources, but they're not defined anywhere in your project.
