@@ -4,153 +4,124 @@ import android.content.Context
 import android.content.SharedPreferences
 
 /**
- * Manager for app preferences
+ * Utility class for managing shared preferences
  */
 class PreferenceManager(context: Context) {
-
-    private val preferences: SharedPreferences = context.getSharedPreferences(
-        PREF_NAME, Context.MODE_PRIVATE
-    )
-    
-    /**
-     * WiFi connection settings
-     */
-    fun getWiFiIpAddress(): String {
-        return preferences.getString(KEY_WIFI_IP_ADDRESS, "192.168.1.100") ?: "192.168.1.100"
-    }
-    
-    fun setWiFiIpAddress(ipAddress: String) {
-        preferences.edit().putString(KEY_WIFI_IP_ADDRESS, ipAddress).apply()
-    }
-    
-    fun getWiFiPort(): Int {
-        return preferences.getInt(KEY_WIFI_PORT, 8000)
-    }
-    
-    fun setWiFiPort(port: Int) {
-        preferences.edit().putInt(KEY_WIFI_PORT, port).apply()
-    }
-    
-    fun getWiFiTimeout(): Int {
-        return preferences.getInt(KEY_WIFI_TIMEOUT, 10)
-    }
-    
-    fun setWiFiTimeout(timeoutSeconds: Int) {
-        preferences.edit().putInt(KEY_WIFI_TIMEOUT, timeoutSeconds).apply()
-    }
-    
-    /**
-     * Bluetooth connection settings
-     */
-    fun getBluetoothDeviceAddress(): String? {
-        return preferences.getString(KEY_BLUETOOTH_DEVICE_ADDRESS, null)
-    }
-    
-    fun setBluetoothDeviceAddress(address: String) {
-        preferences.edit().putString(KEY_BLUETOOTH_DEVICE_ADDRESS, address).apply()
-    }
-    
-    fun getBluetoothFallback(): Boolean {
-        return preferences.getBoolean(KEY_BLUETOOTH_FALLBACK, true)
-    }
-    
-    fun setBluetoothFallback(enabled: Boolean) {
-        preferences.edit().putBoolean(KEY_BLUETOOTH_FALLBACK, enabled).apply()
-    }
-    
-    /**
-     * Stream settings
-     */
-    fun getStreamQuality(): Int {
-        return preferences.getInt(KEY_STREAM_QUALITY, 1)
-    }
-    
-    fun setStreamQuality(quality: Int) {
-        preferences.edit().putInt(KEY_STREAM_QUALITY, quality).apply()
-    }
-    
-    /**
-     * Control settings
-     */
-    fun getControlSensitivity(): Int {
-        return preferences.getInt(KEY_CONTROL_SENSITIVITY, 50)
-    }
-    
-    fun setControlSensitivity(sensitivity: Int) {
-        preferences.edit().putInt(KEY_CONTROL_SENSITIVITY, sensitivity).apply()
-    }
-    
-    fun getZoomSensitivity(): Int {
-        return preferences.getInt(KEY_ZOOM_SENSITIVITY, 50)
-    }
-    
-    fun setZoomSensitivity(sensitivity: Int) {
-        preferences.edit().putInt(KEY_ZOOM_SENSITIVITY, sensitivity).apply()
-    }
-    
-    /**
-     * UI settings
-     */
-    fun getDarkMode(): Boolean {
-        return preferences.getBoolean(KEY_DARK_MODE, false)
-    }
-    
-    fun setDarkMode(enabled: Boolean) {
-        preferences.edit().putBoolean(KEY_DARK_MODE, enabled).apply()
-    }
-    
-    fun getKeepScreenOn(): Boolean {
-        return preferences.getBoolean(KEY_KEEP_SCREEN_ON, true)
-    }
-    
-    fun setKeepScreenOn(enabled: Boolean) {
-        preferences.edit().putBoolean(KEY_KEEP_SCREEN_ON, enabled).apply()
-    }
-    
-    fun getHideControls(): Boolean {
-        return preferences.getBoolean(KEY_HIDE_CONTROLS, false)
-    }
-    
-    fun setHideControls(hidden: Boolean) {
-        preferences.edit().putBoolean(KEY_HIDE_CONTROLS, hidden).apply()
-    }
-    
-    /**
-     * Default presets
-     */
-    fun getDefaultPreset(): Int {
-        return preferences.getInt(KEY_DEFAULT_PRESET, 1)
-    }
-    
-    fun setDefaultPreset(preset: Int) {
-        preferences.edit().putInt(KEY_DEFAULT_PRESET, preset).apply()
-    }
     
     companion object {
-        private const val PREF_NAME = "ptz_controller_prefs"
+        private const val PREFS_NAME = "PTZControllerPrefs"
         
-        // WiFi settings
+        // Connection preferences
         private const val KEY_WIFI_IP_ADDRESS = "wifi_ip_address"
         private const val KEY_WIFI_PORT = "wifi_port"
         private const val KEY_WIFI_TIMEOUT = "wifi_timeout"
-        
-        // Bluetooth settings
-        private const val KEY_BLUETOOTH_DEVICE_ADDRESS = "bluetooth_device_address"
+        private const val KEY_BLUETOOTH_ADDRESS = "bluetooth_address"
         private const val KEY_BLUETOOTH_FALLBACK = "bluetooth_fallback"
         
-        // Stream settings
+        // Video preferences
         private const val KEY_STREAM_QUALITY = "stream_quality"
+        private const val KEY_AUTO_RECONNECT = "auto_reconnect"
         
-        // Control settings
+        // Control preferences
         private const val KEY_CONTROL_SENSITIVITY = "control_sensitivity"
-        private const val KEY_ZOOM_SENSITIVITY = "zoom_sensitivity"
-        
-        // UI settings
-        private const val KEY_DARK_MODE = "dark_mode"
-        private const val KEY_KEEP_SCREEN_ON = "keep_screen_on"
-        private const val KEY_HIDE_CONTROLS = "hide_controls"
-        
-        // Presets
-        private const val KEY_DEFAULT_PRESET = "default_preset"
+        private const val KEY_CONTROL_INVERT_PAN = "control_invert_pan"
+        private const val KEY_CONTROL_INVERT_TILT = "control_invert_tilt"
+    }
+    
+    private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    
+    // WiFi IP Address
+    fun setWiFiIpAddress(ipAddress: String) {
+        prefs.edit().putString(KEY_WIFI_IP_ADDRESS, ipAddress).apply()
+    }
+    
+    fun getWiFiIpAddress(): String {
+        return prefs.getString(KEY_WIFI_IP_ADDRESS, "192.168.1.100") ?: "192.168.1.100"
+    }
+    
+    // WiFi Port
+    fun setWiFiPort(port: Int) {
+        prefs.edit().putInt(KEY_WIFI_PORT, port).apply()
+    }
+    
+    fun getWiFiPort(): Int {
+        return prefs.getInt(KEY_WIFI_PORT, 8000)
+    }
+    
+    // WiFi Timeout
+    fun setWiFiTimeout(timeout: Long) {
+        prefs.edit().putLong(KEY_WIFI_TIMEOUT, timeout).apply()
+    }
+    
+    fun getWiFiTimeout(): Long {
+        return prefs.getLong(KEY_WIFI_TIMEOUT, 3000)
+    }
+    
+    // Bluetooth Device Address
+    fun setBluetoothDeviceAddress(address: String) {
+        prefs.edit().putString(KEY_BLUETOOTH_ADDRESS, address).apply()
+    }
+    
+    fun getBluetoothDeviceAddress(): String? {
+        return prefs.getString(KEY_BLUETOOTH_ADDRESS, null)
+    }
+    
+    // Bluetooth Fallback
+    fun setBluetoothFallback(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_BLUETOOTH_FALLBACK, enabled).apply()
+    }
+    
+    fun getBluetoothFallback(): Boolean {
+        return prefs.getBoolean(KEY_BLUETOOTH_FALLBACK, true)
+    }
+    
+    // Video Stream Quality (0 = low, 1 = medium, 2 = high)
+    fun setStreamQuality(quality: Int) {
+        prefs.edit().putInt(KEY_STREAM_QUALITY, quality).apply()
+    }
+    
+    fun getStreamQuality(): Int {
+        return prefs.getInt(KEY_STREAM_QUALITY, 1)
+    }
+    
+    // Auto Reconnect
+    fun setAutoReconnect(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_AUTO_RECONNECT, enabled).apply()
+    }
+    
+    fun getAutoReconnect(): Boolean {
+        return prefs.getBoolean(KEY_AUTO_RECONNECT, true)
+    }
+    
+    // Control Sensitivity (0 = low, 1 = medium, 2 = high)
+    fun setControlSensitivity(sensitivity: Int) {
+        prefs.edit().putInt(KEY_CONTROL_SENSITIVITY, sensitivity).apply()
+    }
+    
+    fun getControlSensitivity(): Int {
+        return prefs.getInt(KEY_CONTROL_SENSITIVITY, 1)
+    }
+    
+    // Invert Pan Control
+    fun setInvertPan(invert: Boolean) {
+        prefs.edit().putBoolean(KEY_CONTROL_INVERT_PAN, invert).apply()
+    }
+    
+    fun getInvertPan(): Boolean {
+        return prefs.getBoolean(KEY_CONTROL_INVERT_PAN, false)
+    }
+    
+    // Invert Tilt Control
+    fun setInvertTilt(invert: Boolean) {
+        prefs.edit().putBoolean(KEY_CONTROL_INVERT_TILT, invert).apply()
+    }
+    
+    fun getInvertTilt(): Boolean {
+        return prefs.getBoolean(KEY_CONTROL_INVERT_TILT, false)
+    }
+    
+    // Clear all preferences
+    fun clearAllPreferences() {
+        prefs.edit().clear().apply()
     }
 }

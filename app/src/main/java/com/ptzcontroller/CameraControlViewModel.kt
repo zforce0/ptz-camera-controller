@@ -3,203 +3,183 @@ package com.ptzcontroller.ui.control
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.ViewModelProvider
 import com.ptzcontroller.data.repository.CameraControlRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.PI
 
+/**
+ * ViewModel for camera control
+ */
 class CameraControlViewModel(
-    private val cameraControlRepository: CameraControlRepository
+    private val repository: CameraControlRepository
 ) : ViewModel() {
 
-    // Pan position (-100 to 100, 0 is center)
-    private val _panPosition = MutableLiveData<Int>().apply {
-        value = 0
-    }
-    val panPosition: LiveData<Int> = _panPosition
-
-    // Tilt position (-100 to 100, 0 is center)
-    private val _tiltPosition = MutableLiveData<Int>().apply {
-        value = 0
-    }
-    val tiltPosition: LiveData<Int> = _tiltPosition
-
-    // Zoom level (0 to 100, 0 is wide angle)
-    private val _zoomLevel = MutableLiveData<Int>().apply {
-        value = 0
-    }
-    val zoomLevel: LiveData<Int> = _zoomLevel
-
-    // Camera mode (RGB or IR)
-    private val _cameraMode = MutableLiveData<CameraMode>().apply {
-        value = CameraMode.RGB
-    }
-    val cameraMode: LiveData<CameraMode> = _cameraMode
-
-    // Connection status
-    private val _isConnected = MutableLiveData<Boolean>().apply {
-        value = false
-    }
-    val isConnected: LiveData<Boolean> = _isConnected
-
-    // Connection mode (WiFi or Bluetooth)
-    private val _isUsingBluetooth = MutableLiveData<Boolean>().apply {
-        value = false
-    }
-    val isUsingBluetooth: LiveData<Boolean> = _isUsingBluetooth
-    
-    // Connection status text
-    private val _connectionStatus = MutableLiveData<String>().apply {
-        value = "Disconnected"
-    }
+    private val _connectionStatus = MutableLiveData<String>()
     val connectionStatus: LiveData<String> = _connectionStatus
 
-    /**
-     * Set pan and tilt position
-     * @param pan Pan value (-100 to 100)
-     * @param tilt Tilt value (-100 to 100)
-     */
-    fun setPanTilt(pan: Int, tilt: Int) {
-        // Update local values
-        _panPosition.value = pan
-        _tiltPosition.value = tilt
+    private val _zoomLevel = MutableLiveData<Int>()
+    val zoomLevel: LiveData<Int> = _zoomLevel
 
-        // Send to repository
-        viewModelScope.launch {
-            cameraControlRepository.sendPanTilt(pan, tilt)
+    private val _cameraMode = MutableLiveData<CameraMode>()
+    val cameraMode: LiveData<CameraMode> = _cameraMode
+
+    private var panSpeed = 0
+    private var tiltSpeed = 0
+    private var controlJob: Job? = null
+    private val controlScope = CoroutineScope(Dispatchers.Default)
+
+    init {
+        _connectionStatus.value = "Disconnected"
+        _zoomLevel.value = 0
+        _cameraMode.value = CameraMode.RGB
+        checkConnectionStatus()
+    }
+
+    /**
+     * Check connection status with the server
+     */
+    fun checkConnectionStatus() {
+        controlScope.launch {
+            val isConnected = repository.checkConnection()
+            _connectionStatus.postValue(if (isConnected) "Connected" else "Disconnected")
+        }
+    }
+
+    /**
+     * Handle joystick movement
+     * @param angle Angle in degrees (0-360, where 0 is up, 90 is right)
+     * @param strength Strength (0-100)
+     */
+    fun handleJoystickMove(angle: Int, strength: Int) {
+        // Cancel any previous control job
+        controlJob?.cancel()
+
+        // Convert angle to radians
+        val radians = angle * PI / 180.0
+
+        // Calculate pan and tilt speeds
+        // Pan is left-right (-63 to 63), tilt is up-down (-63 to 63)
+        val normalizedStrength = strength / 100.0
+        panSpeed = (normalizedStrength * 63.0 * sin(radians)).toInt()
+        tiltSpeed = (-normalizedStrength * 63.0 * cos(radians)).toInt()
+
+        // Start continuous control
+        controlJob = controlScope.launch {
+            while (true) {
+                repository.controlPanTilt(panSpeed, tiltSpeed)
+                kotlinx.coroutines.delay(100) // Update every 100ms
+            }
+        }
+    }
+
+    /**
+     * Handle joystick release
+     */
+    fun handleJoystickRelease() {
+        controlJob?.cancel()
+        controlScope.launch {
+            repository.stopMovement()
+            panSpeed = 0
+            tiltSpeed = 0
+        }
+    }
+
+    /**
+     * Zoom in camera
+     */
+    fun zoomIn() {
+        controlScope.launch {
+            repository.zoomIn()
+            // Update zoom level if available
+            val newZoomLevel = _zoomLevel.value?.plus(10)?.coerceAtMost(100)
+            if (newZoomLevel != null) {
+                _zoomLevel.postValue(newZoomLevel)
+            }
+        }
+    }
+
+    /**
+     * Zoom out camera
+     */
+    fun zoomOut() {
+        controlScope.launch {
+            repository.zoomOut()
+            // Update zoom level if available
+            val newZoomLevel = _zoomLevel.value?.minus(10)?.coerceAtLeast(0)
+            if (newZoomLevel != null) {
+                _zoomLevel.postValue(newZoomLevel)
+            }
         }
     }
 
     /**
      * Set zoom level
-     * @param level Zoom level (0 to 100)
+     * @param level Zoom level (0-100)
      */
-    fun setZoom(level: Int) {
-        // Update local value
-        _zoomLevel.value = level
-
-        // Send to repository
-        viewModelScope.launch {
-            cameraControlRepository.sendZoom(level)
+    fun setZoomLevel(level: Int) {
+        val newLevel = level.coerceIn(0, 100)
+        controlScope.launch {
+            repository.setZoom(newLevel)
+            _zoomLevel.postValue(newLevel)
         }
     }
 
     /**
-     * Set camera mode
-     * @param mode Camera mode (RGB or IR)
+     * Set camera mode (RGB or IR)
+     * @param mode Camera mode
      */
     fun setCameraMode(mode: CameraMode) {
-        // Update local value
-        _cameraMode.value = mode
-
-        // Send to repository
-        viewModelScope.launch {
-            cameraControlRepository.sendCameraMode(mode)
+        controlScope.launch {
+            val success = repository.setCameraMode(mode)
+            if (success) {
+                _cameraMode.postValue(mode)
+            }
         }
     }
 
     /**
      * Save preset position
      * @param presetNumber Preset number (1-255)
-     * @return true if successful, false otherwise
      */
-    suspend fun savePreset(presetNumber: Int): Boolean = withContext(Dispatchers.IO) {
-        cameraControlRepository.savePreset(presetNumber)
+    fun savePreset(presetNumber: Int) {
+        controlScope.launch {
+            repository.savePreset(presetNumber)
+        }
     }
 
     /**
      * Go to preset position
      * @param presetNumber Preset number (1-255)
-     * @return true if successful, false otherwise
      */
-    suspend fun gotoPreset(presetNumber: Int): Boolean = withContext(Dispatchers.IO) {
-        cameraControlRepository.gotoPreset(presetNumber)
-    }
-
-    /**
-     * Check connection status
-     */
-    fun checkConnectionStatus() {
-        viewModelScope.launch {
-            val connected = cameraControlRepository.isConnected()
-            _isConnected.postValue(connected)
-
-            val usingBluetooth = cameraControlRepository.isUsingBluetoothFallback()
-            _isUsingBluetooth.postValue(usingBluetooth)
+    fun gotoPreset(presetNumber: Int) {
+        controlScope.launch {
+            repository.gotoPreset(presetNumber)
         }
     }
 
-    /**
-     * Ping server to maintain connection
-     * @return true if connected, false otherwise
-     */
-    suspend fun pingServer(): Boolean = withContext(Dispatchers.IO) {
-        val connected = cameraControlRepository.ping()
-        _isConnected.postValue(connected)
-        connected
+    override fun onCleared() {
+        super.onCleared()
+        controlJob?.cancel()
     }
-    
-    /**
-     * Handle joystick movement
-     * Converts angle and strength to pan/tilt values
-     * @param angle Angle in degrees (0-360, where 0 is up)
-     * @param strength Strength (0-100)
-     */
-    fun handleJoystickMove(angle: Int, strength: Int) {
-        // Convert angle and strength to pan and tilt values (-100 to 100)
-        // For pan: 0° = 0, 90° = 100, 270° = -100
-        // For tilt: 0° = -100, 180° = 100
-        
-        val panValue = when (angle) {
-            in 0..90 -> (angle * strength) / 90
-            in 91..180 -> (2 * 90 - angle) * strength / 90
-            in 181..270 -> -((angle - 180) * strength) / 90
-            else -> -((360 - angle) * strength) / 90
+}
+
+/**
+ * Factory for creating CameraControlViewModel
+ */
+class CameraControlViewModelFactory(
+    private val repository: CameraControlRepository
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(CameraControlViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return CameraControlViewModel(repository) as T
         }
-        
-        val tiltValue = when (angle) {
-            in 0..180 -> -((180 - angle) * strength) / 90
-            else -> ((angle - 180) * strength) / 90
-        }
-        
-        // Clip values to -100 to 100 range
-        val clippedPan = panValue.coerceIn(-100, 100)
-        val clippedTilt = tiltValue.coerceIn(-100, 100)
-        
-        // Update the model and send to camera
-        setPanTilt(clippedPan, clippedTilt)
-    }
-    
-    /**
-     * Handle joystick release (stop all movement)
-     */
-    fun handleJoystickRelease() {
-        setPanTilt(0, 0)
-    }
-    
-    /**
-     * Set zoom level for slider
-     */
-    fun setZoomLevel(level: Int) {
-        setZoom(level)
-    }
-    
-    /**
-     * Zoom in (increment zoom level)
-     */
-    fun zoomIn() {
-        val currentZoom = _zoomLevel.value ?: 0
-        val newZoom = (currentZoom + 10).coerceAtMost(100)
-        setZoom(newZoom)
-    }
-    
-    /**
-     * Zoom out (decrement zoom level)
-     */
-    fun zoomOut() {
-        val currentZoom = _zoomLevel.value ?: 0
-        val newZoom = (currentZoom - 10).coerceAtLeast(0)
-        setZoom(newZoom)
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

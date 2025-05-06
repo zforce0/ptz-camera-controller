@@ -9,6 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ptzcontroller.data.repository.CameraControlRepository
 import com.ptzcontroller.databinding.FragmentCameraControlBinding
+import com.ptzcontroller.ui.control.CameraMode
+import com.ptzcontroller.ui.control.CameraControlViewModel
+import com.ptzcontroller.ui.control.CameraControlViewModelFactory
+import com.ptzcontroller.ui.control.JoystickView
 import com.ptzcontroller.utils.PreferenceManager
 
 class CameraControlFragment : Fragment() {

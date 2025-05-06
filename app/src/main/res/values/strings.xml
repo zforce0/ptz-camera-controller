@@ -1,96 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Menu items -->
-    <string name="menu_camera_control">Camera Control</string>
-    <string name="menu_video_stream">Video Stream</string>
-    <string name="menu_connection">Connection</string>
-    <string name="menu_settings">Settings</string>
     <string name="app_name">PTZ Camera Controller</string>
     
-    <!-- Navigation Labels -->
-    <string name="nav_camera_control">Control</string>
-    <string name="nav_video_stream">Stream</string>
-    <string name="nav_connection">Connect</string>
-    <string name="nav_settings">Settings</string>
-    
-    <!-- Camera Control Fragment -->
-    <string name="control_camera">Camera Control</string>
-    <string name="connection_status">Connection Status</string>
-    <string name="zoom_control">Zoom Control</string>
-    <string name="camera_mode">Camera Mode</string>
-    <string name="preset_positions">Preset Positions</string>
-    <string name="mode_rgb">RGB</string>
-    <string name="mode_ir">IR</string>
-    <string name="zoom_in">Zoom In</string>
-    <string name="zoom_out">Zoom Out</string>
-    <string name="save_preset">Save</string>
-    <string name="goto_preset">Go To</string>
-    <string name="preset_number_hint">1-255</string>
-    <string name="msg_preset_saved">Preset %d saved</string>
-    <string name="msg_going_to_preset">Going to preset %d</string>
-    <string name="msg_camera_mode_changed">Camera mode changed to %s</string>
-    
-    <!-- Video Stream Fragment -->
-    <string name="video_stream">Video Stream</string>
-    <string name="stream_reconnect">Reconnect</string>
-    <string name="stream_snapshot">Snapshot</string>
-    <string name="stream_record">Record</string>
-    <string name="stream_stop_recording">Stop</string>
-    <string name="stream_resolution">Resolution</string>
-    <string name="stream_fps">FPS</string>
-    <string name="stream_quality">Quality</string>
-    <string name="msg_snapshot_saved">Snapshot saved to gallery</string>
-    <string name="msg_recording_started">Recording started</string>
-    <string name="msg_recording_stopped">Recording stopped</string>
+    <!-- Main Activity -->
+    <string name="main_title">PTZ Camera Controller</string>
     
     <!-- Connection Fragment -->
-    <string name="wifi_connection">WiFi Connection</string>
-    <string name="wifi_status_connected">Connected</string>
-    <string name="wifi_status_disconnected">Disconnected</string>
-    <string name="wifi_ip_address">IP Address</string>
-    <string name="wifi_port">Port</string>
-    <string name="bluetooth_connection">Bluetooth Connection</string>
-    <string name="bt_status_connected">Connected</string>
-    <string name="bt_status_disconnected">Disconnected</string>
-    <string name="paired_devices">Paired Devices</string>
-    <string name="scan_devices">Scan Devices</string>
-    <string name="scanning">Scanning...</string>
-    <string name="connect">Connect</string>
-    <string name="disconnect">Disconnect</string>
-    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="title_connection">Connect to Camera</string>
+    <string name="label_wifi">WiFi Connection</string>
+    <string name="label_wifi_ip">IP Address:</string>
+    <string name="label_wifi_port">Port:</string>
+    <string name="btn_wifi_connect">Connect to WiFi</string>
+    <string name="label_bluetooth">Bluetooth Connection</string>
+    <string name="btn_scan_devices">Scan for Devices</string>
+    <string name="label_paired_devices">Paired Devices</string>
+    <string name="label_detected_devices">Detected Devices</string>
+    <string name="btn_enable_bluetooth">Enable Bluetooth</string>
+    <string name="msg_scanning">Scanning for devices…</string>
+    <string name="msg_bluetooth_unavailable">Bluetooth not available on this device</string>
+    <string name="msg_bluetooth_disabled">Bluetooth is disabled</string>
+    <string name="msg_wifi_connecting">Connecting to %1$s:%2$d…</string>
+    <string name="msg_wifi_connected">Connected to %1$s:%2$d</string>
+    <string name="msg_wifi_failed">Failed to connect to %1$s:%2$d</string>
+    <string name="msg_bluetooth_connecting">Connecting to %1$s…</string>
+    <string name="msg_bluetooth_connected">Connected to %1$s</string>
+    <string name="msg_bluetooth_failed">Failed to connect to %1$s</string>
+    
+    <!-- Camera Control Fragment -->
+    <string name="title_camera_control">Camera Control</string>
+    <string name="label_zoom">Zoom</string>
+    <string name="btn_zoom_in">+</string>
+    <string name="btn_zoom_out">-</string>
+    <string name="label_camera_mode">Camera Mode</string>
+    <string name="btn_rgb_mode">RGB</string>
+    <string name="btn_ir_mode">IR</string>
+    <string name="label_presets">Presets</string>
+    <string name="label_preset_number">Preset #</string>
+    <string name="btn_goto_preset">Go To</string>
+    <string name="btn_save_preset">Save</string>
+    <string name="label_connection_status">Connection: %1$s</string>
+    <string name="msg_camera_mode_changed">Camera mode changed to %1$s</string>
+    <string name="msg_preset_saved">Preset %1$d saved</string>
+    <string name="msg_going_to_preset">Going to preset %1$d</string>
     
     <!-- Settings Fragment -->
-    <string name="app_settings">App Settings</string>
-    <string name="stream_settings">Stream Settings</string>
-    <string name="connection_settings">Connection Settings</string>
-    <string name="controller_settings">Controller Settings</string>
-    <string name="setting_stream_quality">Stream Quality</string>
-    <string name="setting_show_status_overlay">Show Status Overlay</string>
-    <string name="setting_keep_screen_on">Keep Screen On</string>
-    <string name="setting_auto_reconnect">Auto Reconnect</string>
-    <string name="setting_connection_check_interval">Connection Check Interval</string>
-    <string name="setting_use_bluetooth_fallback">Use Bluetooth Fallback</string>
-    <string name="setting_wifi_timeout">WiFi Timeout (seconds)</string>
-    <string name="setting_control_sensitivity">Control Sensitivity</string>
-    <string name="setting_dark_mode">Dark Mode</string>
-    <string name="setting_about">About</string>
-    
-    <!-- Arrays -->
-    <string-array name="stream_quality_options">
-        <item>Low</item>
-        <item>Medium</item>
-        <item>High</item>
-    </string-array>
-    
-    <string-array name="connection_check_interval_options">
-        <item>5 seconds</item>
-        <item>15 seconds</item>
-        <item>30 seconds</item>
-    </string-array>
-    
-    <string-array name="control_sensitivity_options">
-        <item>Low</item>
-        <item>Medium</item>
-        <item>High</item>
-    </string-array>
+    <string name="title_settings">Settings</string>
+    <string name="category_connection">Connection</string>
+    <string name="pref_wifi_default_ip">Default IP Address</string>
+    <string name="pref_wifi_default_port">Default Port</string>
+    <string name="pref_bluetooth_fallback">Use Bluetooth Fallback</string>
+    <string name="pref_bluetooth_fallback_summary">Automatically try Bluetooth if WiFi connection fails</string>
+    <string name="pref_auto_reconnect">Auto Reconnect</string>
+    <string name="pref_auto_reconnect_summary">Automatically reconnect when connection is lost</string>
+    <string name="category_control">Control</string>
+    <string name="pref_control_sensitivity">Control Sensitivity</string>
+    <string name="pref_control_invert_pan">Invert Pan Direction</string>
+    <string name="pref_control_invert_tilt">Invert Tilt Direction</string>
+    <string name="category_video">Video</string>
+    <string name="pref_stream_quality">Stream Quality</string>
+    <string name="pref_connection_timeout">Connection Timeout (ms)</string>
 </resources>
