@@ -1,120 +1,67 @@
 package com.example.ptzcameracontroller.ui.connection
 
-import android.Manifest
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ptzcameracontroller.R
+import com.example.ptzcameracontroller.data.repository.ConnectionRepository
 import com.example.ptzcameracontroller.databinding.FragmentConnectionBinding
 import com.example.ptzcameracontroller.utils.PreferenceManager
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ConnectionFragment : Fragment() {
 
     private var _binding: FragmentConnectionBinding? = null
     private val binding get() = _binding!!
-    
+
     private lateinit var viewModel: ConnectionViewModel
+    private lateinit var bluetoothDeviceAdapter: BluetoothDeviceAdapter
     private lateinit var preferenceManager: PreferenceManager
     
-    // Bluetooth adapter
-    private var bluetoothAdapter: BluetoothAdapter? = null
-    
-    // Bluetooth device adapter for RecyclerView
-    private lateinit var bluetoothDeviceAdapter: BluetoothDeviceAdapter
-    
-    // Permissions
-    private val requiredPermissions = arrayOf(
-        Manifest.permission.BLUETOOTH,
-        Manifest.permission.BLUETOOTH_ADMIN,
-        Manifest.permission.BLUETOOTH_CONNECT,
-        Manifest.permission.BLUETOOTH_SCAN,
-        Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.ACCESS_COARSE_LOCATION
-    )
-    
-    // Permission launcher
-    private val permissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions()
-    ) { permissions ->
-        val allGranted = permissions.entries.all { it.value }
-        if (allGranted) {
-            setupBluetooth()
-        } else {
-            Toast.makeText(requireContext(), "Bluetooth permissions denied", Toast.LENGTH_SHORT).show()
-        }
+    // Bluetooth components
+    private val bluetoothManager by lazy {
+        requireContext().getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+    }
+    private val bluetoothAdapter by lazy {
+        bluetoothManager.adapter
     }
     
-    // Bluetooth intent launcher
-    private val bluetoothLauncher = registerForActivityResult(
+    // Activity result launcher for enabling Bluetooth
+    private val requestBluetoothEnable = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == android.app.Activity.RESULT_OK) {
-            Toast.makeText(requireContext(), "Bluetooth enabled", Toast.LENGTH_SHORT).show()
-            setupBluetooth()
+            // Bluetooth was enabled, scan for devices
+            scanForBluetoothDevices()
         } else {
-            Toast.makeText(requireContext(), "Bluetooth not enabled", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Bluetooth is required for device connection", Toast.LENGTH_SHORT).show()
         }
     }
     
-    // QR scanner launcher
-    private val qrScannerLauncher = registerForActivityResult(
+    // Activity result launcher for scanning QR code
+    private val scanQRCode = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.resultCode == android.app.Activity.RESULT_OK) {
-            // Process QR scan result
-            result.data?.getStringExtra("SCAN_RESULT")?.let { qrData ->
-                handleQrScanResult(qrData)
-            }
-        }
-    }
-    
-    // Bluetooth device discovery receiver
-    private val deviceDiscoveryReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            when (intent.action) {
-                BluetoothDevice.ACTION_FOUND -> {
-                    // Get discovered device
-                    val device = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-                        intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
-                    } else {
-                        @Suppress("DEPRECATION")
-                        intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
-                    }
-                    
-                    // Add device to list if not already present
-                    device?.let {
-                        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
-                            val deviceName = it.name ?: "Unknown Device"
-                            val deviceAddress = it.address
-                            
-                            val deviceInfo = BluetoothDeviceInfo(deviceName, deviceAddress, it)
-                            viewModel.addBluetoothDevice(deviceInfo)
-                        }
-                    }
-                }
-                BluetoothAdapter.ACTION_DISCOVERY_FINISHED -> {
-                    // Discovery finished
-                    binding.btnScanDevices.isEnabled = true
-                    binding.btnScanDevices.text = getString(R.string.scan_devices)
-                }
-            }
-        }
+        // Handle QR code scanning result
+        // This would process the result from a barcode scanner activity
+        // For now, we'll use manual entry
     }
 
     override fun onCreateView(
@@ -122,292 +69,296 @@ class ConnectionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this).get(ConnectionViewModel::class.java)
         _binding = FragmentConnectionBinding.inflate(inflater, container, false)
-        
         preferenceManager = PreferenceManager(requireContext())
+        
+        // Set up ViewModel with repository
+        val connectionRepository = ConnectionRepository(requireContext())
+        val factory = ConnectionViewModelFactory(connectionRepository)
+        
+        viewModel = ViewModelProvider(this, factory)[ConnectionViewModel::class.java]
+        
+        // Set up Bluetooth devices RecyclerView
+        setupBluetoothRecyclerView()
+        
+        // Set up UI elements
+        setupUIElements()
+        
+        // Observe LiveData from ViewModel
+        observeViewModel()
+        
+        // Load saved connection information
+        loadSavedConnectionInfo()
         
         return binding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        
-        // Initialize Bluetooth
-        val bluetoothManager = requireContext().getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
-        bluetoothAdapter = bluetoothManager.adapter
-        
-        // Initialize Bluetooth device adapter
-        bluetoothDeviceAdapter = BluetoothDeviceAdapter { device ->
-            connectToBluetoothDevice(device)
+    
+    override fun onResume() {
+        super.onResume()
+        // Refresh connection status
+        refreshConnectionStatus()
+    }
+    
+    private fun setupBluetoothRecyclerView() {
+        bluetoothDeviceAdapter = BluetoothDeviceAdapter { deviceInfo ->
+            // Device clicked, connect to it
+            connectToBluetooth(deviceInfo)
         }
         
-        // Set up RecyclerView
-        binding.bluetoothDevicesList.apply {
+        binding.rvBluetoothDevices.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = bluetoothDeviceAdapter
         }
-        
-        // Load saved WiFi settings
-        binding.ipAddressInput.setText(preferenceManager.getLastWiFiIP())
-        binding.portInput.setText(preferenceManager.getLastWiFiPort().toString())
-        
-        // Set up button listeners
-        setupButtonListeners()
-        
-        // Set up observers
-        setupObservers()
-        
-        // Check and request permissions for Bluetooth
-        checkAndRequestPermissions()
     }
     
-    private fun setupButtonListeners() {
-        // WiFi connect button
-        binding.btnWifiConnect.setOnClickListener {
-            val ip = binding.ipAddressInput.text.toString()
-            val portStr = binding.portInput.text.toString()
-            
-            if (ip.isNotEmpty() && portStr.isNotEmpty()) {
-                try {
-                    val port = portStr.toInt()
-                    viewModel.connectToWiFi(ip, port)
-                    
-                    // Save to preferences
-                    preferenceManager.setLastWiFiConnection(ip, port)
-                } catch (e: NumberFormatException) {
-                    Toast.makeText(requireContext(), "Invalid port number", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(requireContext(), "Please enter IP address and port", Toast.LENGTH_SHORT).show()
-            }
+    private fun setupUIElements() {
+        // WiFi connection button
+        binding.btnConnectWifi.setOnClickListener {
+            connectToWiFi()
         }
         
         // WiFi disconnect button
-        binding.btnWifiDisconnect.setOnClickListener {
-            viewModel.disconnectFromWiFi()
+        binding.btnDisconnectWifi.setOnClickListener {
+            disconnectFromWiFi()
         }
         
         // Bluetooth scan button
         binding.btnScanDevices.setOnClickListener {
-            startBluetoothDiscovery()
+            scanForBluetoothDevices()
         }
         
         // Bluetooth disconnect button
-        binding.btnBtDisconnect.setOnClickListener {
-            viewModel.disconnectFromBluetooth()
+        binding.btnDisconnectBluetooth.setOnClickListener {
+            disconnectFromBluetooth()
         }
         
-        // QR scan button
-        binding.btnScanQr.setOnClickListener {
-            // Launch QR scanner
-            // This would normally use an Intent to start the QR scanner activity
-            // For now, simulate with a toast message
-            Toast.makeText(requireContext(), "QR scanner would launch here", Toast.LENGTH_SHORT).show()
-            
-            /* Example of how to launch real QR scanner:
-            try {
-                val intent = Intent("com.google.zxing.client.android.SCAN")
-                intent.putExtra("SCAN_MODE", "QR_CODE_MODE")
-                qrScannerLauncher.launch(intent)
-            } catch (e: Exception) {
-                Toast.makeText(requireContext(), "QR scanner app not found", Toast.LENGTH_SHORT).show()
-            }
-            */
+        // QR code scan button
+        binding.btnScanQrCode.setOnClickListener {
+            scanQRCode()
         }
+        
+        // Set initial field values from saved preferences
+        binding.etIpAddress.setText(preferenceManager.getLastIpAddress())
+        binding.etPort.setText(preferenceManager.getLastPort().toString())
     }
     
-    private fun setupObservers() {
+    private fun observeViewModel() {
         // Observe WiFi connection status
         viewModel.wifiConnectionStatus.observe(viewLifecycleOwner) { status ->
-            binding.wifiStatus.text = status.description
-            binding.wifiStatus.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    when (status) {
-                        ConnectionStatus.CONNECTED -> R.color.status_good
-                        ConnectionStatus.CONNECTING -> R.color.status_warning
-                        ConnectionStatus.DISCONNECTED -> R.color.status_idle
-                        ConnectionStatus.ERROR -> R.color.status_error
-                    }
-                )
-            )
-            
-            // Enable/disable buttons based on status
-            binding.btnWifiConnect.isEnabled = status != ConnectionStatus.CONNECTING && status != ConnectionStatus.CONNECTED
-            binding.btnWifiDisconnect.isEnabled = status == ConnectionStatus.CONNECTED
+            updateWiFiConnectionUI(status)
         }
         
         // Observe Bluetooth connection status
         viewModel.bluetoothConnectionStatus.observe(viewLifecycleOwner) { status ->
-            binding.bluetoothStatus.text = status.description
-            binding.bluetoothStatus.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    when (status) {
-                        ConnectionStatus.CONNECTED -> R.color.status_good
-                        ConnectionStatus.CONNECTING -> R.color.status_warning
-                        ConnectionStatus.DISCONNECTED -> R.color.status_idle
-                        ConnectionStatus.ERROR -> R.color.status_error
-                    }
-                )
-            )
-            
-            // Enable/disable buttons based on status
-            binding.btnScanDevices.isEnabled = status != ConnectionStatus.CONNECTING && status != ConnectionStatus.CONNECTED
-            binding.btnBtDisconnect.isEnabled = status == ConnectionStatus.CONNECTED
+            updateBluetoothConnectionUI(status)
         }
         
-        // Observe Bluetooth devices
+        // Observe Bluetooth devices list
         viewModel.bluetoothDevices.observe(viewLifecycleOwner) { devices ->
             bluetoothDeviceAdapter.submitList(devices)
+            binding.tvNoPairedDevices.isVisible = devices.isEmpty()
         }
     }
     
-    private fun checkAndRequestPermissions() {
-        val permissionsToRequest = requiredPermissions.filter {
-            ContextCompat.checkSelfPermission(requireContext(), it) != PackageManager.PERMISSION_GRANTED
-        }.toTypedArray()
+    private fun updateWiFiConnectionUI(status: ConnectionStatus) {
+        binding.tvWifiStatus.text = status.description
         
-        if (permissionsToRequest.isNotEmpty()) {
-            permissionLauncher.launch(permissionsToRequest)
-        } else {
-            setupBluetooth()
+        // Update UI based on status
+        when (status) {
+            ConnectionStatus.CONNECTED -> {
+                binding.tvWifiStatus.setTextColor(requireContext().getColor(R.color.status_good))
+                binding.btnConnectWifi.isEnabled = false
+                binding.btnDisconnectWifi.isEnabled = true
+                binding.etIpAddress.isEnabled = false
+                binding.etPort.isEnabled = false
+            }
+            ConnectionStatus.CONNECTING -> {
+                binding.tvWifiStatus.setTextColor(requireContext().getColor(R.color.status_warning))
+                binding.btnConnectWifi.isEnabled = false
+                binding.btnDisconnectWifi.isEnabled = false
+                binding.etIpAddress.isEnabled = false
+                binding.etPort.isEnabled = false
+            }
+            ConnectionStatus.DISCONNECTED -> {
+                binding.tvWifiStatus.setTextColor(requireContext().getColor(R.color.status_idle))
+                binding.btnConnectWifi.isEnabled = true
+                binding.btnDisconnectWifi.isEnabled = false
+                binding.etIpAddress.isEnabled = true
+                binding.etPort.isEnabled = true
+            }
+            ConnectionStatus.ERROR -> {
+                binding.tvWifiStatus.setTextColor(requireContext().getColor(R.color.status_error))
+                binding.btnConnectWifi.isEnabled = true
+                binding.btnDisconnectWifi.isEnabled = false
+                binding.etIpAddress.isEnabled = true
+                binding.etPort.isEnabled = true
+                
+                Snackbar.make(binding.root, "Failed to connect to WiFi server", Snackbar.LENGTH_SHORT).show()
+            }
         }
     }
     
-    private fun setupBluetooth() {
-        // Check if Bluetooth is supported
-        if (bluetoothAdapter == null) {
-            Toast.makeText(requireContext(), "Bluetooth is not supported on this device", Toast.LENGTH_SHORT).show()
+    private fun updateBluetoothConnectionUI(status: ConnectionStatus) {
+        binding.tvBluetoothStatus.text = status.description
+        
+        // Update UI based on status
+        when (status) {
+            ConnectionStatus.CONNECTED -> {
+                binding.tvBluetoothStatus.setTextColor(requireContext().getColor(R.color.status_good))
+                binding.rvBluetoothDevices.isEnabled = false
+                binding.btnScanDevices.isEnabled = false
+                binding.btnDisconnectBluetooth.isEnabled = true
+            }
+            ConnectionStatus.CONNECTING -> {
+                binding.tvBluetoothStatus.setTextColor(requireContext().getColor(R.color.status_warning))
+                binding.rvBluetoothDevices.isEnabled = false
+                binding.btnScanDevices.isEnabled = false
+                binding.btnDisconnectBluetooth.isEnabled = false
+            }
+            ConnectionStatus.DISCONNECTED -> {
+                binding.tvBluetoothStatus.setTextColor(requireContext().getColor(R.color.status_idle))
+                binding.rvBluetoothDevices.isEnabled = true
+                binding.btnScanDevices.isEnabled = true
+                binding.btnDisconnectBluetooth.isEnabled = false
+            }
+            ConnectionStatus.ERROR -> {
+                binding.tvBluetoothStatus.setTextColor(requireContext().getColor(R.color.status_error))
+                binding.rvBluetoothDevices.isEnabled = true
+                binding.btnScanDevices.isEnabled = true
+                binding.btnDisconnectBluetooth.isEnabled = false
+                
+                Snackbar.make(binding.root, "Failed to connect to Bluetooth device", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+    
+    private fun loadSavedConnectionInfo() {
+        // Load saved IP address and port
+        val savedIpAddress = preferenceManager.getLastIpAddress()
+        val savedPort = preferenceManager.getLastPort()
+        
+        if (savedIpAddress.isNotEmpty()) {
+            binding.etIpAddress.setText(savedIpAddress)
+            binding.etPort.setText(savedPort.toString())
+        }
+        
+        // Load saved Bluetooth device
+        val savedBluetoothDevice = preferenceManager.getLastBluetoothDevice()
+        
+        if (savedBluetoothDevice.isNotEmpty()) {
+            // We would connect to this device automatically if auto-connect is enabled
+            if (preferenceManager.getAutoReconnect()) {
+                // This would happen in a real implementation
+                // For now, just scan for devices
+                scanForBluetoothDevices()
+            }
+        }
+    }
+    
+    private fun connectToWiFi() {
+        // Get IP address and port from UI
+        val ipAddress = binding.etIpAddress.text.toString().trim()
+        val portStr = binding.etPort.text.toString().trim()
+        
+        // Validate input
+        if (ipAddress.isEmpty()) {
+            binding.etIpAddress.error = "IP address is required"
             return
         }
         
-        // Check if Bluetooth is enabled
-        if (bluetoothAdapter?.isEnabled == false) {
+        if (portStr.isEmpty()) {
+            binding.etPort.error = "Port is required"
+            return
+        }
+        
+        val port = portStr.toIntOrNull() ?: 8000
+        
+        // Save connection info
+        preferenceManager.setLastIpAddress(ipAddress)
+        preferenceManager.setLastPort(port)
+        
+        // Connect via ViewModel
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.connectToWiFi(ipAddress, port)
+        }
+    }
+    
+    private fun disconnectFromWiFi() {
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.disconnectFromWiFi()
+        }
+    }
+    
+    private fun scanForBluetoothDevices() {
+        // Check if Bluetooth is available and enabled
+        if (bluetoothAdapter == null) {
+            Toast.makeText(requireContext(), "This device doesn't support Bluetooth", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        if (!bluetoothAdapter.isEnabled) {
             // Request to enable Bluetooth
             val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-            bluetoothLauncher.launch(enableBtIntent)
-        } else {
-            // Bluetooth is enabled, proceed
-            loadPairedDevices()
-        }
-    }
-    
-    private fun loadPairedDevices() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            requestBluetoothEnable.launch(enableBtIntent)
             return
         }
         
-        // Get paired devices
-        val pairedDevices = bluetoothAdapter?.bondedDevices ?: return
+        // Show scanning indicator
+        binding.progressScanningDevices.isVisible = true
+        binding.tvBluetoothStatus.text = getString(R.string.scanning)
         
-        // Add paired devices to the view model
-        viewModel.clearBluetoothDevices()
-        for (device in pairedDevices) {
-            val deviceName = device.name ?: "Unknown Device"
-            val deviceAddress = device.address
-            
-            val deviceInfo = BluetoothDeviceInfo(deviceName, deviceAddress, device)
-            viewModel.addBluetoothDevice(deviceInfo)
-        }
-    }
-    
-    private fun startBluetoothDiscovery() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            return
-        }
-        
-        // Cancel any ongoing discovery
-        bluetoothAdapter?.cancelDiscovery()
-        
-        // Clear existing devices and add paired devices again
-        loadPairedDevices()
-        
-        // Start discovery
-        bluetoothAdapter?.startDiscovery()
-        
-        // Update button
-        binding.btnScanDevices.isEnabled = false
-        binding.btnScanDevices.text = getString(R.string.scanning)
-    }
-    
-    private fun connectToBluetoothDevice(deviceInfo: BluetoothDeviceInfo) {
-        viewModel.connectToBluetooth(deviceInfo)
-        
-        // Save to preferences
-        preferenceManager.setLastBTDevice(deviceInfo.address)
-    }
-    
-    private fun handleQrScanResult(qrData: String) {
-        try {
-            // Parse QR data
-            // Format: "ptz://connect?wifi=192.168.1.100:8000&bt=PTZ_Camera"
-            if (qrData.startsWith("ptz://connect")) {
-                // Extract WiFi info
-                val wifiMatch = Regex("wifi=([^&]+)").find(qrData)
-                wifiMatch?.groupValues?.get(1)?.split(":")?.let {
-                    if (it.size == 2) {
-                        val ip = it[0]
-                        val port = it[1].toInt()
-                        
-                        // Update UI
-                        binding.ipAddressInput.setText(ip)
-                        binding.portInput.setText(port.toString())
-                        
-                        // Connect to WiFi
-                        viewModel.connectToWiFi(ip, port)
-                        
-                        // Save to preferences
-                        preferenceManager.setLastWiFiConnection(ip, port)
-                    }
+        // Scan for paired devices using coroutine
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val devices = viewModel.getPairedDevices()
+                binding.progressScanningDevices.isVisible = false
+                binding.tvBluetoothStatus.text = when {
+                    devices.isEmpty() -> "No paired devices"
+                    else -> "Found ${devices.size} device(s)"
                 }
-                
-                // Extract Bluetooth info
-                val btMatch = Regex("bt=([^&]+)").find(qrData)
-                btMatch?.groupValues?.get(1)?.let { btName ->
-                    // Find device by name and connect
-                    viewModel.bluetoothDevices.value?.find { it.name == btName }?.let {
-                        connectToBluetoothDevice(it)
-                    }
-                }
-                
-                Toast.makeText(requireContext(), "Configuration applied from QR code", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "Invalid QR code format", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                binding.progressScanningDevices.isVisible = false
+                binding.tvBluetoothStatus.text = "Scan failed: ${e.message}"
+                Log.e("ConnectionFragment", "Error scanning for devices", e)
             }
-        } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Error parsing QR code: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
     
-    override fun onStart() {
-        super.onStart()
+    private fun connectToBluetooth(deviceInfo: BluetoothDeviceInfo) {
+        // Save selected device
+        preferenceManager.setLastBluetoothDevice(deviceInfo.address)
         
-        // Register Bluetooth discovery receiver
-        val filter = IntentFilter().apply {
-            addAction(BluetoothDevice.ACTION_FOUND)
-            addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)
-        }
-        requireContext().registerReceiver(deviceDiscoveryReceiver, filter)
-    }
-    
-    override fun onStop() {
-        super.onStop()
-        
-        // Unregister Bluetooth discovery receiver
-        try {
-            requireContext().unregisterReceiver(deviceDiscoveryReceiver)
-        } catch (e: IllegalArgumentException) {
-            // Ignore if not registered
-        }
-        
-        // Cancel discovery
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED) {
-            bluetoothAdapter?.cancelDiscovery()
+        // Connect via ViewModel
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.connectToBluetooth(deviceInfo)
         }
     }
     
+    private fun disconnectFromBluetooth() {
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.disconnectFromBluetooth()
+        }
+    }
+    
+    private fun scanQRCode() {
+        // In a real implementation, this would launch a QR code scanner
+        // For now, show a dialog explaining that the feature is available
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            .setTitle("QR Code Scanner")
+            .setMessage("This feature would launch a QR code scanner to easily scan connection information from the server. You can manually enter the connection information for now.")
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+            .create()
+        
+        dialog.show()
+    }
+    
+    private fun refreshConnectionStatus() {
+        // Refresh connection status when returning to this fragment
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.refreshConnectionStatus()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

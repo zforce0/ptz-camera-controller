@@ -1,292 +1,359 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.control.CameraControlFragment">
+    android:background="@color/background"
+    android:fillViewport="true">
 
-    <!-- Connection status indicator -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/status_card"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardBackgroundColor="@color/surface"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="16dp">
 
-        <LinearLayout
+        <!-- Connection Status Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_connection_status"
+            style="@style/Widget.PTZCameraController.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Connection: "
-                android:textStyle="bold" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/connection_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Disconnected"
-                android:textColor="@color/status_idle" />
+                <TextView
+                    android:id="@+id/tv_connection_status_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/connection_status"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Subtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/tv_connection_status_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Status:"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_connection_status_title" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mode: "
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_connection_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Disconnected"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    android:textColor="@color/status_error"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_connection_status_label"
+                    app:layout_constraintStart_toEndOf="@id/tv_connection_status_label"
+                    app:layout_constraintTop_toTopOf="@id/tv_connection_status_label" />
 
-            <TextView
-                android:id="@+id/camera_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RGB"
-                android:textColor="@color/mode_rgb" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/tv_connection_mode_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Mode:"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_connection_status_label" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.55" />
+                <TextView
+                    android:id="@+id/tv_connection_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="WiFi"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    android:textColor="@color/status_good"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_connection_mode_label"
+                    app:layout_constraintStart_toEndOf="@id/tv_connection_mode_label"
+                    app:layout_constraintTop_toTopOf="@id/tv_connection_mode_label" />
 
-    <!-- Pan/Tilt Control Pad -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/control_pad_card"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/control_pad_background"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/status_card">
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/pan_tilt_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pan_tilt_controls"
-                android:textAppearance="@style/TextAppearance.PTZCameraController.Title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!-- Custom Joystick View will be implemented in code -->
-            <FrameLayout
-                android:id="@+id/joystick_container"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/joystick_background"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pan_tilt_title" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- Zoom and Other Controls -->
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/status_card">
-
-        <LinearLayout
+        <!-- Camera Control Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_camera_control"
+            style="@style/Widget.PTZCameraController.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/card_connection_status">
 
-            <!-- Zoom Controls -->
-            <androidx.cardview.widget.CardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/surface"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="4dp">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_camera_control_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/control_camera"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Subtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.example.ptzcameracontroller.ui.control.JoystickView
+                    android:id="@+id/joystick_view"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_camera_control_title" />
+
+                <TextView
+                    android:id="@+id/tv_pan_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Pan:"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/joystick_view" />
+
+                <TextView
+                    android:id="@+id/tv_pan_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="0"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_pan_label"
+                    app:layout_constraintStart_toEndOf="@id/tv_pan_label"
+                    app:layout_constraintTop_toTopOf="@id/tv_pan_label" />
+
+                <TextView
+                    android:id="@+id/tv_tilt_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Tilt:"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_pan_label"
+                    app:layout_constraintStart_toEndOf="@id/tv_pan_value"
+                    app:layout_constraintTop_toTopOf="@id/tv_pan_label" />
+
+                <TextView
+                    android:id="@+id/tv_tilt_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="0"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_tilt_label"
+                    app:layout_constraintStart_toEndOf="@id/tv_tilt_label"
+                    app:layout_constraintTop_toTopOf="@id/tv_tilt_label" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Zoom Control Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_zoom_control"
+            style="@style/Widget.PTZCameraController.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/card_camera_control">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_zoom_control_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zoom_control"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Subtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_zoom_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Zoom:"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_zoom_control_title" />
+
+                <TextView
+                    android:id="@+id/tv_zoom_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="0"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_zoom_label"
+                    app:layout_constraintStart_toEndOf="@id/tv_zoom_label"
+                    app:layout_constraintTop_toTopOf="@id/tv_zoom_label" />
+
+                <SeekBar
+                    android:id="@+id/seek_bar_zoom"
+                    style="@style/Widget.PTZCameraController.SeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_marginTop="8dp"
+                    android:max="100"
+                    android:progress="0"
+                    app:layout_constraintTop_toBottomOf="@id/tv_zoom_label" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/seek_bar_zoom">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/zoom_controls"
-                        android:textAppearance="@style/TextAppearance.PTZCameraController.Title" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btn_zoom_out"
-                            style="@style/Widget.PTZCameraController.Button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/zoom_out" />
-
-                        <Space
-                            android:layout_width="16dp"
-                            android:layout_height="wrap_content" />
-
-                        <Button
-                            android:id="@+id/btn_zoom_in"
-                            style="@style/Widget.PTZCameraController.Button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/zoom_in" />
-                    </LinearLayout>
-
-                    <SeekBar
-                        android:id="@+id/zoom_slider"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:max="100"
-                        android:progress="0" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Camera Mode Controls -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/surface"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                        android:text="Wide"
+                        android:textAppearance="@style/TextAppearance.PTZCameraController.Caption"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/camera_mode"
-                        android:textAppearance="@style/TextAppearance.PTZCameraController.Title" />
+                        android:text="Tele"
+                        android:textAppearance="@style/TextAppearance.PTZCameraController.Caption"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <RadioGroup
-                        android:id="@+id/camera_mode_group"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:orientation="horizontal">
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <RadioButton
-                            android:id="@+id/mode_rgb"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:checked="true"
-                            android:text="@string/mode_rgb" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-                        <RadioButton
-                            android:id="@+id/mode_ir"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/mode_ir" />
-                    </RadioGroup>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+        <!-- Camera Mode Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_camera_mode"
+            style="@style/Widget.PTZCameraController.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/card_zoom_control">
 
-            <!-- Preset Positions -->
-            <androidx.cardview.widget.CardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/surface"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="4dp">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_camera_mode_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/camera_mode"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Subtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/radio_group_camera_mode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/tv_camera_mode_title">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <RadioButton
+                        android:id="@+id/radio_mode_rgb"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/preset_positions"
-                        android:textAppearance="@style/TextAppearance.PTZCameraController.Title" />
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="@string/mode_rgb"
+                        android:textColor="@color/mode_rgb" />
 
-                    <LinearLayout
+                    <RadioButton
+                        android:id="@+id/radio_mode_ir"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/mode_ir"
+                        android:textColor="@color/mode_ir" />
+
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Preset Positions Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_preset_positions"
+            style="@style/Widget.PTZCameraController.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/card_camera_mode">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_preset_positions_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/preset_positions"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Subtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_preset_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/preset_number_hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_preset_positions_title">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_preset_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:orientation="horizontal">
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <EditText
-                            android:id="@+id/preset_number"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/preset_hint"
-                            android:inputType="number"
-                            android:maxLength="3" />
+                <Button
+                    android:id="@+id/btn_save_preset"
+                    style="@style/Widget.PTZCameraController.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/save_preset"
+                    app:layout_constraintEnd_toStartOf="@id/btn_goto_preset"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_preset_number" />
 
-                        <Button
-                            android:id="@+id/btn_save_preset"
-                            style="@style/Widget.PTZCameraController.Button.OutlinedButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/save_preset" />
+                <Button
+                    android:id="@+id/btn_goto_preset"
+                    style="@style/Widget.PTZCameraController.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/goto_preset"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_save_preset"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_save_preset"
+                    app:layout_constraintTop_toTopOf="@id/btn_save_preset" />
 
-                        <Button
-                            android:id="@+id/btn_goto_preset"
-                            style="@style/Widget.PTZCameraController.Button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/goto_preset" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-    </ScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

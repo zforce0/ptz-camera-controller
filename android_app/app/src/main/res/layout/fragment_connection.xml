@@ -1,256 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".ui.connection.ConnectionFragment">
+    android:background="@color/background"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/connection_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/connection_status"
-            android:textAppearance="@style/TextAppearance.PTZCameraController.Title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- QR Code Configuration -->
+        <!-- WiFi Connection Section -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/qr_code_card"
+            android:id="@+id/card_wifi_connection"
+            style="@style/Widget.PTZCameraController.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/surface"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/connection_title">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_wifi_connection_title"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quick Setup"
+                    android:text="@string/wifi_connection"
                     android:textAppearance="@style/TextAppearance.PTZCameraController.Subtitle"
-                    android:textStyle="bold" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_wifi_status_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/connection_status"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_wifi_connection_title" />
+
+                <TextView
+                    android:id="@+id/tv_wifi_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/wifi_status_disconnected"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    android:textColor="@color/status_idle"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_wifi_status_label"
+                    app:layout_constraintStart_toEndOf="@id/tv_wifi_status_label"
+                    app:layout_constraintTop_toTopOf="@id/tv_wifi_status_label" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_ip_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/wifi_ip_address"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_wifi_status_label">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_ip_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="192.168.1.100" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_port"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/wifi_port"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_ip_address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_port"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:text="8000" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_connect_wifi"
+                    style="@style/Widget.PTZCameraController.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/connect"
+                    app:layout_constraintEnd_toStartOf="@id/btn_disconnect_wifi"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_port" />
+
+                <Button
+                    android:id="@+id/btn_disconnect_wifi"
+                    style="@style/Widget.PTZCameraController.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:enabled="false"
+                    android:text="@string/disconnect"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_connect_wifi"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_connect_wifi"
+                    app:layout_constraintTop_toTopOf="@id/btn_connect_wifi" />
+
+                <Button
+                    android:id="@+id/btn_scan_qr_code"
+                    style="@style/Widget.PTZCameraController.Button.IconButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Scan a QR code to automatically configure connection settings"
-                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body" />
+                    android:text="@string/scan_qr_code"
+                    app:icon="@android:drawable/ic_menu_camera"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_connect_wifi" />
 
-                <Button
-                    android:id="@+id/btn_scan_qr"
-                    style="@style/Widget.PTZCameraController.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/scan_qr_code" />
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- WiFi Connection -->
+        <!-- Bluetooth Connection Section -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/wifi_connection_card"
+            android:id="@+id/card_bluetooth_connection"
+            style="@style/Widget.PTZCameraController.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/surface"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/qr_code_card">
+            app:layout_constraintTop_toBottomOf="@id/card_wifi_connection">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/wifi_connection"
-                        android:textAppearance="@style/TextAppearance.PTZCameraController.Subtitle"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/wifi_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/wifi_status_disconnected"
-                        android:textColor="@color/status_idle" />
-                </LinearLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/ip_address_layout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="@string/wifi_ip_address">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ip_address_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/port_layout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="@string/wifi_port">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/port_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btn_wifi_connect"
-                        style="@style/Widget.PTZCameraController.Button"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/connect" />
-
-                    <Space
-                        android:layout_width="16dp"
-                        android:layout_height="wrap_content" />
-
-                    <Button
-                        android:id="@+id/btn_wifi_disconnect"
-                        style="@style/Widget.PTZCameraController.Button.OutlinedButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:enabled="false"
-                        android:text="@string/disconnect" />
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Bluetooth Connection -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/bluetooth_connection_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/surface"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/wifi_connection_card">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/bluetooth_connection"
-                        android:textAppearance="@style/TextAppearance.PTZCameraController.Subtitle"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/bluetooth_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bt_status_disconnected"
-                        android:textColor="@color/status_idle" />
-                </LinearLayout>
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_bluetooth_connection_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bluetooth_connection"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Subtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_bluetooth_status_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/connection_status"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_connection_title" />
+
+                <TextView
+                    android:id="@+id/tv_bluetooth_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/bt_status_disconnected"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    android:textColor="@color/status_idle"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_bluetooth_status_label"
+                    app:layout_constraintStart_toEndOf="@id/tv_bluetooth_status_label"
+                    app:layout_constraintTop_toTopOf="@id/tv_bluetooth_status_label" />
+
+                <TextView
+                    android:id="@+id/tv_paired_devices_title"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/paired_devices"
-                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body" />
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Body"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_status_label" />
+
+                <ProgressBar
+                    android:id="@+id/progress_scanning_devices"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_paired_devices_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_paired_devices_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_paired_devices_title"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_no_paired_devices"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="No paired devices found"
+                    android:textAppearance="@style/TextAppearance.PTZCameraController.Caption"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_paired_devices_title" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/bluetooth_devices_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/background" />
-
-                <LinearLayout
+                    android:id="@+id/rv_bluetooth_devices"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:maxHeight="200dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_no_paired_devices"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_bluetooth_device" />
+
+                <Button
+                    android:id="@+id/btn_scan_devices"
+                    style="@style/Widget.PTZCameraController.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/scan_devices"
+                    app:layout_constraintEnd_toStartOf="@id/btn_disconnect_bluetooth"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_bluetooth_devices" />
 
-                    <Button
-                        android:id="@+id/btn_scan_devices"
-                        style="@style/Widget.PTZCameraController.Button"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/scan_devices" />
+                <Button
+                    android:id="@+id/btn_disconnect_bluetooth"
+                    style="@style/Widget.PTZCameraController.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:enabled="false"
+                    android:text="@string/disconnect"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_scan_devices"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_scan_devices"
+                    app:layout_constraintTop_toTopOf="@id/btn_scan_devices" />
 
-                    <Space
-                        android:layout_width="16dp"
-                        android:layout_height="wrap_content" />
-
-                    <Button
-                        android:id="@+id/btn_bt_disconnect"
-                        style="@style/Widget.PTZCameraController.Button.OutlinedButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:enabled="false"
-                        android:text="@string/disconnect" />
-                </LinearLayout>
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+</ScrollView>

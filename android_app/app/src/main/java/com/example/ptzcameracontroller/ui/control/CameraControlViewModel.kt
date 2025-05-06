@@ -4,148 +4,133 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ptzcameracontroller.data.repository.CameraControlRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-// Camera modes
-enum class CameraMode {
-    RGB, IR
-}
+class CameraControlViewModel(
+    private val cameraControlRepository: CameraControlRepository
+) : ViewModel() {
 
-// Connection status
-enum class ConnectionStatus(val description: String) {
-    CONNECTED("Connected"),
-    CONNECTING("Connecting..."),
-    DISCONNECTED("Disconnected")
-}
-
-class CameraControlViewModel : ViewModel() {
-
-    // Camera control repository - will be injected later
-    private lateinit var cameraRepository: CameraControlRepository
-
-    // Connection status
-    private val _connectionStatus = MutableLiveData<ConnectionStatus>().apply {
-        value = ConnectionStatus.DISCONNECTED
+    // Pan position (-100 to 100, 0 is center)
+    private val _panPosition = MutableLiveData<Int>().apply {
+        value = 0
     }
-    val connectionStatus: LiveData<ConnectionStatus> = _connectionStatus
+    val panPosition: LiveData<Int> = _panPosition
 
-    // Camera mode
+    // Tilt position (-100 to 100, 0 is center)
+    private val _tiltPosition = MutableLiveData<Int>().apply {
+        value = 0
+    }
+    val tiltPosition: LiveData<Int> = _tiltPosition
+
+    // Zoom level (0 to 100, 0 is wide angle)
+    private val _zoomLevel = MutableLiveData<Int>().apply {
+        value = 0
+    }
+    val zoomLevel: LiveData<Int> = _zoomLevel
+
+    // Camera mode (RGB or IR)
     private val _cameraMode = MutableLiveData<CameraMode>().apply {
         value = CameraMode.RGB
     }
     val cameraMode: LiveData<CameraMode> = _cameraMode
 
-    // Zoom level (0-100)
-    private val _zoom = MutableLiveData<Int>().apply {
-        value = 0
+    // Connection status
+    private val _isConnected = MutableLiveData<Boolean>().apply {
+        value = false
     }
-    val zoom: LiveData<Int> = _zoom
+    val isConnected: LiveData<Boolean> = _isConnected
 
-    // Pan/tilt values (-100 to 100)
-    private val _pan = MutableLiveData<Int>().apply {
-        value = 0
+    // Connection mode (WiFi or Bluetooth)
+    private val _isUsingBluetooth = MutableLiveData<Boolean>().apply {
+        value = false
     }
-    val pan: LiveData<Int> = _pan
+    val isUsingBluetooth: LiveData<Boolean> = _isUsingBluetooth
 
-    private val _tilt = MutableLiveData<Int>().apply {
-        value = 0
-    }
-    val tilt: LiveData<Int> = _tilt
-
-    // Method to set pan/tilt values
+    /**
+     * Set pan and tilt position
+     * @param pan Pan value (-100 to 100)
+     * @param tilt Tilt value (-100 to 100)
+     */
     fun setPanTilt(pan: Int, tilt: Int) {
-        _pan.value = pan
-        _tilt.value = tilt
-        
-        // Send command to camera
-        sendPanTiltCommand(pan, tilt)
-    }
+        // Update local values
+        _panPosition.value = pan
+        _tiltPosition.value = tilt
 
-    // Method to set zoom level
-    fun setZoom(zoomLevel: Int) {
-        _zoom.value = zoomLevel
-        
-        // Send command to camera
-        sendZoomCommand(zoomLevel)
-    }
-
-    // Method to zoom in (increase zoom level)
-    fun zoomIn() {
-        val currentZoom = _zoom.value ?: 0
-        if (currentZoom < 100) {
-            val newZoom = (currentZoom + 10).coerceAtMost(100)
-            setZoom(newZoom)
+        // Send to repository
+        viewModelScope.launch {
+            cameraControlRepository.sendPanTilt(pan, tilt)
         }
     }
 
-    // Method to zoom out (decrease zoom level)
-    fun zoomOut() {
-        val currentZoom = _zoom.value ?: 0
-        if (currentZoom > 0) {
-            val newZoom = (currentZoom - 10).coerceAtLeast(0)
-            setZoom(newZoom)
+    /**
+     * Set zoom level
+     * @param level Zoom level (0 to 100)
+     */
+    fun setZoom(level: Int) {
+        // Update local value
+        _zoomLevel.value = level
+
+        // Send to repository
+        viewModelScope.launch {
+            cameraControlRepository.sendZoom(level)
         }
     }
 
-    // Method to set camera mode
+    /**
+     * Set camera mode
+     * @param mode Camera mode (RGB or IR)
+     */
     fun setCameraMode(mode: CameraMode) {
+        // Update local value
         _cameraMode.value = mode
-        
-        // Send command to camera
-        sendCameraModeCommand(mode)
-    }
 
-    // Method to save a preset position
-    fun savePreset(presetNumber: Int) {
-        if (presetNumber in 1..255) {
-            viewModelScope.launch(Dispatchers.IO) {
-                // Send command to camera
-                sendSavePresetCommand(presetNumber)
-            }
+        // Send to repository
+        viewModelScope.launch {
+            cameraControlRepository.sendCameraMode(mode)
         }
     }
 
-    // Method to go to a preset position
-    fun gotoPreset(presetNumber: Int) {
-        if (presetNumber in 1..255) {
-            viewModelScope.launch(Dispatchers.IO) {
-                // Send command to camera
-                sendGotoPresetCommand(presetNumber)
-            }
+    /**
+     * Save preset position
+     * @param presetNumber Preset number (1-255)
+     * @return true if successful, false otherwise
+     */
+    suspend fun savePreset(presetNumber: Int): Boolean = withContext(Dispatchers.IO) {
+        cameraControlRepository.savePreset(presetNumber)
+    }
+
+    /**
+     * Go to preset position
+     * @param presetNumber Preset number (1-255)
+     * @return true if successful, false otherwise
+     */
+    suspend fun gotoPreset(presetNumber: Int): Boolean = withContext(Dispatchers.IO) {
+        cameraControlRepository.gotoPreset(presetNumber)
+    }
+
+    /**
+     * Check connection status
+     */
+    fun checkConnectionStatus() {
+        viewModelScope.launch {
+            val connected = cameraControlRepository.isConnected()
+            _isConnected.postValue(connected)
+
+            val usingBluetooth = cameraControlRepository.isUsingBluetoothFallback()
+            _isUsingBluetooth.postValue(usingBluetooth)
         }
     }
 
-    // Private methods to send commands to the camera
-
-    private fun sendPanTiltCommand(pan: Int, tilt: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            // Will be implemented when the repository is available
-            // cameraRepository.sendPanTilt(pan, tilt)
-        }
-    }
-
-    private fun sendZoomCommand(zoomLevel: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            // Will be implemented when the repository is available
-            // cameraRepository.sendZoom(zoomLevel)
-        }
-    }
-
-    private fun sendCameraModeCommand(mode: CameraMode) {
-        viewModelScope.launch(Dispatchers.IO) {
-            // Will be implemented when the repository is available
-            // cameraRepository.setCameraMode(mode)
-        }
-    }
-
-    private fun sendSavePresetCommand(presetNumber: Int) {
-        // Will be implemented when the repository is available
-        // cameraRepository.savePreset(presetNumber)
-    }
-
-    private fun sendGotoPresetCommand(presetNumber: Int) {
-        // Will be implemented when the repository is available
-        // cameraRepository.gotoPreset(presetNumber)
+    /**
+     * Ping server to maintain connection
+     * @return true if connected, false otherwise
+     */
+    suspend fun pingServer(): Boolean = withContext(Dispatchers.IO) {
+        val connected = cameraControlRepository.ping()
+        _isConnected.postValue(connected)
+        connected
     }
 }

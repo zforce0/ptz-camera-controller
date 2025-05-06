@@ -5,8 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ptzcameracontroller.data.repository.ConnectionRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 // Connection status enum
 enum class ConnectionStatus(val description: String) {
@@ -23,10 +26,9 @@ data class BluetoothDeviceInfo(
     val device: BluetoothDevice
 )
 
-class ConnectionViewModel : ViewModel() {
-
-    // Connection repository - will be injected later
-    private lateinit var connectionRepository: ConnectionRepository
+class ConnectionViewModel(
+    private val connectionRepository: ConnectionRepository
+) : ViewModel() {
 
     // WiFi connection status
     private val _wifiConnectionStatus = MutableLiveData<ConnectionStatus>().apply {
@@ -46,82 +48,116 @@ class ConnectionViewModel : ViewModel() {
     }
     val bluetoothDevices: LiveData<List<BluetoothDeviceInfo>> = _bluetoothDevices
 
+    // Server status
+    private val _serverStatus = MutableLiveData<com.example.ptzcameracontroller.data.network.ServerStatus?>()
+    val serverStatus: LiveData<com.example.ptzcameracontroller.data.network.ServerStatus?> = _serverStatus
+
+    init {
+        // Initialize server status collection
+        viewModelScope.launch {
+            connectionRepository.serverStatus.collectLatest { status ->
+                _serverStatus.postValue(status)
+            }
+        }
+    }
+
     // Method to connect to WiFi
-    fun connectToWiFi(ip: String, port: Int) {
+    suspend fun connectToWiFi(ip: String, port: Int) {
         // Update status to connecting
-        _wifiConnectionStatus.value = ConnectionStatus.CONNECTING
+        _wifiConnectionStatus.postValue(ConnectionStatus.CONNECTING)
 
-        // Simulate connection attempt
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                // Will be implemented when the repository is available
-                // val success = connectionRepository.connectToWiFi(ip, port)
-                val success = true  // Simulate success for now
+        try {
+            // Initialize WiFi with IP and port
+            connectionRepository.initializeWiFi(ip, port)
+            
+            // Try to connect
+            val success = connectionRepository.connectToWiFi()
 
-                if (success) {
-                    _wifiConnectionStatus.postValue(ConnectionStatus.CONNECTED)
-                } else {
-                    _wifiConnectionStatus.postValue(ConnectionStatus.ERROR)
-                }
-            } catch (e: Exception) {
+            if (success) {
+                _wifiConnectionStatus.postValue(ConnectionStatus.CONNECTED)
+            } else {
                 _wifiConnectionStatus.postValue(ConnectionStatus.ERROR)
             }
+        } catch (e: Exception) {
+            _wifiConnectionStatus.postValue(ConnectionStatus.ERROR)
         }
     }
 
     // Method to disconnect from WiFi
-    fun disconnectFromWiFi() {
-        viewModelScope.launch(Dispatchers.IO) {
-            // Will be implemented when the repository is available
-            // connectionRepository.disconnectFromWiFi()
+    suspend fun disconnectFromWiFi() {
+        try {
+            connectionRepository.disconnectFromWiFi()
             _wifiConnectionStatus.postValue(ConnectionStatus.DISCONNECTED)
+        } catch (e: Exception) {
+            _wifiConnectionStatus.postValue(ConnectionStatus.ERROR)
+        }
+    }
+
+    // Method to get paired Bluetooth devices
+    suspend fun getPairedDevices(): List<BluetoothDeviceInfo> {
+        return withContext(Dispatchers.IO) {
+            val devices = connectionRepository.getPairedBluetoothDevices()
+            _bluetoothDevices.postValue(devices)
+            devices
         }
     }
 
     // Method to connect to Bluetooth device
-    fun connectToBluetooth(deviceInfo: BluetoothDeviceInfo) {
+    suspend fun connectToBluetooth(deviceInfo: BluetoothDeviceInfo) {
         // Update status to connecting
-        _bluetoothConnectionStatus.value = ConnectionStatus.CONNECTING
+        _bluetoothConnectionStatus.postValue(ConnectionStatus.CONNECTING)
 
-        // Simulate connection attempt
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                // Will be implemented when the repository is available
-                // val success = connectionRepository.connectToBluetooth(deviceInfo.device)
-                val success = true  // Simulate success for now
+        try {
+            val success = connectionRepository.connectToBluetooth(deviceInfo)
 
-                if (success) {
-                    _bluetoothConnectionStatus.postValue(ConnectionStatus.CONNECTED)
-                } else {
-                    _bluetoothConnectionStatus.postValue(ConnectionStatus.ERROR)
-                }
-            } catch (e: Exception) {
+            if (success) {
+                _bluetoothConnectionStatus.postValue(ConnectionStatus.CONNECTED)
+            } else {
                 _bluetoothConnectionStatus.postValue(ConnectionStatus.ERROR)
             }
+        } catch (e: Exception) {
+            _bluetoothConnectionStatus.postValue(ConnectionStatus.ERROR)
         }
     }
 
     // Method to disconnect from Bluetooth
-    fun disconnectFromBluetooth() {
-        viewModelScope.launch(Dispatchers.IO) {
-            // Will be implemented when the repository is available
-            // connectionRepository.disconnectFromBluetooth()
+    suspend fun disconnectFromBluetooth() {
+        try {
+            connectionRepository.disconnectFromBluetooth()
+            _bluetoothConnectionStatus.postValue(ConnectionStatus.DISCONNECTED)
+        } catch (e: Exception) {
+            _bluetoothConnectionStatus.postValue(ConnectionStatus.ERROR)
+        }
+    }
+
+    // Method to refresh connection status
+    suspend fun refreshConnectionStatus() {
+        // Check if WiFi is connected
+        if (connectionRepository.isWiFiConnected()) {
+            _wifiConnectionStatus.postValue(ConnectionStatus.CONNECTED)
+        } else {
+            _wifiConnectionStatus.postValue(ConnectionStatus.DISCONNECTED)
+        }
+
+        // Check if Bluetooth is connected
+        if (connectionRepository.isBluetoothConnected()) {
+            _bluetoothConnectionStatus.postValue(ConnectionStatus.CONNECTED)
+        } else {
             _bluetoothConnectionStatus.postValue(ConnectionStatus.DISCONNECTED)
         }
+
+        // Update server status
+        val status = connectionRepository.getServerStatus()
+        _serverStatus.postValue(status)
     }
 
-    // Method to add a Bluetooth device to the list
-    fun addBluetoothDevice(deviceInfo: BluetoothDeviceInfo) {
-        val currentDevices = _bluetoothDevices.value ?: emptyList()
-        
-        // Check if device already exists in the list
-        if (currentDevices.none { it.address == deviceInfo.address }) {
-            _bluetoothDevices.postValue(currentDevices + deviceInfo)
-        }
+    // Method to get RTSP stream URL
+    suspend fun getStreamUrl(): String? {
+        return connectionRepository.getStreamUrl()
     }
 
-    // Method to clear the Bluetooth devices list
-    fun clearBluetoothDevices() {
-        _bluetoothDevices.postValue(emptyList())
+    // Method to parse QR code content
+    fun parseQRCodeContent(qrContent: String): Pair<String, Int>? {
+        return connectionRepository.parseQRCodeContent(qrContent)
     }
 }
