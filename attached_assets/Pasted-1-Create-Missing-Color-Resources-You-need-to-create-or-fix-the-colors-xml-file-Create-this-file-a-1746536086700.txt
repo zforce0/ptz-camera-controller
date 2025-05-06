@@ -1,0 +1,59 @@
+1. Create Missing Color Resources:
+You need to create or fix the colors.xml file. Create this file at /app/src/main/res/values/colors.xml with:
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App theme colors -->
+    <color name="colorPrimary">#1976D2</color>
+    <color name="colorPrimaryDark">#0D47A1</color>
+    <color name="colorAccent">#FF4081</color>
+    
+    <!-- Status indicator colors -->
+    <color name="status_error">#F44336</color>  <!-- Red -->
+    <color name="status_good">#4CAF50</color>   <!-- Green -->
+    <color name="status_idle">#FFEB3B</color>   <!-- Yellow -->
+    
+    <!-- Camera mode colors -->
+    <color name="mode_rgb">#3F51B5</color>      <!-- Indigo -->
+    <color name="mode_ir">#9C27B0</color>       <!-- Purple -->
+</resources>
+Also ensure you have a night mode colors file at /app/src/main/res/values-night/colors.xml:
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App theme colors (night mode) -->
+    <color name="colorPrimary">#0D47A1</color>
+    <color name="colorPrimaryDark">#002171</color>
+    <color name="colorAccent">#D81B60</color>
+    
+    <!-- Status indicator colors (night mode) -->
+    <color name="status_error">#E57373</color>  <!-- Lighter Red -->
+    <color name="status_good">#81C784</color>   <!-- Lighter Green -->
+    <color name="status_idle">#FFF59D</color>   <!-- Lighter Yellow -->
+    
+    <!-- Camera mode colors (night mode) -->
+    <color name="mode_rgb">#7986CB</color>      <!-- Lighter Indigo -->
+    <color name="mode_ir">#BA68C8</color>       <!-- Lighter Purple -->
+</resources>
+2. Create Missing String Resources:
+Add these strings to your /app/src/main/res/values/strings.xml file:
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Menu items -->
+    <string name="menu_camera_control">Camera Control</string>
+    <string name="menu_video_stream">Video Stream</string>
+    <string name="menu_connection">Connection</string>
+    <string name="menu_settings">Settings</string>
+</resources>
+3. Fix Adaptive Icon Issue:
+You have two options:
+
+a) Update your build.gradle file to increase the minimum SDK version:
+
+android {
+    defaultConfig {
+        minSdkVersion 26  // Changed from lower version
+        // other config...
+    }
+}

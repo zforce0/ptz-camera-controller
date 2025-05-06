@@ -1,0 +1,30 @@
+> Task :app:processDebugResources FAILED
+
+Execution failed for task ':app:processDebugResources'.
+> A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction
+   > Android resource linking failed
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:56: error: resource color/status_error (aka com.ptzcontroller:color/status_error) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:78: error: resource color/status_good (aka com.ptzcontroller:color/status_good) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:277: error: resource color/mode_rgb (aka com.ptzcontroller:color/mode_rgb) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:285: error: resource color/mode_ir (aka com.ptzcontroller:color/mode_ir) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:58: error: resource color/status_idle (aka com.ptzcontroller:color/status_idle) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:180: error: resource color/status_idle (aka com.ptzcontroller:color/status_idle) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_video_stream.xml:52: error: resource color/status_error (aka com.ptzcontroller:color/status_error) not found.
+     com.ptzcontroller.app-main-60:/menu/bottom_navigation_menu.xml:6: error: resource string/menu_camera_control (aka com.ptzcontroller:string/menu_camera_control) not found.
+     com.ptzcontroller.app-main-60:/menu/bottom_navigation_menu.xml:10: error: resource string/menu_video_stream (aka com.ptzcontroller:string/menu_video_stream) not found.
+     com.ptzcontroller.app-main-60:/menu/bottom_navigation_menu.xml:14: error: resource string/menu_connection (aka com.ptzcontroller:string/menu_connection) not found.
+     com.ptzcontroller.app-main-60:/menu/bottom_navigation_menu.xml:18: error: resource string/menu_settings (aka com.ptzcontroller:string/menu_settings) not found.
+     com.ptzcontroller.app-main-60:/mipmap-mdpi/ic_launcher.xml: error: <adaptive-icon> elements require a sdk version of at least 26.
+     com.ptzcontroller.app-main-60:/mipmap-mdpi/ic_launcher_round.xml: error: <adaptive-icon> elements require a sdk version of at least 26.
+     error: failed linking file resources.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+BUILD FAILED in 1s
+31 actionable tasks: 4 executed, 27 up-to-date
+Configuration cache entry reused.
+
+
