@@ -25,13 +25,13 @@ app = Flask(__name__)
 CONFIG = {
     "wifi": "192.168.1.100:8000",
     "bluetooth": "PTZ Camera Server",
-    "app_url": "https://github.com/user/ptz-camera-controller/releases/latest/download/ptz-camera-controller.apk",
+    "app_url": "https://archon-vision.com/downloads/ptz-camera-controller.apk",
     "version": "1.0.0",
     "camera_name": "PTZ Camera System",
     "rtsp_stream": "rtsp://192.168.1.100:8554/stream",
     "auto_reconnect": True,
     "quality_threshold": 3,
-    "features": ["pan", "tilt", "zoom", "switch_mode"]
+    "features": ["pan", "tilt", "zoom", "switch_mode", "ir_mode"]
 }
 
 # HTML template for the page
@@ -235,9 +235,9 @@ def parse_args():
                         help='Camera system name (default: PTZ Camera System)')
     parser.add_argument('--rtsp', default='rtsp://192.168.1.100:8554/stream',
                         help='RTSP stream URL (default: rtsp://192.168.1.100:8554/stream)')
-    parser.add_argument('--features', default='pan,tilt,zoom,switch_mode',
-                        help='Comma-separated list of supported features (default: pan,tilt,zoom,switch_mode)')
-    parser.add_argument('--app-url', default='https://github.com/user/ptz-camera-controller/releases/latest/download/ptz-camera-controller.apk',
+    parser.add_argument('--features', default='pan,tilt,zoom,switch_mode,ir_mode',
+                        help='Comma-separated list of supported features (default: pan,tilt,zoom,switch_mode,ir_mode)')
+    parser.add_argument('--app-url', default='https://archon-vision.com/downloads/ptz-camera-controller.apk',
                         help='URL for downloading the Android app')
     parser.add_argument('--version', default='1.0.0',
                         help='App version number (default: 1.0.0)')

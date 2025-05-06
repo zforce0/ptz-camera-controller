@@ -2,7 +2,7 @@ package com.ptzcontroller.data.repository
 
 import android.content.Context
 import android.util.Log
-import com.ptzcontroller.ui.control.CameraMode
+import com.ptzcontroller.CameraMode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject

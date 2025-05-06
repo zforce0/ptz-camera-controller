@@ -24,8 +24,13 @@ class PreferenceManager(context: Context) {
         
         // Control preferences
         private const val KEY_CONTROL_SENSITIVITY = "control_sensitivity"
+        private const val KEY_ZOOM_SENSITIVITY = "zoom_sensitivity"
         private const val KEY_CONTROL_INVERT_PAN = "control_invert_pan"
         private const val KEY_CONTROL_INVERT_TILT = "control_invert_tilt"
+        
+        // UI preferences
+        private const val KEY_KEEP_SCREEN_ON = "keep_screen_on"
+        private const val KEY_DARK_MODE = "dark_mode"
     }
     
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -118,6 +123,33 @@ class PreferenceManager(context: Context) {
     
     fun getInvertTilt(): Boolean {
         return prefs.getBoolean(KEY_CONTROL_INVERT_TILT, false)
+    }
+    
+    // Zoom Sensitivity
+    fun setZoomSensitivity(sensitivity: Int) {
+        prefs.edit().putInt(KEY_ZOOM_SENSITIVITY, sensitivity).apply()
+    }
+    
+    fun getZoomSensitivity(): Int {
+        return prefs.getInt(KEY_ZOOM_SENSITIVITY, 50)
+    }
+    
+    // Keep Screen On
+    fun setKeepScreenOn(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_KEEP_SCREEN_ON, enabled).apply()
+    }
+    
+    fun getKeepScreenOn(): Boolean {
+        return prefs.getBoolean(KEY_KEEP_SCREEN_ON, true)
+    }
+    
+    // Dark Mode
+    fun setDarkMode(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_DARK_MODE, enabled).apply()
+    }
+    
+    fun getDarkMode(): Boolean {
+        return prefs.getBoolean(KEY_DARK_MODE, false)
     }
     
     // Clear all preferences

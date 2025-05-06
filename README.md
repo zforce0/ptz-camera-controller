@@ -85,6 +85,25 @@ The onboard server code is located in the `onboard` directory. Key components:
 - `ptz_controller.py` - Camera control interface
 - `config.py` - Configuration management
 
+### Development Tools
+
+Several utilities are included to aid in development and testing:
+
+- `flask_qr_server.py` - Web-based QR code generator for device configuration
+  - Usage: `python flask_qr_server.py [--port PORT] [--wifi IP:PORT] [--bluetooth DEVICE]`
+  - With auto-detection: `python flask_qr_server.py --auto-detect-ip --port 5001`
+
+- `setup_test_environment.py` - Creates a complete test environment with mock services
+  - Usage: `python setup_test_environment.py [--with-stream] [--port PORT]`
+  - Creates a camera control server, QR code server, and optionally a mock video stream
+
+- `start_qr_server.py` - Interactive setup wizard for the QR code server
+  - Usage: `python start_qr_server.py`
+  - Walks through the configuration options with a menu-based interface
+
+- `generate_sdk_qr.py` - Generate QR codes for SDK configuration sharing
+  - Usage: `python generate_sdk_qr.py [OUTPUT_DIR]`
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.

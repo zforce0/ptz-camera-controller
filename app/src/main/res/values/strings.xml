@@ -4,6 +4,10 @@
     
     <!-- Main Activity -->
     <string name="main_title">PTZ Camera Controller</string>
+    <string name="nav_camera_control">Camera Control</string>
+    <string name="nav_video_stream">Video Stream</string>
+    <string name="nav_connection">Connection</string>
+    <string name="nav_settings">Settings</string>
     
     <!-- Connection Fragment -->
     <string name="title_connection">Connect to Camera</string>

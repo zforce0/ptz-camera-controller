@@ -1,9 +1,11 @@
-package com.ptzcontroller.ui.control
+package com.ptzcontroller
 
 /**
- * Enum for camera modes
+ * Camera mode enumeration
+ * RGB - Regular visible light mode
+ * IR - Infrared/thermal imaging mode
  */
 enum class CameraMode {
-    RGB,    // Regular RGB/Daylight camera
-    IR      // Infrared/Thermal camera
+    RGB,
+    IR
 }
