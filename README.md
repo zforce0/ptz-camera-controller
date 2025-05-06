@@ -1,114 +1,94 @@
-# PTZ Camera Controller System
+# PTZ Camera Controller - Onboard Server
 
-This repository contains the controller system for PTZ (Pan-Tilt-Zoom) cameras, consisting of two main components:
+## Overview
 
-1. An Android application for user interface and control
-2. An onboard Python server for hardware interface and video streaming
+The onboard server component of the PTZ Camera Controller system runs on a Raspberry Pi or NVIDIA Jetson device. It communicates with PTZ cameras via the Pelco-D protocol and provides a communication bridge to the Android application through either WiFi or Bluetooth.
 
-## Android Application
+## Key Features
 
-The Android app provides an interface for controlling the PTZ cameras and viewing video streams. It supports:
+- **Dual Connectivity**: Connect via WiFi or Bluetooth for flexible deployment options
+- **QR Code Configuration**: Easy setup through scannable QR codes
+- **Camera Control**: Full PTZ (Pan, Tilt, Zoom) camera control using the Pelco-D protocol
+- **Preset Management**: Save and recall camera positions
+- **Video Streaming**: Optional RTSP video stream support
+- **Auto-Discovery**: Network device discovery for easy setup
+- **Systemd Service**: Runs as a system service for reliability
 
-- WiFi and Bluetooth connections to the camera server
-- Pan, tilt, and zoom controls with adjustable speed
-- Video streaming with support for RGB and IR/Thermal modes
-- Easy configuration via QR code scanning
+## Documentation
 
-### Current Development Status
+- [Quick Start Guide](QUICK_START.md) - Get up and running quickly
+- [Full Installation Guide](ONBOARD_SETUP_GUIDE.md) - Detailed setup instructions
+- [System Architecture](system_diagram.svg) - Visual overview of system components
 
-The Android app is currently under development with the following components implemented:
+## System Requirements
 
-- Basic UI framework with bottom navigation
-- Connection management for WiFi and Bluetooth
-- Camera control interface
-- Video streaming interface (using dummy displays for compilation)
-- Settings screen
+### Hardware
+- Raspberry Pi 3/4/5 or NVIDIA Jetson Orin Nano
+- USB-to-RS485 adapter for camera control
+- PTZ camera with Pelco-D protocol support
+- Ethernet connection or WiFi adapter
+- (Optional) Bluetooth adapter if using Bluetooth connectivity
 
-To compile and build the Android app:
+### Software
+- Debian-based Linux OS (Raspbian, Ubuntu, etc.)
+- Python 3.7+ (installed by setup script)
 
-1. Open the project in Android Studio
-2. Build and run the app on an Android device or emulator
-3. Use the Connection tab to connect to the camera server
+## Installation
 
-## Onboard Python Server
+For detailed installation instructions, see the [Full Installation Guide](ONBOARD_SETUP_GUIDE.md).
 
-The onboard server runs on the camera hardware (Raspberry Pi or NVIDIA Jetson) and handles:
+Quick installation:
 
-- Camera hardware interface
-- Video streaming via RTSP
-- Communication with the Android app via WiFi or Bluetooth
+```bash
+# Download installation package
+wget https://github.com/your-repo/ptz-camera-controller/releases/latest/download/onboard-server.tar.gz
+tar -xzf onboard-server.tar.gz
+cd onboard-server
 
-### Current Development Status
-
-The onboard server code includes:
-
-- Camera controller for PTZ operations
-- Video streamer for RTSP video streams
-- WiFi server for HTTP/TCP communication
-- Bluetooth server for RFCOMM communication
-- Local stream viewer for debugging
-
-## QR Code Configuration
-
-We've implemented a flexible QR code configuration system to simplify the setup process for the Android app. This allows users to quickly configure connection settings by scanning a QR code.
-
-### Using the Flask QR Server
-
-Our enhanced Flask-based QR code server offers more configuration options:
-
-1. Run the QR server wizard for a guided setup:
-   ```
-   python start_qr_server.py
-   ```
-
-2. Or start the server directly with command-line options:
-   ```
-   python flask_qr_server.py [options]
-   ```
-   
-3. Access the QR codes at:
-   http://localhost:5000 (default port)
-   
-4. Scan the QR code with the Android app to automatically configure connection settings
-
-### Auto-detecting IP Address
-
-For easier deployment, the server can automatically detect and use the local IP address:
-
-```
-python flask_qr_server.py --auto-detect-ip
+# Run installation script
+sudo bash install.sh
 ```
 
-This will:
-- Detect the device's IP address on the local network
-- Update both WiFi connection and RTSP stream URLs with this IP
-- Generate QR codes with the correct IP address
+## Usage
 
-### Available Configuration Options
+After installation, the server runs as a system service and starts automatically on boot.
 
-The Flask QR server supports various configuration options:
+### Service Management
 
-- `--port PORT`: Web server port (default: 5000)
-- `--wifi IP:PORT`: WiFi connection (default: 192.168.1.100:8000)
-- `--bluetooth NAME`: Bluetooth device name (default: PTZ Camera Server)
-- `--camera NAME`: Camera name (default: PTZ Camera System)
-- `--rtsp URL`: RTSP stream URL (default: rtsp://192.168.1.100:8554/stream)
-- `--features LIST`: Supported features (default: pan,tilt,zoom,switch_mode)
-- `--auto-detect-ip`: Automatically detect and use local IP address
-- `--quality-threshold N`: Connection switching threshold (default: 3)
+```bash
+# Check service status
+sudo systemctl status ptz-camera-controller
 
-For detailed documentation, see [QR Code Server Documentation](docs/qr_code_server.md).
+# Restart service
+sudo systemctl restart ptz-camera-controller
 
-## Development Workflow
+# Stop service
+sudo systemctl stop ptz-camera-controller
 
-1. Make changes to the Android app or onboard server code
-2. Test with dummy implementations first
-3. Gradually replace dummy implementations with actual functionality
-4. Use the QR code for easy configuration during testing
+# View logs
+sudo journalctl -u ptz-camera-controller -f
+```
 
-## Next Steps
+### QR Code Configuration
 
-- Complete dummy implementations for remaining app components
-- Implement QR code scanning functionality in the app
-- Add unit tests for core functionality
-- Integrate with actual camera hardware
+The server provides a web interface for QR code configuration:
+
+1. Access `http://[SERVER-IP]:5000` from any browser on the same network
+2. Scan the QR code with the Android app to establish a connection
+
+## Development
+
+The onboard server code is located in the `onboard` directory. Key components:
+
+- `camera_server.py` - Main server application
+- `bt_server.py` - Bluetooth communication module
+- `ptz_controller.py` - Camera control interface
+- `config.py` - Configuration management
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For issues and support, please file an issue on our GitHub repository or contact our support team.
