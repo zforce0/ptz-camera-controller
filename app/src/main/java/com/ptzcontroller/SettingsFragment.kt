@@ -1,59 +1,76 @@
+
 package com.ptzcontroller
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
 import androidx.fragment.app.Fragment
-import android.widget.TextView
-import android.content.pm.PackageManager
-import android.widget.Button
-import android.widget.Toast
 
-/**
- * Settings Fragment for the PTZ Camera Controller App
- * This provides app settings and information
- */
 class SettingsFragment : Fragment() {
-
-    private lateinit var versionTextView: TextView
-    private lateinit var scanQrButton: Button
-    private lateinit var connectionManager: ConnectionManager
     
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            connectionManager = it.getSerializable("connectionManager") as ConnectionManager
-        }
-    }
+    private lateinit var videoQualitySpinner: Spinner
+    private lateinit var controlSensitivitySeekBar: SeekBar
+    private lateinit var defaultIpEditText: EditText
+    private lateinit var defaultPortEditText: EditText
+    private lateinit var saveButton: Button
     
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         
-        // Find views
-//        versionTextView = view.findViewById(R.id.version_text)
-//        scanQrButton = view.findViewById(R.id.scan_qr_button)
+        videoQualitySpinner = view.findViewById(R.id.spinner_video_quality)
+        controlSensitivitySeekBar = view.findViewById(R.id.seekbar_control_sensitivity)
+        defaultIpEditText = view.findViewById(R.id.edit_default_ip)
+        defaultPortEditText = view.findViewById(R.id.edit_default_port)
+        saveButton = view.findViewById(R.id.btn_save_settings)
         
-        // Set app version
-        try {
-            val packageInfo = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
-            val versionName = packageInfo.versionName
-            val versionCode = packageInfo.versionCode
-            versionTextView.text = "Version: $versionName ($versionCode)"
-        } catch (e: PackageManager.NameNotFoundException) {
-            versionTextView.text = "Version: Unknown"
-        }
-        
-        // QR code scanner button
-        scanQrButton.setOnClickListener {
-            // This would normally launch the QR scanner
-            Toast.makeText(context, "QR scanner not implemented yet", Toast.LENGTH_SHORT).show()
-        }
+        setupVideoQualitySpinner()
+        setupControlSensitivity()
+        setupDefaultConnection()
+        setupSaveButton()
         
         return view
+    }
+    
+    private fun setupVideoQualitySpinner() {
+        val qualities = arrayOf(
+            getString(R.string.high_quality),
+            getString(R.string.medium_quality),
+            getString(R.string.low_quality)
+        )
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, qualities)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        videoQualitySpinner.adapter = adapter
+    }
+    
+    private fun setupControlSensitivity() {
+        controlSensitivitySeekBar.max = 100
+        controlSensitivitySeekBar.progress = 50
+    }
+    
+    private fun setupDefaultConnection() {
+        defaultIpEditText.setText("192.168.1.100")
+        defaultPortEditText.setText("8000")
+    }
+    
+    private fun setupSaveButton() {
+        saveButton.setOnClickListener {
+            // Save settings to SharedPreferences
+            val prefs = requireContext().getSharedPreferences("PTZSettings", android.content.Context.MODE_PRIVATE)
+            prefs.edit().apply {
+                putString("defaultIp", defaultIpEditText.text.toString())
+                putString("defaultPort", defaultPortEditText.text.toString())
+                putInt("videoQuality", videoQualitySpinner.selectedItemPosition)
+                putInt("controlSensitivity", controlSensitivitySeekBar.progress)
+                apply()
+            }
+            
+            Toast.makeText(context, getString(R.string.save_settings), Toast.LENGTH_SHORT).show()
+        }
     }
 }

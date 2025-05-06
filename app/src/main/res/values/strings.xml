@@ -60,6 +60,9 @@
     <string name="about">About</string>
     <string name="version">Version</string>
 
-    <!-- Dummy Text -->
-    <string name="dummy_text">This is a dummy implementation for compilation purposes</string>
+    <!-- Connection Status -->
+    <string name="disconnected">Not connected to any device</string>
+    <string name="connecting">Connecting to device...</string>
+    <string name="connected">Connected to %1$s</string>
+    <string name="connection_failed">Connection failed: %1$s</string>
 </resources>
