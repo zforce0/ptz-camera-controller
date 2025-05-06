@@ -34,6 +34,15 @@ mode = "sequential"
 task = "shell.exec"
 args = "./simplified_build.sh debug"
 
+[[workflows.workflow]]
+name = "Build Android App"
+author = 37115865
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd android_app && ./gradlew assembleDebug"
+
 [deployment]
 run = ["sh", "-c", "cd onboard && pip install -r requirements.txt && python camera_server.py"]
 
