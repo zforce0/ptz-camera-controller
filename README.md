@@ -50,30 +50,54 @@ The onboard server code includes:
 
 ## QR Code Configuration
 
-For easy configuration of the Android app, we've implemented a QR code based setup system:
+We've implemented a flexible QR code configuration system to simplify the setup process for the Android app. This allows users to quickly configure connection settings by scanning a QR code.
 
-1. Run the QR code server:
+### Using the Flask QR Server
+
+Our enhanced Flask-based QR code server offers more configuration options:
+
+1. Run the QR server wizard for a guided setup:
    ```
-   python qr_server.py --wifi <server_ip>:<port>
+   python start_qr_server.py
+   ```
+
+2. Or start the server directly with command-line options:
+   ```
+   python flask_qr_server.py [options]
    ```
    
-2. Access the QR code at:
-   http://localhost:5001
+3. Access the QR codes at:
+   http://localhost:5000 (default port)
    
-3. Scan the QR code with the Android app to automatically configure connection settings
+4. Scan the QR code with the Android app to automatically configure connection settings
 
-### Customizing QR Codes
+### Auto-detecting IP Address
 
-You can generate custom QR codes with different connection settings:
+For easier deployment, the server can automatically detect and use the local IP address:
 
-- For WiFi connection:
-  http://localhost:5001/generate?wifi=192.168.1.100:8000
-  
-- For Bluetooth connection:
-  http://localhost:5001/generate?bluetooth=PTZ_Camera_Controller
-  
-- For both connection types:
-  http://localhost:5001/generate?wifi=192.168.1.100:8000&bluetooth=PTZ_Camera_Controller
+```
+python flask_qr_server.py --auto-detect-ip
+```
+
+This will:
+- Detect the device's IP address on the local network
+- Update both WiFi connection and RTSP stream URLs with this IP
+- Generate QR codes with the correct IP address
+
+### Available Configuration Options
+
+The Flask QR server supports various configuration options:
+
+- `--port PORT`: Web server port (default: 5000)
+- `--wifi IP:PORT`: WiFi connection (default: 192.168.1.100:8000)
+- `--bluetooth NAME`: Bluetooth device name (default: PTZ Camera Server)
+- `--camera NAME`: Camera name (default: PTZ Camera System)
+- `--rtsp URL`: RTSP stream URL (default: rtsp://192.168.1.100:8554/stream)
+- `--features LIST`: Supported features (default: pan,tilt,zoom,switch_mode)
+- `--auto-detect-ip`: Automatically detect and use local IP address
+- `--quality-threshold N`: Connection switching threshold (default: 3)
+
+For detailed documentation, see [QR Code Server Documentation](docs/qr_code_server.md).
 
 ## Development Workflow
 

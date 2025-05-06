@@ -275,11 +275,22 @@ if __name__ == '__main__':
     # Set WiFi connection
     if args.auto_detect_ip:
         local_ip = get_local_ip()
+        # Update WiFi IP
         wifi_parts = args.wifi.split(':')
         if len(wifi_parts) > 1:
             CONFIG["wifi"] = f"{local_ip}:{wifi_parts[1]}"
         else:
             CONFIG["wifi"] = f"{local_ip}:8000"
+            
+        # Also update RTSP stream URL with the same IP if it contains an IP address
+        rtsp_url = CONFIG["rtsp_stream"]
+        if rtsp_url and "://" in rtsp_url:
+            protocol, rest = rtsp_url.split("://", 1)
+            if rest and ":" in rest:
+                old_ip, port_path = rest.split(":", 1)
+                if old_ip and port_path:
+                    CONFIG["rtsp_stream"] = f"{protocol}://{local_ip}:{port_path}"
+        
         print(f"Auto-detected IP address: {local_ip}")
     else:
         CONFIG["wifi"] = args.wifi
