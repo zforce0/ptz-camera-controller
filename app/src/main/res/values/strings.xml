@@ -65,4 +65,10 @@
     <string name="connecting">Connecting to device...</string>
     <string name="connected">Connected to %1$s</string>
     <string name="connection_failed">Connection failed: %1$s</string>
+    <string name="connection_error">Connection error: %1$s</string>
+    <string name="connection_timeout">Connection timed out</string>
+    <string name="connection_lost">Connection lost to device</string>
+    <string name="bluetooth_not_supported">Bluetooth is not supported on this device</string>
+    <string name="bluetooth_not_enabled">Bluetooth is not enabled</string>
+    <string name="wifi_not_connected">WiFi is not connected</string>
 </resources>

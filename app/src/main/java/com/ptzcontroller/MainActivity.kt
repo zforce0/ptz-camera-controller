@@ -52,35 +52,4 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragment_container, fragment)
             .commit()
     }
-
-    // Placeholder SettingsFragment
-    class SettingsFragment : Fragment() {
-        override fun onCreateView(
-            inflater: android.view.LayoutInflater,
-            container: android.view.ViewGroup?,
-            savedInstanceState: Bundle?
-        ): android.view.View? {
-            // Just a text view for now
-            val textView = android.widget.TextView(requireContext())
-            textView.text = getString(R.string.dummy_text)
-            textView.gravity = android.view.Gravity.CENTER
-            textView.layoutParams = android.view.ViewGroup.LayoutParams(
-                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-                android.view.ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            textView.setPadding(16, 16, 16, 16)
-            return textView
-        }
-    }
-    
-    companion object {
-        // Helper method to create a new instance of ConnectionFragment
-        fun newConnectionFragment(connectionManager: ConnectionManager): ConnectionFragment {
-            val fragment = ConnectionFragment()
-            val args = Bundle()
-            args.putSerializable("connectionManager", connectionManager)
-            fragment.arguments = args
-            return fragment
-        }
-    }
 }
