@@ -20,4 +20,29 @@
     <string name="stream_record">Record</string>
     <string name="menu_camera_control">Camera Control</string>
     <string name="menu_video_stream">Video Stream</string>
+    
+    <!-- Camera Control Fragment -->
+    <string name="label_connection_status">Connection Status</string>
+    <string name="label_zoom">Zoom</string>
+    <string name="btn_zoom_out">-</string>
+    <string name="btn_zoom_in">+</string>
+    <string name="label_camera_mode">Camera Mode</string>
+    <string name="btn_rgb_mode">RGB</string>
+    <string name="btn_ir_mode">IR</string>
+    <string name="label_presets">Presets</string>
+    <string name="label_preset_number">Preset #:</string>
+    <string name="btn_goto_preset">Go To</string>
+    <string name="btn_save_preset">Save</string>
+    
+    <!-- Connection Fragment -->
+    <string name="label_wifi">WiFi Connection</string>
+    <string name="label_wifi_ip">IP Address</string>
+    <string name="label_wifi_port">Port</string>
+    <string name="btn_wifi_connect">Connect</string>
+    <string name="label_bluetooth">Bluetooth Connection</string>
+    <string name="btn_enable_bluetooth">Enable Bluetooth</string>
+    <string name="btn_scan_devices">Scan Devices</string>
+    <string name="label_paired_devices">Paired Devices</string>
+    <string name="label_detected_devices">Detected Devices</string>
+    <string name="msg_bluetooth_unavailable">Bluetooth is not available on this device</string>
 </resources>
