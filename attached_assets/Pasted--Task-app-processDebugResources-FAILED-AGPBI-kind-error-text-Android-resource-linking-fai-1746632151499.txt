@@ -1,0 +1,25 @@
+> Task :app:processDebugResources FAILED
+AGPBI: {"kind":"error","text":"Android resource linking failed","sources":[{"file":"/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml","position":{"startLine":6}}],"original":"ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:7: AAPT: error: resource string/nav_camera_control (aka com.ptzcontroller:string/nav_camera_control) not found.\n    ","tool":"AAPT"}
+AGPBI: {"kind":"error","text":"Android resource linking failed","sources":[{"file":"/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml","position":{"startLine":11}}],"original":"ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:12: AAPT: error: resource string/nav_video_stream (aka com.ptzcontroller:string/nav_video_stream) not found.\n    ","tool":"AAPT"}
+AGPBI: {"kind":"error","text":"Android resource linking failed","sources":[{"file":"/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml","position":{"startLine":16}}],"original":"ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:17: AAPT: error: resource string/nav_connection (aka com.ptzcontroller:string/nav_connection) not found.\n    ","tool":"AAPT"}
+AGPBI: {"kind":"error","text":"Android resource linking failed","sources":[{"file":"/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml","position":{"startLine":21}}],"original":"ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:22: AAPT: error: resource string/nav_settings (aka com.ptzcontroller:string/nav_settings) not found.\n    ","tool":"AAPT"}
+AGPBI: {"kind":"error","text":"Android resource linking failed","sources":[{"file":"/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml","position":{"startLine":11}}],"original":"ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:12: AAPT: error: resource string/nav_camera_control (aka com.ptzcontroller:string/nav_camera_control) not found.\n    ","tool":"AAPT"}
+AGPBI: {"kind":"error","text":"Android resource linking failed","sources":[{"file":"/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml","position":{"startLine":17}}],"original":"ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:18: AAPT: error: resource string/nav_video_stream (aka com.ptzcontroller:string/nav_video_stream) not found.\n    ","tool":"AAPT"}
+AGPBI: {"kind":"error","text":"Android resource linking failed","sources":[{"file":"/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml","position":{"startLine":23}}],"original":"ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:24: AAPT: error: resource string/nav_connection (aka com.ptzcontroller:string/nav_connection) not found.\n    ","tool":"AAPT"}
+AGPBI: {"kind":"error","text":"Android resource linking failed","sources":[{"file":"/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml","position":{"startLine":29}}],"original":"ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:30: AAPT: error: resource string/nav_settings (aka com.ptzcontroller:string/nav_settings) not found.\n    ","tool":"AAPT"}
+
+Execution failed for task ':app:processDebugResources'.
+> A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction
+   > Android resource linking failed
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:7: AAPT: error: resource string/nav_camera_control (aka com.ptzcontroller:string/nav_camera_control) not found.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+BUILD FAILED in 1s
+31 actionable tasks: 3 executed, 28 up-to-date
+Configuration cache entry reused.
+
+

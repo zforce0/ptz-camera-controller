@@ -32,6 +32,12 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_connection">Connection</string>
     
+    <!-- Navigation Labels -->
+    <string name="nav_camera_control">Camera Control</string>
+    <string name="nav_video_stream">Video Stream</string>
+    <string name="nav_connection">Connection</string>
+    <string name="nav_settings">Settings</string>
+    
     <!-- Camera Control Fragment -->
     <string name="label_connection_status">Connection Status</string>
     <string name="label_zoom">Zoom</string>
