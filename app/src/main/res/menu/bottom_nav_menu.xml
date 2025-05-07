@@ -4,21 +4,21 @@
     <item
         android:id="@+id/navigation_camera_control"
         android:icon="@drawable/ic_camera_control"
-        android:title="@string/menu_camera_control" />
+        android:title="@string/nav_camera_control" />
 
     <item
         android:id="@+id/navigation_video_stream"
         android:icon="@drawable/ic_video_stream"
-        android:title="@string/menu_video_stream" />
+        android:title="@string/nav_video_stream" />
 
     <item
         android:id="@+id/navigation_connection"
         android:icon="@drawable/ic_connection"
-        android:title="@string/menu_connection" />
+        android:title="@string/nav_connection" />
 
     <item
         android:id="@+id/navigation_settings"
         android:icon="@drawable/ic_settings"
-        android:title="@string/menu_settings" />
+        android:title="@string/nav_settings" />
 
 </menu>
