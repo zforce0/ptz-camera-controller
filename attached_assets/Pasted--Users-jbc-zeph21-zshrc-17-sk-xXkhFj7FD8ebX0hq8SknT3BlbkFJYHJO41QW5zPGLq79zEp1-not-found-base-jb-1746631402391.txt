@@ -1,0 +1,252 @@
+/Users/jbc-zeph21/.zshrc:17: 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 not found
+(base) jbc-zeph21@MacBook-Air-5 ptz-camera-controller % ./gradlew clean
+
+Welcome to Gradle 8.11.1!
+
+Here are the highlights of this release:
+ - Parallel load and store for Configuration Cache
+ - Java compilation errors at the end of the build output
+ - Consolidated report for warnings and deprecations
+
+For more details see https://docs.gradle.org/8.11.1/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Calculating task graph as no cached configuration is available for tasks: clean
+
+BUILD SUCCESSFUL in 5s
+2 actionable tasks: 2 executed
+Configuration cache entry stored.
+(base) jbc-zeph21@MacBook-Air-5 ptz-camera-controller % 
+./gradlew assembleDebug
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Calculating task graph as no cached configuration is available for tasks: assembleDebug
+> Task :app:processDebugResources FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:processDebugResources'.
+> A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction
+   > Android resource linking failed
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:24: error: resource string/app_settings (aka com.ptzcontroller:string/app_settings) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:50: error: resource string/stream_settings (aka com.ptzcontroller:string/stream_settings) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:64: error: resource string/setting_stream_quality (aka com.ptzcontroller:string/setting_stream_quality) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:85: error: resource string/setting_show_status_overlay (aka com.ptzcontroller:string/setting_show_status_overlay) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:107: error: resource string/setting_keep_screen_on (aka com.ptzcontroller:string/setting_keep_screen_on) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:143: error: resource string/connection_settings (aka com.ptzcontroller:string/connection_settings) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:157: error: resource string/setting_auto_reconnect (aka com.ptzcontroller:string/setting_auto_reconnect) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:179: error: resource string/setting_connection_check_interval (aka com.ptzcontroller:string/setting_connection_check_interval) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:200: error: resource string/setting_use_bluetooth_fallback (aka com.ptzcontroller:string/setting_use_bluetooth_fallback) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:222: error: resource string/setting_wifi_timeout (aka com.ptzcontroller:string/setting_wifi_timeout) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:259: error: resource string/controller_settings (aka com.ptzcontroller:string/controller_settings) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:273: error: resource string/setting_control_sensitivity (aka com.ptzcontroller:string/setting_control_sensitivity) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:311: error: resource string/app_settings (aka com.ptzcontroller:string/app_settings) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:325: error: resource string/setting_dark_mode (aka com.ptzcontroller:string/setting_dark_mode) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml:341: error: resource string/setting_about (aka com.ptzcontroller:string/setting_about) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_video_stream.xml:123: error: resource string/stream_reconnect (aka com.ptzcontroller:string/stream_reconnect) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_video_stream.xml:134: error: resource string/stream_snapshot (aka com.ptzcontroller:string/stream_snapshot) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_video_stream.xml:145: error: resource string/stream_record (aka com.ptzcontroller:string/stream_record) not found.
+     com.ptzcontroller.app-main-60:/menu/bottom_navigation_menu.xml:6: error: resource string/menu_camera_control (aka com.ptzcontroller:string/menu_camera_control) not found.
+     com.ptzcontroller.app-main-60:/menu/bottom_navigation_menu.xml:10: error: resource string/menu_video_stream (aka com.ptzcontroller:string/menu_video_stream) not found.
+
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 7s
+31 actionable tasks: 3 executed, 28 up-to-date
+Configuration cache entry stored.
+(base) jbc-zeph21@MacBook-Air-5 ptz-camera-controller % 
+(base) jbc-zeph21@MacBook-Air-5 ptz-camera-controller %   
+./gradlew clean build  
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Calculating task graph as no cached configuration is available for tasks: clean build
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libbarhopper_v3.so, libimage_processing_util_jni.so.
+
+> Task :app:stripReleaseDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libbarhopper_v3.so, libimage_processing_util_jni.so.
+
+> Task :app:processDebugResources FAILED
+> Task :app:processReleaseResources FAILED
+
+FAILURE: Build completed with 2 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':app:processDebugResources'.
+> A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction
+   > Android resource linking failed
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:18: error: resource string/label_connection_status (aka com.ptzcontroller:string/label_connection_status) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:69: error: resource string/label_zoom (aka com.ptzcontroller:string/label_zoom) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:79: error: resource string/btn_zoom_out (aka com.ptzcontroller:string/btn_zoom_out) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:101: error: resource string/btn_zoom_in (aka com.ptzcontroller:string/btn_zoom_in) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:112: error: resource string/label_camera_mode (aka com.ptzcontroller:string/label_camera_mode) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:130: error: resource string/btn_rgb_mode (aka com.ptzcontroller:string/btn_rgb_mode) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:136: error: resource string/btn_ir_mode (aka com.ptzcontroller:string/btn_ir_mode) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:158: error: resource string/label_presets (aka com.ptzcontroller:string/label_presets) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:174: error: resource string/label_preset_number (aka com.ptzcontroller:string/label_preset_number) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:192: error: resource string/btn_goto_preset (aka com.ptzcontroller:string/btn_goto_preset) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml:198: error: resource string/btn_save_preset (aka com.ptzcontroller:string/btn_save_preset) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:19: error: resource string/label_wifi (aka com.ptzcontroller:string/label_wifi) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:30: error: resource string/label_wifi_ip (aka com.ptzcontroller:string/label_wifi_ip) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:47: error: resource string/label_wifi_port (aka com.ptzcontroller:string/label_wifi_port) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:65: error: resource string/btn_wifi_connect (aka com.ptzcontroller:string/btn_wifi_connect) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:87: error: resource string/label_bluetooth (aka com.ptzcontroller:string/label_bluetooth) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:96: error: resource string/btn_enable_bluetooth (aka com.ptzcontroller:string/btn_enable_bluetooth) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:105: error: resource string/btn_scan_devices (aka com.ptzcontroller:string/btn_scan_devices) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:125: error: resource string/label_paired_devices (aka com.ptzcontroller:string/label_paired_devices) not found.
+     com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml:146: error: resource string/label_detected_devices (aka com.ptzcontroller:string/label_detected_devices) not found.
+
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':app:processReleaseResources'.
+> A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction
+   > Android resource linking failed
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:18: error: resource string/label_connection_status (aka com.ptzcontroller:string/label_connection_status) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:69: error: resource string/label_zoom (aka com.ptzcontroller:string/label_zoom) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:79: error: resource string/btn_zoom_out (aka com.ptzcontroller:string/btn_zoom_out) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:101: error: resource string/btn_zoom_in (aka com.ptzcontroller:string/btn_zoom_in) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:112: error: resource string/label_camera_mode (aka com.ptzcontroller:string/label_camera_mode) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:130: error: resource string/btn_rgb_mode (aka com.ptzcontroller:string/btn_rgb_mode) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:136: error: resource string/btn_ir_mode (aka com.ptzcontroller:string/btn_ir_mode) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:158: error: resource string/label_presets (aka com.ptzcontroller:string/label_presets) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:174: error: resource string/label_preset_number (aka com.ptzcontroller:string/label_preset_number) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:192: error: resource string/btn_goto_preset (aka com.ptzcontroller:string/btn_goto_preset) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_camera_control.xml:198: error: resource string/btn_save_preset (aka com.ptzcontroller:string/btn_save_preset) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_connection.xml:19: error: resource string/label_wifi (aka com.ptzcontroller:string/label_wifi) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_connection.xml:30: error: resource string/label_wifi_ip (aka com.ptzcontroller:string/label_wifi_ip) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_connection.xml:47: error: resource string/label_wifi_port (aka com.ptzcontroller:string/label_wifi_port) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_connection.xml:65: error: resource string/btn_wifi_connect (aka com.ptzcontroller:string/btn_wifi_connect) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_connection.xml:87: error: resource string/label_bluetooth (aka com.ptzcontroller:string/label_bluetooth) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_connection.xml:96: error: resource string/btn_enable_bluetooth (aka com.ptzcontroller:string/btn_enable_bluetooth) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_connection.xml:105: error: resource string/btn_scan_devices (aka com.ptzcontroller:string/btn_scan_devices) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_connection.xml:125: error: resource string/label_paired_devices (aka com.ptzcontroller:string/label_paired_devices) not found.
+     com.ptzcontroller.app-mergeReleaseResources-57:/layout/fragment_connection.xml:146: error: resource string/label_detected_devices (aka com.ptzcontroller:string/label_detected_devices) not found.
+
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+BUILD FAILED in 53s
+72 actionable tasks: 72 executed
+Configuration cache entry stored.
+(base) jbc-zeph21@MacBook-Air-5 ptz-camera-controller % ./gradlew clean build
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Reusing configuration cache.
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libbarhopper_v3.so, libimage_processing_util_jni.so.
+
+> Task :app:stripReleaseDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libbarhopper_v3.so, libimage_processing_util_jni.so.
+
+> Task :app:processDebugResources FAILED
+> Task :app:processReleaseResources FAILED
+
+FAILURE: Build completed with 2 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':app:processDebugResources'.
+> A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction
+   > Android resource linking failed
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:7: AAPT: error: resource string/nav_camera_control (aka com.ptzcontroller:string/nav_camera_control) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:12: AAPT: error: resource string/nav_video_stream (aka com.ptzcontroller:string/nav_video_stream) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:17: AAPT: error: resource string/nav_connection (aka com.ptzcontroller:string/nav_connection) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:22: AAPT: error: resource string/nav_settings (aka com.ptzcontroller:string/nav_settings) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_navigation_menu.xml:14: AAPT: error: resource string/menu_connection (aka com.ptzcontroller:string/menu_connection) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_navigation_menu.xml:18: AAPT: error: resource string/menu_settings (aka com.ptzcontroller:string/menu_settings) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:12: AAPT: error: resource string/nav_camera_control (aka com.ptzcontroller:string/nav_camera_control) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:18: AAPT: error: resource string/nav_video_stream (aka com.ptzcontroller:string/nav_video_stream) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:24: AAPT: error: resource string/nav_connection (aka com.ptzcontroller:string/nav_connection) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:30: AAPT: error: resource string/nav_settings (aka com.ptzcontroller:string/nav_settings) not found.
+         
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':app:processReleaseResources'.
+> A failure occurred while executing com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask$TaskAction
+   > Android resource linking failed
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:7: AAPT: error: resource string/nav_camera_control (aka com.ptzcontroller:string/nav_camera_control) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:12: AAPT: error: resource string/nav_video_stream (aka com.ptzcontroller:string/nav_video_stream) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:17: AAPT: error: resource string/nav_connection (aka com.ptzcontroller:string/nav_connection) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_nav_menu.xml:22: AAPT: error: resource string/nav_settings (aka com.ptzcontroller:string/nav_settings) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_navigation_menu.xml:14: AAPT: error: resource string/menu_connection (aka com.ptzcontroller:string/menu_connection) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_navigation_menu.xml:18: AAPT: error: resource string/menu_settings (aka com.ptzcontroller:string/menu_settings) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:12: AAPT: error: resource string/nav_camera_control (aka com.ptzcontroller:string/nav_camera_control) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:18: AAPT: error: resource string/nav_video_stream (aka com.ptzcontroller:string/nav_video_stream) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:24: AAPT: error: resource string/nav_connection (aka com.ptzcontroller:string/nav_connection) not found.
+         
+     ERROR: /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/navigation/mobile_navigation.xml:30: AAPT: error: resource string/nav_settings (aka com.ptzcontroller:string/nav_settings) not found.
+         
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+BUILD FAILED in 12s
+72 actionable tasks: 71 executed, 1 up-to-date
+Configuration cache entry reused.
+(base) jbc-zeph21@MacBook-Air-5 ptz-camera-controller % 
+
+
+
+
+
+
+
+
+
