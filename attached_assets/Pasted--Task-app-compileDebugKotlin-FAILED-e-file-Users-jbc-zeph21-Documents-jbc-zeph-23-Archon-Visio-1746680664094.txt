@@ -1,0 +1,52 @@
+> Task :app:compileDebugKotlin FAILED
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/CameraControlViewModel.kt:19:24 Unresolved reference: sendPanTiltCommand
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/CameraControlViewModel.kt:25:24 Unresolved reference: stopPanTilt
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/CameraControlViewModel.kt:49:38 Type mismatch: inferred type is Boolean but CameraMode was expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/CameraControlViewModel.kt:67:45 Unresolved reference: isConnected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:49:17 Unresolved reference: seekbarControlSensitivity
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:49:43 Variable expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:50:17 Unresolved reference: textControlSensitivityValue
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:50:45 Variable expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:52:17 Unresolved reference: seekbarControlSensitivity
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:54:25 Unresolved reference: textControlSensitivityValue
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:54:53 Variable expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:67:17 Unresolved reference: seekbarZoomSensitivity
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:67:40 Variable expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:68:17 Unresolved reference: textZoomSensitivityValue
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:68:42 Variable expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:70:17 Unresolved reference: seekbarZoomSensitivity
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:72:25 Unresolved reference: textZoomSensitivityValue
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:72:50 Variable expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:86:17 Unresolved reference: radioGroupStreamQuality
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:88:27 Unresolved reference: radioLowQuality
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:89:27 Unresolved reference: radioMediumQuality
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:90:27 Unresolved reference: radioHighQuality
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:91:30 Unresolved reference: radioMediumQuality
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:95:17 Unresolved reference: radioGroupStreamQuality
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:95:70 Cannot infer a type for this parameter. Please specify it explicitly.
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:95:73 Cannot infer a type for this parameter. Please specify it explicitly.
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:97:22 Unresolved reference: radioLowQuality
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:98:22 Unresolved reference: radioMediumQuality
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:99:22 Unresolved reference: radioHighQuality
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:111:17 Unresolved reference: switchDarkMode
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:111:32 Variable expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:112:17 Unresolved reference: switchDarkMode
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:112:61 Cannot infer a type for this parameter. Please specify it explicitly.
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:112:64 Cannot infer a type for this parameter. Please specify it explicitly.
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:124:17 Unresolved reference: switchKeepScreenOn
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:124:36 Variable expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:125:17 Unresolved reference: switchKeepScreenOn
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:125:65 Cannot infer a type for this parameter. Please specify it explicitly.
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:125:68 Cannot infer a type for this parameter. Please specify it explicitly.
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:137:17 Unresolved reference: switchHideControls
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:137:36 Variable expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:137:66 Unresolved reference: getHideControls
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:138:17 Unresolved reference: switchHideControls
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:138:65 Cannot infer a type for this parameter. Please specify it explicitly.
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:138:68 Cannot infer a type for this parameter. Please specify it explicitly.
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:139:31 Unresolved reference: setHideControls
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:149:17 Unresolved reference: textAppVersion
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:149:32 Variable expected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/viewmodels/VideoStreamViewModel.kt:46:50 Unresolved reference: isWiFiConnected
+e: file:///Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/viewmodels/VideoStreamViewModel.kt:62:44 Unresolved reference: getStreamUrl
+
