@@ -17,8 +17,8 @@ class BluetoothDeviceAdapter(
 ) : RecyclerView.Adapter<BluetoothDeviceAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val deviceName: TextView = view.findViewById(R.id.text_device_name)
-        val deviceAddress: TextView = view.findViewById(R.id.text_device_address)
+        val deviceName: TextView = view.findViewById(R.id.device_name)
+        val deviceAddress: TextView = view.findViewById(R.id.device_address)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
