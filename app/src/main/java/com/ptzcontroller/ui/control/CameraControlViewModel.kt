@@ -6,23 +6,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ptzcontroller.data.repository.CameraControlRepository
-import com.ptzcontroller.ui.control.CameraControlViewModel
 import kotlinx.coroutines.launch
 
 class CameraControlViewModel(private val repository: CameraControlRepository) : ViewModel() {
-
+    
     private val _isConnected = MutableLiveData<Boolean>()
     val isConnected: LiveData<Boolean> = _isConnected
 
     fun sendPanTiltCommand(panSpeed: Int, tiltSpeed: Int) {
         viewModelScope.launch {
-            repository.sendPanTiltCommand(panSpeed, tiltSpeed)
+            repository.controlPanTilt(panSpeed, tiltSpeed)
         }
     }
 
     fun stopPanTilt() {
         viewModelScope.launch {
-            repository.stopPanTilt()
+            repository.stopMovement()
         }
     }
 
@@ -46,7 +45,8 @@ class CameraControlViewModel(private val repository: CameraControlRepository) : 
 
     fun setCameraMode(isIRMode: Boolean) {
         viewModelScope.launch {
-            repository.setCameraMode(isIRMode)
+            val mode = if (isIRMode) CameraMode.IR else CameraMode.RGB
+            repository.setCameraMode(mode)
         }
     }
 
@@ -64,7 +64,7 @@ class CameraControlViewModel(private val repository: CameraControlRepository) : 
 
     fun checkConnectionStatus() {
         viewModelScope.launch {
-            _isConnected.value = repository.isConnected()
+            _isConnected.value = repository.checkConnection()
         }
     }
 }

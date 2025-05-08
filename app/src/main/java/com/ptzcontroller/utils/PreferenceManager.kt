@@ -31,6 +31,7 @@ class PreferenceManager(context: Context) {
         // UI preferences
         private const val KEY_KEEP_SCREEN_ON = "keep_screen_on"
         private const val KEY_DARK_MODE = "dark_mode"
+        private const val KEY_HIDE_CONTROLS = "hide_controls"
     }
     
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -150,6 +151,15 @@ class PreferenceManager(context: Context) {
     
     fun getDarkMode(): Boolean {
         return prefs.getBoolean(KEY_DARK_MODE, false)
+    }
+    
+    // Hide Controls
+    fun setHideControls(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_HIDE_CONTROLS, enabled).apply()
+    }
+    
+    fun getHideControls(): Boolean {
+        return prefs.getBoolean(KEY_HIDE_CONTROLS, false)
     }
     
     // Clear all preferences

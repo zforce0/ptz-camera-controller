@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.ptzcontroller.ui.viewmodels.VideoStreamViewModel
-import com.ptzcontroller.databinding.FragmentVideoStreamBinding
 import com.ptzcontroller.data.repository.ConnectionRepository
+import com.ptzcontroller.ui.viewmodels.VideoStreamViewModel
+import com.ptzcontroller.ui.viewmodels.VideoStreamViewModelFactory
+import com.ptzcontroller.databinding.FragmentVideoStreamBinding
+import com.ptzcontroller.utils.PreferenceManager
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.PlaybackException
@@ -20,7 +22,6 @@ import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.rtsp.RtspMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSource
-import com.ptzcontroller.utils.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -57,7 +58,8 @@ class VideoStreamFragment : Fragment() {
         val connectionRepository = ConnectionRepository(requireContext())
         
         // Create the ViewModel using the Factory
-        viewModel = VideoStreamViewModel(connectionRepository)
+        val factory = VideoStreamViewModelFactory(connectionRepository)
+        viewModel = ViewModelProvider(this, factory)[VideoStreamViewModel::class.java]
         
         // Set up UI
         setupStreamControls()
