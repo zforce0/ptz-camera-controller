@@ -4,58 +4,66 @@ package com.ptzcontroller.ui.control
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ptzcontroller.CameraControlRepository
-import com.ptzcontroller.CameraMode
+import androidx.lifecycle.viewModelScope
+import com.ptzcontroller.data.repository.ConnectionRepository
+import kotlinx.coroutines.launch
 
-class CameraControlViewModel(
-    private val repository: CameraControlRepository
-) : ViewModel() {
-    private val _connectionStatus = MutableLiveData<String>()
-    val connectionStatus: LiveData<String> = _connectionStatus
+class CameraControlViewModel(private val repository: ConnectionRepository) : ViewModel() {
+    
+    private val _isConnected = MutableLiveData<Boolean>()
+    val isConnected: LiveData<Boolean> = _isConnected
 
-    private val _zoomLevel = MutableLiveData<Int>()
-    val zoomLevel: LiveData<Int> = _zoomLevel
-
-    private val _cameraMode = MutableLiveData<CameraMode>()
-    val cameraMode: LiveData<CameraMode> = _cameraMode
-
-    fun handleJoystickMove(angle: Int, strength: Int) {
-        repository.sendPanTiltCommand(angle, strength)
+    fun sendPanTiltCommand(panSpeed: Int, tiltSpeed: Int) {
+        viewModelScope.launch {
+            repository.sendPanTiltCommand(panSpeed, tiltSpeed)
+        }
     }
 
-    fun handleJoystickRelease() {
-        repository.stopPanTilt()
+    fun stopPanTilt() {
+        viewModelScope.launch {
+            repository.stopPanTilt()
+        }
     }
 
     fun zoomIn() {
-        repository.zoomIn()
-        _zoomLevel.value = (_zoomLevel.value ?: 0) + 1
+        viewModelScope.launch {
+            repository.zoomIn()
+        }
     }
 
     fun zoomOut() {
-        repository.zoomOut()
-        _zoomLevel.value = (_zoomLevel.value ?: 0) - 1
+        viewModelScope.launch {
+            repository.zoomOut()
+        }
     }
 
-    fun setZoomLevel(level: Int) {
-        repository.setZoom(level)
-        _zoomLevel.value = level
+    fun setZoom(level: Int) {
+        viewModelScope.launch {
+            repository.setZoom(level)
+        }
     }
 
-    fun setCameraMode(mode: CameraMode) {
-        repository.setCameraMode(mode)
-        _cameraMode.value = mode
+    fun setCameraMode(isIRMode: Boolean) {
+        viewModelScope.launch {
+            repository.setCameraMode(isIRMode)
+        }
     }
 
-    fun savePreset(number: Int) {
-        repository.savePreset(number)
+    fun savePreset(presetNumber: Int) {
+        viewModelScope.launch {
+            repository.savePreset(presetNumber)
+        }
     }
 
-    fun gotoPreset(number: Int) {
-        repository.gotoPreset(number)
+    fun gotoPreset(presetNumber: Int) {
+        viewModelScope.launch {
+            repository.gotoPreset(presetNumber)
+        }
     }
 
     fun checkConnectionStatus() {
-        _connectionStatus.value = if (repository.isConnected()) "Connected" else "Disconnected"
+        viewModelScope.launch {
+            _isConnected.value = repository.isConnected()
+        }
     }
 }
