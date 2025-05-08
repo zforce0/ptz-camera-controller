@@ -15,9 +15,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ptzcontroller.R
 import com.ptzcontroller.data.model.BluetoothDeviceInfo
-import com.ptzcontroller.data.repository.ConnectionRepository
 import com.ptzcontroller.databinding.FragmentConnectionBinding
 import com.ptzcontroller.utils.PreferenceManager
+import com.ptzcontroller.data.repository.ConnectionRepository
 
 /**
  * Fragment for connecting to a camera

@@ -3,7 +3,7 @@ package com.ptzcontroller.data.repository
 import android.content.Context
 import com.ptzcontroller.data.network.NetworkClient
 import com.ptzcontroller.data.network.BluetoothClient
-import com.ptzcontroller.CameraMode
+import com.ptzcontroller.ui.control.CameraMode
 import com.ptzcontroller.utils.PreferenceManager
 import org.json.JSONObject
 import kotlinx.coroutines.Dispatchers

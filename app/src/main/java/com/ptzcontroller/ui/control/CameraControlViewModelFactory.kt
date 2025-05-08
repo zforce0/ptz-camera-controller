@@ -3,7 +3,7 @@ package com.ptzcontroller.ui.control
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ptzcontroller.CameraControlRepository
+import com.ptzcontroller.data.repository.CameraControlRepository
 
 class CameraControlViewModelFactory(
     private val repository: CameraControlRepository

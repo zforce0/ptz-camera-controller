@@ -8,9 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.ptzcontroller.data.model.BluetoothDeviceInfo
 import com.ptzcontroller.data.network.ServerStatus
-import com.ptzcontroller.data.repository.ConnectionRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import com.ptzcontroller.data.repository.ConnectionRepository
 
 /**
  * ViewModel for connection screen

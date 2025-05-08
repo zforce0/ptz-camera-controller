@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.ptzcontroller.R
 import com.ptzcontroller.databinding.FragmentSettingsBinding
+import com.ptzcontroller.ui.settings.SettingsFragment
 import com.ptzcontroller.utils.PreferenceManager
+import com.ptzcontroller.ui.viewmodels.VideoStreamViewModel
+import com.ptzcontroller.ui.control.CameraControlFragment
 
 class SettingsFragment : Fragment() {
 
