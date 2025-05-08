@@ -1,0 +1,86 @@
+2025-05-08 14:01:08.515 10042-10042 Process                 com.ptzcontroller                    I  Sending signal. PID: 10042 SIG: 9
+---------------------------- PROCESS ENDED (10042) for package com.ptzcontroller ----------------------------
+---------------------------- PROCESS STARTED (10155) for package com.ptzcontroller ----------------------------
+2025-05-08 14:19:40.740 10155-10155 ApplicationLoaders      com.ptzcontroller                    D  Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+2025-05-08 14:19:40.745 10155-10155 ApplicationLoaders      com.ptzcontroller                    D  Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+2025-05-08 14:19:42.045 10155-10155 nativeloader            com.ptzcontroller                    D  Configuring clns-9 for other apk /data/app/~~aaIAugBfvXGZUZs_5xDFLw==/com.ptzcontroller-HqCn_cKVQH5lA5zH5DWVyQ==/base.apk. target_sdk_version=35, uses_libraries=, library_path=/data/app/~~aaIAugBfvXGZUZs_5xDFLw==/com.ptzcontroller-HqCn_cKVQH5lA5zH5DWVyQ==/lib/arm64:/data/app/~~aaIAugBfvXGZUZs_5xDFLw==/com.ptzcontroller-HqCn_cKVQH5lA5zH5DWVyQ==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.ptzcontroller
+2025-05-08 14:19:42.049 10155-10155 CompatChangeReporter    com.ptzcontroller                    D  Compat change id reported: 202956589; UID 10212; state: ENABLED
+2025-05-08 14:19:42.053 10155-10155 m.ptzcontroller         com.ptzcontroller                    I  AssetManager2(0xb400007cf9e314f8) locale list changing from [] to [en-US]
+2025-05-08 14:19:42.056 10155-10155 m.ptzcontroller         com.ptzcontroller                    I  AssetManager2(0xb400007cf9e37f38) locale list changing from [] to [en-US]
+2025-05-08 14:19:42.063 10155-10155 GraphicsEnvironment     com.ptzcontroller                    V  Currently set values for:
+2025-05-08 14:19:42.063 10155-10155 GraphicsEnvironment     com.ptzcontroller                    V    angle_gl_driver_selection_pkgs=[]
+2025-05-08 14:19:42.063 10155-10155 GraphicsEnvironment     com.ptzcontroller                    V    angle_gl_driver_selection_values=[]
+2025-05-08 14:19:42.063 10155-10155 GraphicsEnvironment     com.ptzcontroller                    V  com.ptzcontroller is not listed in per-application setting
+2025-05-08 14:19:42.063 10155-10155 GraphicsEnvironment     com.ptzcontroller                    V  ANGLE allowlist from config: 
+2025-05-08 14:19:42.064 10155-10155 GraphicsEnvironment     com.ptzcontroller                    V  com.ptzcontroller is not listed in ANGLE allowlist or settings, returning default
+2025-05-08 14:19:42.064 10155-10155 GraphicsEnvironment     com.ptzcontroller                    V  Neither updatable production driver nor prerelease driver is supported.
+2025-05-08 14:19:42.067 10155-10155 ActivityThread          com.ptzcontroller                    W  Application com.ptzcontroller is suspending. Debugger needs to resume to continue.
+2025-05-08 14:19:42.069 10155-10155 System.out              com.ptzcontroller                    I  Sending WAIT chunk
+2025-05-08 14:19:42.070 10155-10155 System.out              com.ptzcontroller                    I  Waiting for debugger first packet
+2025-05-08 14:19:42.120 10155-10161 nativeloader            com.ptzcontroller                    D  Load libjdwp.so using system ns (caller=<unknown>): ok
+2025-05-08 14:19:42.185 10155-10161 m.ptzcontroller         com.ptzcontroller                    W  Suspending all threads took: 40.252ms
+2025-05-08 14:19:42.463 10155-10155 System.out              com.ptzcontroller                    I  Debug.suspendAllAndSentVmStart
+2025-05-08 14:19:42.929 10155-10155 System.out              com.ptzcontroller                    I  Debug.suspendAllAndSendVmStart, resumed
+2025-05-08 14:19:43.113 10155-10155 CompatChangeReporter    com.ptzcontroller                    D  Compat change id reported: 279646685; UID 10212; state: ENABLED
+2025-05-08 14:19:43.189 10155-10220 DisplayManager          com.ptzcontroller                    I  Choreographer implicitly registered for the refresh rate.
+2025-05-08 14:19:43.194 10155-10155 m.ptzcontroller         com.ptzcontroller                    I  AssetManager2(0xb400007cf9e35058) locale list changing from [] to [en-US]
+2025-05-08 14:19:43.403 10155-10155 AppCompatDelegate       com.ptzcontroller                    D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
+2025-05-08 14:19:43.404 10155-10155 m.ptzcontroller         com.ptzcontroller                    I  AssetManager2(0xb400007cf9e36318) locale list changing from [] to [en-US]
+2025-05-08 14:19:43.416 10155-10155 ashmem                  com.ptzcontroller                    E  Pinning is deprecated since Android Q. Please use trim or other methods.
+2025-05-08 14:19:43.576 10155-10220 EGL_emulation           com.ptzcontroller                    I  Opening libGLESv1_CM_emulation.so
+2025-05-08 14:19:43.577 10155-10220 EGL_emulation           com.ptzcontroller                    I  Opening libGLESv2_emulation.so
+2025-05-08 14:19:43.601 10155-10220 HWUI                    com.ptzcontroller                    W  Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+2025-05-08 14:19:43.604 10155-10220 HWUI                    com.ptzcontroller                    W  Failed to initialize 101010-2 format, error = EGL_SUCCESS
+2025-05-08 14:19:43.608 10155-10155 CompatChangeReporter    com.ptzcontroller                    D  Compat change id reported: 63938206; UID 10212; state: ENABLED
+2025-05-08 14:19:43.622 10155-10155 m.ptzcontroller         com.ptzcontroller                    I  hiddenapi: Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (runtime_flags=0, domain=platform, api=unsupported) from Landroidx/appcompat/widget/ViewUtils; (domain=app) using reflection: allowed
+2025-05-08 14:19:43.883 10155-10155 CompatChangeReporter    com.ptzcontroller                    D  Compat change id reported: 309578419; UID 10212; state: ENABLED
+2025-05-08 14:19:43.886 10155-10155 DesktopModeFlags        com.ptzcontroller                    D  Toggle override initialized to: OVERRIDE_UNSET
+2025-05-08 14:19:43.911 10155-10155 m.ptzcontroller         com.ptzcontroller                    I  hiddenapi: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (runtime_flags=0, domain=platform, api=unsupported) from Landroidx/appcompat/widget/ViewUtils; (domain=app) using reflection: allowed
+2025-05-08 14:19:43.924 10155-10155 TransactionExecutor     com.ptzcontroller                    E  Failed to execute the transaction: tId:-2101771785 ClientTransaction{
+                                                                                                    tId:-2101771785   transactionItems=[
+                                                                                                    tId:-2101771785     LaunchActivityItem{activityToken=android.os.BinderProxy@74b32e6,intent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 xflg=0x4 cmp=com.ptzcontroller/.MainActivity },ident=205340439,info=ActivityInfo{31b34f2 com.ptzcontroller.MainActivity},curConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w914dp h411dp 420dpi nrml long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 2400, 1080) mAppBounds=Rect(0, 0 - 2400, 1080) mMaxBounds=Rect(0, 0 - 2400, 1080) mDisplayRotation=ROTATION_90 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_90} as.2 s.1850 fontWeightAdjustment=0},overrideConfig={1.0 310mcc260mnc [en_US] ldltr sw411dp w914dp h411dp 420dpi nrml long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 2400, 1080) mAppBounds=Rect(0, 0 - 2400, 1080) mMaxBounds=Rect(0, 0 - 2400, 1080) mDisplayRotation=ROTATION_90 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_90} as.2 s.4 fontWeightAdjustment=0},deviceId=0,referrer=com.android.shell,procState=2,state=null,persistentState=null,pendingResults=null,pendingNewIntents=null,sceneTransitionInfo=null,profilerInfo=null,assistToken=android.os.BinderProxy@b4807a7,shareableActivityToken=android.os.BinderProxy@22a5454,activityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 2400, 1080), taskFragmentBounds=Rect(0, 0 - 2400, 1080)}}
+                                                                                                    tId:-2101771785     ResumeActivityItem{mActivityToken=android.os.BinderProxy@74b32e6,procState=-1,isForward=true,shouldSendCompatFakeFocus=false}
+                                                                                                    tId:-2101771785     Target activity: com.ptzcontroller.MainActivity
+                                                                                                    tId:-2101771785   ]
+                                                                                                    tId:-2101771785 }
+2025-05-08 14:19:43.929 10155-10155 AndroidRuntime          com.ptzcontroller                    D  Shutting down VM
+2025-05-08 14:19:43.937 10155-10155 AndroidRuntime          com.ptzcontroller                    E  FATAL EXCEPTION: main
+                                                                                                    Process: com.ptzcontroller, PID: 10155
+                                                                                                    java.lang.RuntimeException: Unable to start activity ComponentInfo{com.ptzcontroller/com.ptzcontroller.MainActivity}: java.lang.IllegalStateException: Activity com.ptzcontroller.MainActivity@bc6c7b3 does not have a NavController set on 2131362192
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:4280)
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4467)
+                                                                                                    	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:222)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeNonLifecycleItem(TransactionExecutor.java:133)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeTransactionItems(TransactionExecutor.java:103)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:80)
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2823)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:110)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:248)
+                                                                                                    	at android.os.Looper.loop(Looper.java:338)
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:9067)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)
+                                                                                                    Caused by: java.lang.IllegalStateException: Activity com.ptzcontroller.MainActivity@bc6c7b3 does not have a NavController set on 2131362192
+                                                                                                    	at androidx.navigation.Navigation.findNavController(Navigation.kt:50)
+                                                                                                    	at androidx.navigation.ActivityKt.findNavController(Activity.kt:31)
+                                                                                                    	at com.ptzcontroller.MainActivity.onCreate(MainActivity.kt:52)
+                                                                                                    	at android.app.Activity.performCreate(Activity.java:9155)
+                                                                                                    	at android.app.Activity.performCreate(Activity.java:9133)
+                                                                                                    	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1521)
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:4262)
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4467) 
+                                                                                                    	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:222) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeNonLifecycleItem(TransactionExecutor.java:133) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeTransactionItems(TransactionExecutor.java:103) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:80) 
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2823) 
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:110) 
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:248) 
+                                                                                                    	at android.os.Looper.loop(Looper.java:338) 
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:9067) 
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method) 
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593) 
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932) 
+2025-05-08 14:19:43.993 10155-10155 Process                 com.ptzcontroller                    I  Sending signal. PID: 10155 SIG: 9
+---------------------------- PROCESS ENDED (10155) for package com.ptzcontroller ----------------------------

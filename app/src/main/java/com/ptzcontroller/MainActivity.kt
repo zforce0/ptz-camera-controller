@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -49,7 +49,10 @@ class MainActivity : AppCompatActivity() {
 
         // Set up the navigation
         val navView: BottomNavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment)
+        
+        // Get the NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
