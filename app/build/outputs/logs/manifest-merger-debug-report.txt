@@ -1,0 +1,680 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:2:1-50:12
+INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:2:1-50:12
+INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:2:1-50:12
+INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:2:1-50:12
+MERGED from [androidx.databinding:viewbinding:8.9.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/d4d2034aa14184b4b21742bcd46a97f8/transformed/viewbinding-8.9.2/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-common:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3d4b042317e9c4943077b9bb3fd2bf47/transformed/navigation-common-2.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b00a178de309a5de4aeb323baad15738/transformed/navigation-common-ktx-2.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e02918c0919bd03d566bc296dd463d87/transformed/navigation-runtime-2.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3a9d1de0b6139f7ec83064ee8c86a2f9/transformed/navigation-runtime-ktx-2.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-fragment:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/20f7a3a0ca8bc409cd608257f5788b43/transformed/navigation-fragment-2.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-fragment-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/1a497076cf3db4693df73173d0b2ef1a/transformed/navigation-fragment-ktx-2.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-ui-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/8b184f744d53e63a9363ee29fc9d8750/transformed/navigation-ui-ktx-2.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-ui:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/57ae8c0c512cb9917c671738ac90559e/transformed/navigation-ui-2.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.material:material:1.11.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9387850ac48dbe0a844f407b5557acb7/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/4be141c16c5e88c0c9e1cb5e300905b8/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.camera:camera-view:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e8f0ecb0d1252d97f254c2a817cef527/transformed/camera-view-1.2.3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/917ec809fdd8fa00fbcb4d99a884a0ce/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b04c451f9196e2760b06b7a2fa1dfd84/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.camera:camera-lifecycle:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/14f9657ad40f95f662ef7e55e7b9fc03/transformed/camera-lifecycle-1.2.3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/8bce7c2152681d8d536ddd3de3aa7680/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ac27004996a8e299133a03c34bdf1f56/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.mlkit:barcode-scanning:17.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a2c1019763d90e0a20777ccb5df3a7c7/transformed/barcode-scanning-17.2.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:2:1-18:12
+MERGED from [com.google.mlkit:barcode-scanning-common:17.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/47e74bdf7b81b9f866b2e8a513206119/transformed/barcode-scanning-common-17.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:2:1-18:12
+MERGED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:2:1-26:12
+MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:16:1-24:12
+MERGED from [com.google.mlkit:vision-interfaces:16.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/05a58210599f3edc5a0b5876ed08ba5d/transformed/vision-interfaces-16.2.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-tasks:18.0.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/347494732f4433ad20e372671e7960fb/transformed/play-services-tasks-18.0.2/AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:16:1-26:12
+MERGED from [androidx.fragment:fragment-ktx:1.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/56880e38969d9fd83b4c9707fd4bc491/transformed/fragment-ktx-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e7308748b0a03f8d4f1c28b4d4863279/transformed/fragment-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-ktx:1.8.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/299b3ab8513ca3fc67ba9e5d866eae64/transformed/activity-ktx-1.8.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity:1.8.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/bad4ccc1ab896e1a8146b7207d9fc698/transformed/activity-1.8.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/19d44f2295772c191b562820afe11c1a/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/1bc5d339c6cfe8fd1632fcc100892995/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e5ce402679cc49b7aa61866504cfb8cc/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a75eb84da0a7dbce8cbf420796c2de0f/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6947fe14cc898c6b5c053f2ebb0556d6/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.camera:camera-core:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/98b28803706bb05052f1da7ffd7f25b7/transformed/camera-core-1.2.3/AndroidManifest.xml:17:1-36:12
+MERGED from [com.google.android.exoplayer:exoplayer:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/062c77f8b35066972a3f0cd15991205b/transformed/exoplayer-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-rtsp:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f34257ff3f7e1858523dec9d84049f8b/transformed/exoplayer-rtsp-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c989206313d6cba0f44f7193cc2065a5/transformed/exoplayer-dash-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b8e272263b666a7e9ea506b6374f4751/transformed/exoplayer-hls-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8b7d30c361901c88230cb6fd1c18e8/transformed/exoplayer-smoothstreaming-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f5faf6b76520aab743c54d24bec0462d/transformed/exoplayer-core-2.19.1/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e60256d9b6063f0d183fdf7401ea5ec7/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/fa00f9dd6fcf598f00858760a988e80e/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/8b4a85be38f92ef0f152417cf2b4f5a2/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-ui:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/2ce215029b0291d50ee125e0797cefb8/transformed/exoplayer-ui-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/0430d22ecebcfbcf7c50930284add474/transformed/recyclerview-1.3.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/95d6a6a2076299ff410f152ff0308347/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/fddda74113405eb45026b93bf3cafdb9/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f9e27495543a961928085feb52d5a38d/transformed/media-1.6.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.4.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/79e01e5ec58969019dffaffe0fbc2178/transformed/transition-1.4.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/d997b2eb18176cbb1bea19a488f43705/transformed/lifecycle-runtime-ktx-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ffb342ad3ec2b20615fb5d86c09e9f13/transformed/lifecycle-livedata-core-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/bb1d1e42d5aa17b667a5e7d441d71c05/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c4a280c67291e29c97a291a375570ee9/transformed/savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3bd301a6c30b7079f43827a631878ff8/transformed/lifecycle-livedata-core-ktx-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e4eded6dd13c0e7d426be4ee6af82e30/transformed/lifecycle-livedata-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/2e438bbf94a965d4d21cc9bc33a8270b/transformed/lifecycle-runtime-2.6.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/2b5624960c19973411312b22fae01c59/transformed/lifecycle-viewmodel-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/0f5f7e132ffc319c419a2a5521e3d560/transformed/lifecycle-viewmodel-ktx-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/67f4a53bdc16a7092e5f1941cad791b9/transformed/lifecycle-livedata-ktx-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/7cc46275f30d6cb285ef3ee784e72923/transformed/lifecycle-viewmodel-savedstate-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b347127e6badb429dd31be13a59442c7/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c9fa221065bce818db3de927c1a7ddf4/transformed/core-ktx-1.12.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/08ad9b53ecf5827aa2cf85f611b3cf23/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/d52e3ffc3a6328818e39e3060a0b3fa8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/7bb2251a2d6bc8f5b3ba5f03f56d45b8/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b3eff44214c141938a22938493951ce9/transformed/exoplayer-datasource-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f35a0c4471c8b9a1b5b27dc4943b0b40/transformed/exoplayer-database-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/087d1bce5ab5fadc9655c74354fe0784/transformed/exoplayer-extractor-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/055b3033258215755d66e349a1c5cc17/transformed/exoplayer-decoder-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-container:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/dfb636ce697fe348486284b2cf6d8ed1/transformed/exoplayer-container-2.19.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/815d69fc63ab6a0a6bc0fe7b913781bb/transformed/exoplayer-common-2.19.1/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3d0e519b66ad699bcfa1c2f0f6bfb249/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/591749603c531e93ab496f2816979fcc/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/5c06fefe752f0b2c7c6b6ed18f1205eb/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e6e24ee7594287b95be3ac2c258c5d91/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c4442758edae5ac8931b14963375ea22/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ca997987ce2b918331467cfa1acf25fd/transformed/exifinterface-1.3.2/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:15:1-38:12
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:15:1-41:12
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/06a3b28e01d4d80c1b54ef2de5d9ac52/transformed/transport-api-2.2.1/AndroidManifest.xml:15:1-22:12
+MERGED from [com.google.firebase:firebase-components:16.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/517b7a4c2cf9a7aa3402e83cea8debb1/transformed/firebase-components-16.1.0/AndroidManifest.xml:15:1-23:12
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/7f92f391226f4a153578bdb10881c4d1/transformed/firebase-encoders-json-17.1.0/AndroidManifest.xml:15:1-23:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b79a63ed6da30d2801058c820baf242b/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6c49e8c8262a7218966b0c12bf5cbceb/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c930a82efdf4916a8c7f4ee19694b9cb/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/155e167deaa9dcccb6a2b02e8692a523/transformed/image-1.0.0-beta1/AndroidManifest.xml:2:1-9:12
+	package
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:4:5-32
+		INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:6:5-67
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:26:5-67
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:26:5-67
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:6:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:7:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f5faf6b76520aab743c54d24bec0462d/transformed/exoplayer-core-2.19.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f5faf6b76520aab743c54d24bec0462d/transformed/exoplayer-core-2.19.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/815d69fc63ab6a0a6bc0fe7b913781bb/transformed/exoplayer-common-2.19.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/815d69fc63ab6a0a6bc0fe7b913781bb/transformed/exoplayer-common-2.19.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:22:5-79
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:7:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:8:5-76
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:8:22-73
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:9:5-76
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:9:22-73
+uses-permission#android.permission.BLUETOOTH
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:11:5-12:38
+	android:maxSdkVersion
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:12:9-35
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:11:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:13:5-14:38
+	android:maxSdkVersion
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:14:9-35
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:13:22-71
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:15:5-17:31
+	android:usesPermissionFlags
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:16:9-55
+	tools:targetApi
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:17:9-28
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:15:22-70
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:18:5-76
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:18:22-73
+uses-permission#android.permission.CAMERA
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:20:5-65
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:20:22-62
+uses-feature#android.hardware.camera
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:22:5-84
+	android:required
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:22:58-81
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:22:19-57
+uses-feature#android.hardware.camera.autofocus
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:23:5-95
+	android:required
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:23:68-92
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:23:19-67
+uses-feature#android.hardware.bluetooth
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:24:5-87
+	android:required
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:24:61-84
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:24:19-60
+uses-feature#android.hardware.touchscreen
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:25:5-89
+	android:required
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:25:63-86
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:25:19-62
+uses-feature#android.hardware.wifi
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:26:5-82
+	android:required
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:26:56-79
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:26:19-55
+application
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:29:5-49:19
+INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:29:5-49:19
+MERGED from [com.google.android.material:material:1.11.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9387850ac48dbe0a844f407b5557acb7/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.11.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9387850ac48dbe0a844f407b5557acb7/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/4be141c16c5e88c0c9e1cb5e300905b8/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/4be141c16c5e88c0c9e1cb5e300905b8/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:8:5-24:19
+MERGED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:8:5-24:19
+MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-tasks:18.0.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/347494732f4433ad20e372671e7960fb/transformed/play-services-tasks-18.0.2/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.0.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/347494732f4433ad20e372671e7960fb/transformed/play-services-tasks-18.0.2/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:20:5-24:19
+MERGED from [androidx.camera:camera-core:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/98b28803706bb05052f1da7ffd7f25b7/transformed/camera-core-1.2.3/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-core:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/98b28803706bb05052f1da7ffd7f25b7/transformed/camera-core-1.2.3/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/591749603c531e93ab496f2816979fcc/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/591749603c531e93ab496f2816979fcc/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/5c06fefe752f0b2c7c6b6ed18f1205eb/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/5c06fefe752f0b2c7c6b6ed18f1205eb/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:25:5-39:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:25:5-39:19
+MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/155e167deaa9dcccb6a2b02e8692a523/transformed/image-1.0.0-beta1/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/155e167deaa9dcccb6a2b02e8692a523/transformed/image-1.0.0-beta1/AndroidManifest.xml:7:5-20
+	android:extractNativeLibs
+		INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:34:9-35
+	android:label
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:32:9-41
+	android:roundIcon
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:33:9-54
+	tools:targetApi
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:37:9-29
+	android:icon
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:31:9-43
+	android:allowBackup
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:30:9-35
+	android:theme
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:35:9-57
+	android:usesCleartextTraffic
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:36:9-44
+activity#com.ptzcontroller.ui.MainActivity
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:39:9-48:20
+	android:screenOrientation
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:43:13-50
+	android:exported
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:41:13-36
+	android:configChanges
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:42:13-87
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:40:13-44
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:44:13-47:29
+action#android.intent.action.MAIN
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:45:17-69
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:45:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:46:17-77
+	android:name
+		ADDED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:46:27-74
+uses-sdk
+INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml
+INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml
+MERGED from [androidx.databinding:viewbinding:8.9.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/d4d2034aa14184b4b21742bcd46a97f8/transformed/viewbinding-8.9.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.databinding:viewbinding:8.9.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/d4d2034aa14184b4b21742bcd46a97f8/transformed/viewbinding-8.9.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-common:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3d4b042317e9c4943077b9bb3fd2bf47/transformed/navigation-common-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3d4b042317e9c4943077b9bb3fd2bf47/transformed/navigation-common-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b00a178de309a5de4aeb323baad15738/transformed/navigation-common-ktx-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b00a178de309a5de4aeb323baad15738/transformed/navigation-common-ktx-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e02918c0919bd03d566bc296dd463d87/transformed/navigation-runtime-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e02918c0919bd03d566bc296dd463d87/transformed/navigation-runtime-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3a9d1de0b6139f7ec83064ee8c86a2f9/transformed/navigation-runtime-ktx-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3a9d1de0b6139f7ec83064ee8c86a2f9/transformed/navigation-runtime-ktx-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/20f7a3a0ca8bc409cd608257f5788b43/transformed/navigation-fragment-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/20f7a3a0ca8bc409cd608257f5788b43/transformed/navigation-fragment-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/1a497076cf3db4693df73173d0b2ef1a/transformed/navigation-fragment-ktx-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/1a497076cf3db4693df73173d0b2ef1a/transformed/navigation-fragment-ktx-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-ui-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/8b184f744d53e63a9363ee29fc9d8750/transformed/navigation-ui-ktx-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-ui-ktx:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/8b184f744d53e63a9363ee29fc9d8750/transformed/navigation-ui-ktx-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-ui:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/57ae8c0c512cb9917c671738ac90559e/transformed/navigation-ui-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-ui:2.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/57ae8c0c512cb9917c671738ac90559e/transformed/navigation-ui-2.6.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.11.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9387850ac48dbe0a844f407b5557acb7/transformed/material-1.11.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.11.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9387850ac48dbe0a844f407b5557acb7/transformed/material-1.11.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/4be141c16c5e88c0c9e1cb5e300905b8/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/4be141c16c5e88c0c9e1cb5e300905b8/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.camera:camera-view:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e8f0ecb0d1252d97f254c2a817cef527/transformed/camera-view-1.2.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.camera:camera-view:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e8f0ecb0d1252d97f254c2a817cef527/transformed/camera-view-1.2.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/917ec809fdd8fa00fbcb4d99a884a0ce/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/917ec809fdd8fa00fbcb4d99a884a0ce/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b04c451f9196e2760b06b7a2fa1dfd84/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b04c451f9196e2760b06b7a2fa1dfd84/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-lifecycle:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/14f9657ad40f95f662ef7e55e7b9fc03/transformed/camera-lifecycle-1.2.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.camera:camera-lifecycle:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/14f9657ad40f95f662ef7e55e7b9fc03/transformed/camera-lifecycle-1.2.3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/8bce7c2152681d8d536ddd3de3aa7680/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/8bce7c2152681d8d536ddd3de3aa7680/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ac27004996a8e299133a03c34bdf1f56/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ac27004996a8e299133a03c34bdf1f56/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.mlkit:barcode-scanning:17.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a2c1019763d90e0a20777ccb5df3a7c7/transformed/barcode-scanning-17.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:barcode-scanning:17.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a2c1019763d90e0a20777ccb5df3a7c7/transformed/barcode-scanning-17.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:6:5-44
+MERGED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:barcode-scanning-common:17.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/47e74bdf7b81b9f866b2e8a513206119/transformed/barcode-scanning-common-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:barcode-scanning-common:17.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/47e74bdf7b81b9f866b2e8a513206119/transformed/barcode-scanning-common-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:6:5-44
+MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.mlkit:vision-interfaces:16.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/05a58210599f3edc5a0b5876ed08ba5d/transformed/vision-interfaces-16.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:vision-interfaces:16.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/05a58210599f3edc5a0b5876ed08ba5d/transformed/vision-interfaces-16.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.0.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/347494732f4433ad20e372671e7960fb/transformed/play-services-tasks-18.0.2/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.0.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/347494732f4433ad20e372671e7960fb/transformed/play-services-tasks-18.0.2/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:18:5-43
+MERGED from [androidx.fragment:fragment-ktx:1.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/56880e38969d9fd83b4c9707fd4bc491/transformed/fragment-ktx-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment-ktx:1.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/56880e38969d9fd83b4c9707fd4bc491/transformed/fragment-ktx-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e7308748b0a03f8d4f1c28b4d4863279/transformed/fragment-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e7308748b0a03f8d4f1c28b4d4863279/transformed/fragment-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/299b3ab8513ca3fc67ba9e5d866eae64/transformed/activity-ktx-1.8.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/299b3ab8513ca3fc67ba9e5d866eae64/transformed/activity-ktx-1.8.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity:1.8.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/bad4ccc1ab896e1a8146b7207d9fc698/transformed/activity-1.8.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/bad4ccc1ab896e1a8146b7207d9fc698/transformed/activity-1.8.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/19d44f2295772c191b562820afe11c1a/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/19d44f2295772c191b562820afe11c1a/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/1bc5d339c6cfe8fd1632fcc100892995/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/1bc5d339c6cfe8fd1632fcc100892995/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e5ce402679cc49b7aa61866504cfb8cc/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e5ce402679cc49b7aa61866504cfb8cc/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a75eb84da0a7dbce8cbf420796c2de0f/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a75eb84da0a7dbce8cbf420796c2de0f/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6947fe14cc898c6b5c053f2ebb0556d6/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6947fe14cc898c6b5c053f2ebb0556d6/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-core:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/98b28803706bb05052f1da7ffd7f25b7/transformed/camera-core-1.2.3/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-core:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/98b28803706bb05052f1da7ffd7f25b7/transformed/camera-core-1.2.3/AndroidManifest.xml:21:5-44
+MERGED from [com.google.android.exoplayer:exoplayer:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/062c77f8b35066972a3f0cd15991205b/transformed/exoplayer-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/062c77f8b35066972a3f0cd15991205b/transformed/exoplayer-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-rtsp:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f34257ff3f7e1858523dec9d84049f8b/transformed/exoplayer-rtsp-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-rtsp:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f34257ff3f7e1858523dec9d84049f8b/transformed/exoplayer-rtsp-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c989206313d6cba0f44f7193cc2065a5/transformed/exoplayer-dash-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c989206313d6cba0f44f7193cc2065a5/transformed/exoplayer-dash-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b8e272263b666a7e9ea506b6374f4751/transformed/exoplayer-hls-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b8e272263b666a7e9ea506b6374f4751/transformed/exoplayer-hls-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8b7d30c361901c88230cb6fd1c18e8/transformed/exoplayer-smoothstreaming-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8b7d30c361901c88230cb6fd1c18e8/transformed/exoplayer-smoothstreaming-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f5faf6b76520aab743c54d24bec0462d/transformed/exoplayer-core-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f5faf6b76520aab743c54d24bec0462d/transformed/exoplayer-core-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e60256d9b6063f0d183fdf7401ea5ec7/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e60256d9b6063f0d183fdf7401ea5ec7/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/fa00f9dd6fcf598f00858760a988e80e/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/fa00f9dd6fcf598f00858760a988e80e/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/8b4a85be38f92ef0f152417cf2b4f5a2/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/8b4a85be38f92ef0f152417cf2b4f5a2/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-ui:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/2ce215029b0291d50ee125e0797cefb8/transformed/exoplayer-ui-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-ui:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/2ce215029b0291d50ee125e0797cefb8/transformed/exoplayer-ui-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/0430d22ecebcfbcf7c50930284add474/transformed/recyclerview-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/0430d22ecebcfbcf7c50930284add474/transformed/recyclerview-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/95d6a6a2076299ff410f152ff0308347/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/95d6a6a2076299ff410f152ff0308347/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/fddda74113405eb45026b93bf3cafdb9/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/fddda74113405eb45026b93bf3cafdb9/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f9e27495543a961928085feb52d5a38d/transformed/media-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.6.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f9e27495543a961928085feb52d5a38d/transformed/media-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.4.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/79e01e5ec58969019dffaffe0fbc2178/transformed/transition-1.4.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.4.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/79e01e5ec58969019dffaffe0fbc2178/transformed/transition-1.4.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/d997b2eb18176cbb1bea19a488f43705/transformed/lifecycle-runtime-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/d997b2eb18176cbb1bea19a488f43705/transformed/lifecycle-runtime-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ffb342ad3ec2b20615fb5d86c09e9f13/transformed/lifecycle-livedata-core-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ffb342ad3ec2b20615fb5d86c09e9f13/transformed/lifecycle-livedata-core-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/bb1d1e42d5aa17b667a5e7d441d71c05/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/bb1d1e42d5aa17b667a5e7d441d71c05/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c4a280c67291e29c97a291a375570ee9/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c4a280c67291e29c97a291a375570ee9/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3bd301a6c30b7079f43827a631878ff8/transformed/lifecycle-livedata-core-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3bd301a6c30b7079f43827a631878ff8/transformed/lifecycle-livedata-core-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e4eded6dd13c0e7d426be4ee6af82e30/transformed/lifecycle-livedata-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e4eded6dd13c0e7d426be4ee6af82e30/transformed/lifecycle-livedata-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/2e438bbf94a965d4d21cc9bc33a8270b/transformed/lifecycle-runtime-2.6.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/2e438bbf94a965d4d21cc9bc33a8270b/transformed/lifecycle-runtime-2.6.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/2b5624960c19973411312b22fae01c59/transformed/lifecycle-viewmodel-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/2b5624960c19973411312b22fae01c59/transformed/lifecycle-viewmodel-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/0f5f7e132ffc319c419a2a5521e3d560/transformed/lifecycle-viewmodel-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/0f5f7e132ffc319c419a2a5521e3d560/transformed/lifecycle-viewmodel-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/67f4a53bdc16a7092e5f1941cad791b9/transformed/lifecycle-livedata-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/67f4a53bdc16a7092e5f1941cad791b9/transformed/lifecycle-livedata-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/7cc46275f30d6cb285ef3ee784e72923/transformed/lifecycle-viewmodel-savedstate-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/7cc46275f30d6cb285ef3ee784e72923/transformed/lifecycle-viewmodel-savedstate-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b347127e6badb429dd31be13a59442c7/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b347127e6badb429dd31be13a59442c7/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c9fa221065bce818db3de927c1a7ddf4/transformed/core-ktx-1.12.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c9fa221065bce818db3de927c1a7ddf4/transformed/core-ktx-1.12.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/08ad9b53ecf5827aa2cf85f611b3cf23/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/08ad9b53ecf5827aa2cf85f611b3cf23/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/d52e3ffc3a6328818e39e3060a0b3fa8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/d52e3ffc3a6328818e39e3060a0b3fa8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/7bb2251a2d6bc8f5b3ba5f03f56d45b8/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/7bb2251a2d6bc8f5b3ba5f03f56d45b8/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b3eff44214c141938a22938493951ce9/transformed/exoplayer-datasource-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-datasource:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b3eff44214c141938a22938493951ce9/transformed/exoplayer-datasource-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f35a0c4471c8b9a1b5b27dc4943b0b40/transformed/exoplayer-database-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-database:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f35a0c4471c8b9a1b5b27dc4943b0b40/transformed/exoplayer-database-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/087d1bce5ab5fadc9655c74354fe0784/transformed/exoplayer-extractor-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/087d1bce5ab5fadc9655c74354fe0784/transformed/exoplayer-extractor-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/055b3033258215755d66e349a1c5cc17/transformed/exoplayer-decoder-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-decoder:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/055b3033258215755d66e349a1c5cc17/transformed/exoplayer-decoder-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-container:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/dfb636ce697fe348486284b2cf6d8ed1/transformed/exoplayer-container-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-container:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/dfb636ce697fe348486284b2cf6d8ed1/transformed/exoplayer-container-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/815d69fc63ab6a0a6bc0fe7b913781bb/transformed/exoplayer-common-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.19.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/815d69fc63ab6a0a6bc0fe7b913781bb/transformed/exoplayer-common-2.19.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3d0e519b66ad699bcfa1c2f0f6bfb249/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/3d0e519b66ad699bcfa1c2f0f6bfb249/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/591749603c531e93ab496f2816979fcc/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/591749603c531e93ab496f2816979fcc/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/5c06fefe752f0b2c7c6b6ed18f1205eb/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/5c06fefe752f0b2c7c6b6ed18f1205eb/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e6e24ee7594287b95be3ac2c258c5d91/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/e6e24ee7594287b95be3ac2c258c5d91/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c4442758edae5ac8931b14963375ea22/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c4442758edae5ac8931b14963375ea22/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ca997987ce2b918331467cfa1acf25fd/transformed/exifinterface-1.3.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ca997987ce2b918331467cfa1acf25fd/transformed/exifinterface-1.3.2/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/06a3b28e01d4d80c1b54ef2de5d9ac52/transformed/transport-api-2.2.1/AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/06a3b28e01d4d80c1b54ef2de5d9ac52/transformed/transport-api-2.2.1/AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.firebase:firebase-components:16.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/517b7a4c2cf9a7aa3402e83cea8debb1/transformed/firebase-components-16.1.0/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:16.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/517b7a4c2cf9a7aa3402e83cea8debb1/transformed/firebase-components-16.1.0/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/7f92f391226f4a153578bdb10881c4d1/transformed/firebase-encoders-json-17.1.0/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/7f92f391226f4a153578bdb10881c4d1/transformed/firebase-encoders-json-17.1.0/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b79a63ed6da30d2801058c820baf242b/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/b79a63ed6da30d2801058c820baf242b/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6c49e8c8262a7218966b0c12bf5cbceb/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6c49e8c8262a7218966b0c12bf5cbceb/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c930a82efdf4916a8c7f4ee19694b9cb/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c930a82efdf4916a8c7f4ee19694b9cb/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/155e167deaa9dcccb6a2b02e8692a523/transformed/image-1.0.0-beta1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.odml:image:1.0.0-beta1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/155e167deaa9dcccb6a2b02e8692a523/transformed/image-1.0.0-beta1/AndroidManifest.xml:5:5-44
+	android:targetSdkVersion
+		INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml
+service#androidx.camera.core.impl.MetadataHolderService
+ADDED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:24:9-33:19
+MERGED from [androidx.camera:camera-core:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/98b28803706bb05052f1da7ffd7f25b7/transformed/camera-core-1.2.3/AndroidManifest.xml:29:9-33:78
+MERGED from [androidx.camera:camera-core:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/98b28803706bb05052f1da7ffd7f25b7/transformed/camera-core-1.2.3/AndroidManifest.xml:29:9-33:78
+	tools:node
+		ADDED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:29:13-31
+	android:enabled
+		ADDED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:26:13-36
+	android:exported
+		ADDED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:28:13-75
+	android:name
+		ADDED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:25:13-75
+meta-data#androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER
+ADDED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:30:13-32:89
+	android:value
+		ADDED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:32:17-86
+	android:name
+		ADDED from [androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:31:17-103
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/5c06fefe752f0b2c7c6b6ed18f1205eb/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/5c06fefe752f0b2c7c6b6ed18f1205eb/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+service#com.google.mlkit.common.internal.MlKitComponentDiscoveryService
+ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:15:9-23:19
+MERGED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:15:9-23:19
+	android:exported
+		ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:11:13-37
+	tools:targetApi
+		ADDED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:19:13-32
+	android:directBootAware
+		ADDED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:17:13-43
+	android:name
+		ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:10:13-91
+meta-data#com.google.firebase.components:com.google.mlkit.vision.barcode.internal.BarcodeRegistrar
+ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:12:13-14:85
+	android:value
+		ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:14:17-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:13:17-120
+meta-data#com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar
+ADDED from [com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:12:13-14:85
+	android:value
+		ADDED from [com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:14:17-82
+	android:name
+		ADDED from [com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:13:17-124
+provider#com.google.mlkit.common.internal.MlKitInitProvider
+ADDED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:9:9-13:38
+	android:authorities
+		ADDED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:11:13-69
+	android:exported
+		ADDED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:12:13-37
+	android:initOrder
+		ADDED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:13:13-35
+	android:name
+		ADDED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:10:13-78
+meta-data#com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar
+ADDED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:20:13-22:85
+	android:value
+		ADDED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:22:17-82
+	android:name
+		ADDED from [com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:21:17-120
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+permission#com.ptzcontroller.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+uses-permission#com.ptzcontroller.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+service#com.google.android.datatransport.runtime.backends.TransportBackendDiscovery
+ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:36:9-38:40
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:36:9-38:40
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:31:13-37
+	android:name
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:30:13-103
+meta-data#backend:com.google.android.datatransport.cct.CctBackendFactory
+ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:32:13-34:39
+	android:value
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:34:17-36
+	android:name
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:33:17-94
+service#com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService
+ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:26:9-30:19
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:28:13-37
+	android:permission
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:29:13-69
+	android:name
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:27:13-117
+receiver#com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver
+ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:32:9-34:40
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:34:13-37
+	android:name
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:33:13-132

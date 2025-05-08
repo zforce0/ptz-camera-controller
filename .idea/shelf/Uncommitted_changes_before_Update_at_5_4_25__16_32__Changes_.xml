@@ -1,0 +1,403 @@
+<changelist name="Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]" date="1746347536123" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 5/4/25, 16:32 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.4/fileHashes/fileHashes.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.4/fileHashes/fileHashes.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/fileHashes.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-tr_values-tr.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-mn_values-mn.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ka_values-ka.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/layout_activity_main.xml 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-v31_values-v31.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-da_values-da.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/linked_resources_binary_format/debug/processDebugResources/linked-resources-binary-format-debug 2.ap_" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-in_values-in.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-h320dp-port-v13_values-h320dp-port-v13.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-bg_values-bg.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-az_values-az.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-sw_values-sw.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-v17_values-v17.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-as_values-as.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-v21_values-v21.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/layout_fragment_connection.xml 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-my_values-my.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-watch-v21_values-watch-v21.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/.globals.work.bin" />
+    <option name="AFTER_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/.globals.work.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/.globals.work.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-w400dp-port-v13_values-w400dp-port-v13.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-w600dp-land-v13_values-w600dp-land-v13.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-bn_values-bn.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/work.bin" />
+    <option name="AFTER_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/work.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/work.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ru_values-ru.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <option name="AFTER_PATH" value=".gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/buildOutputCleanup.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ar_values-ar.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-large-v4_values-large-v4.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-hdpi-v4_values-hdpi-v4.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-pl_values-pl.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/layout_fragment_camera_control.xml 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-v23_values-v23.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-h550dp-port-v13_values-h550dp-port-v13.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-v16_values-v16.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.4/checksums/checksums.lock" />
+    <option name="AFTER_PATH" value=".gradle/8.4/checksums/checksums.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/checksums.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-pt-rBR_values-pt-rBR.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ms_values-ms.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-sv_values-sv.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-zh-rCN_values-zh-rCN.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-en-rAU_values-en-rAU.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-si_values-si.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.4/fileHashes/fileHashes.lock" />
+    <option name="AFTER_PATH" value=".gradle/8.4/fileHashes/fileHashes.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/fileHashes.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/dex/debug/mergeExtDexDebug/classes 3.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-w360dp-port-v13_values-w360dp-port-v13.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-fr-rCA_values-fr-rCA.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-pt-rPT_values-pt-rPT.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-fr_values-fr.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-uk_values-uk.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-gl_values-gl.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/layout_fragment_settings.xml 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-bs_values-bs.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-nb_values-nb.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values_values.arsc.flat" />
+    <option name="AFTER_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values_values.arsc.flat" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/values_values.arsc.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-h720dp-v13_values-h720dp-v13.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.11.1/fileHashes/fileHashes.lock" />
+    <option name="AFTER_PATH" value=".gradle/8.11.1/fileHashes/fileHashes.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/fileHashes1.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-en-rGB_values-en-rGB.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-hu_values-hu.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-w320dp-land-v13_values-w320dp-land-v13.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-it_values-it.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-h480dp-land-v13_values-h480dp-land-v13.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-v25_values-v25.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-te_values-te.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-night-v8_values-night-v8.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/file-system.probe" />
+    <option name="AFTER_PATH" value=".gradle/file-system.probe" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/file-system.probe" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ta_values-ta.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-zu_values-zu.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.11.1/executionHistory/executionHistory.lock" />
+    <option name="AFTER_PATH" value=".gradle/8.11.1/executionHistory/executionHistory.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/executionHistory.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-uz_values-uz.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-sq_values-sq.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-tl_values-tl.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-en-rCA_values-en-rCA.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-cs_values-cs.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ky_values-ky.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-lt_values-lt.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-iw_values-iw.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-en-rIN_values-en-rIN.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-hi_values-hi.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-th_values-th.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/.strings.work.bin" />
+    <option name="AFTER_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/.strings.work.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/.strings.work.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ml_values-ml.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-small-v4_values-small-v4.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-v28_values-v28.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-fi_values-fi.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-nl_values-nl.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/dex/debug/mergeExtDexDebug/classes2 3.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-is_values-is.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/linked_resources_binary_format/debug/processDebugResources/linked-resources-binary-format-debug.ap_" />
+    <option name="AFTER_PATH" value="app/build/intermediates/linked_resources_binary_format/debug/processDebugResources/linked-resources-binary-format-debug.ap_" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/linked-resources-binary-format-debug.ap_" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-gu_values-gu.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-hr_values-hr.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values_values.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-km_values-km.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-v22_values-v22.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-zh-rHK_values-zh-rHK.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/projectfingerprint.bin" />
+    <option name="AFTER_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/projectfingerprint.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/projectfingerprint.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/menu_bottom_navigation_menu.xml 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ja_values-ja.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/_app.work.bin" />
+    <option name="AFTER_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/_app.work.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/_app.work.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/buildOutputCleanup/outputFiles.bin" />
+    <option name="AFTER_PATH" value=".gradle/buildOutputCleanup/outputFiles.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/outputFiles.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-mk_values-mk.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ko_values-ko.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-sl_values-sl.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-de_values-de.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ne_values-ne.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ldltr-v21_values-ldltr-v21.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-pa_values-pa.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-vi_values-vi.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-es-rUS_values-es-rUS.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-es_values-es.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/buildfingerprint.bin" />
+    <option name="AFTER_PATH" value=".gradle/configuration-cache/806yk4hiyt5pjnm80yqp8uqyt/buildfingerprint.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/buildfingerprint.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-sk_values-sk.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-sw600dp-v13_values-sw600dp-v13.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-fa_values-fa.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-v18_values-v18.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-ldrtl-v17_values-ldrtl-v17.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-kn_values-kn.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-port_values-port.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.11.1/executionHistory/executionHistory.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.11.1/executionHistory/executionHistory.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/executionHistory.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-v34_values-v34.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-h360dp-land-v13_values-h360dp-land-v13.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="app/build/intermediates/merged_res/debug/mergeDebugResources/values-sr_values-sr.arsc 2.flat" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.11.1/fileHashes/fileHashes.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.11.1/fileHashes/fileHashes.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_25,_16_32_[Changes]/fileHashes1.bin" />
+  </binary>
+</changelist>

@@ -1,0 +1,314 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.ptzcontroller"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:6:5-67
+11-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:6:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:7:5-79
+12-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:7:22-76
+13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+13-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:8:5-76
+13-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:8:22-73
+14    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+14-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:9:5-76
+14-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:9:22-73
+15    <uses-permission
+15-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:11:5-12:38
+16        android:name="android.permission.BLUETOOTH"
+16-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:11:22-65
+17        android:maxSdkVersion="30" />
+17-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:12:9-35
+18    <uses-permission
+18-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:13:5-14:38
+19        android:name="android.permission.BLUETOOTH_ADMIN"
+19-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:13:22-71
+20        android:maxSdkVersion="30" />
+20-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:14:9-35
+21    <uses-permission
+21-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:15:5-17:31
+22        android:name="android.permission.BLUETOOTH_SCAN"
+22-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:15:22-70
+23        android:usesPermissionFlags="neverForLocation" />
+23-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:16:9-55
+24    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+24-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:18:5-76
+24-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:18:22-73
+25    <uses-permission android:name="android.permission.CAMERA" />
+25-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:20:5-65
+25-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:20:22-62
+26
+27    <uses-feature
+27-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:22:5-84
+28        android:name="android.hardware.camera"
+28-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:22:19-57
+29        android:required="true" />
+29-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:22:58-81
+30    <uses-feature
+30-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:23:5-95
+31        android:name="android.hardware.camera.autofocus"
+31-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:23:19-67
+32        android:required="false" />
+32-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:23:68-92
+33    <uses-feature
+33-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:24:5-87
+34        android:name="android.hardware.bluetooth"
+34-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:24:19-60
+35        android:required="true" />
+35-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:24:61-84
+36    <uses-feature
+36-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:25:5-89
+37        android:name="android.hardware.touchscreen"
+37-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:25:19-62
+38        android:required="true" />
+38-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:25:63-86
+39    <uses-feature
+39-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:26:5-82
+40        android:name="android.hardware.wifi"
+40-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:26:19-55
+41        android:required="true" />
+41-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:26:56-79
+42
+43    <permission
+43-->[androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+44        android:name="com.ptzcontroller.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+44-->[androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+45        android:protectionLevel="signature" />
+45-->[androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+46
+47    <uses-permission android:name="com.ptzcontroller.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+47-->[androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+47-->[androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+48
+49    <application
+49-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:29:5-49:19
+50        android:allowBackup="true"
+50-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:30:9-35
+51        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+51-->[androidx.core:core:1.12.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/c8ffe3456efba4795a3aa38ea5fd2907/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+52        android:debuggable="true"
+53        android:extractNativeLibs="false"
+54        android:icon="@mipmap/ic_launcher"
+54-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:31:9-43
+55        android:label="@string/app_name"
+55-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:32:9-41
+56        android:roundIcon="@mipmap/ic_launcher_round"
+56-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:33:9-54
+57        android:supportsRtl="true"
+57-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:34:9-35
+58        android:testOnly="true"
+59        android:theme="@style/Theme.PTZCameraController"
+59-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:35:9-57
+60        android:usesCleartextTraffic="true" >
+60-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:36:9-44
+61        <activity
+61-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:39:9-48:20
+62            android:name="com.ptzcontroller.ui.MainActivity"
+62-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:40:13-44
+63            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+63-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:42:13-87
+64            android:exported="true"
+64-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:41:13-36
+65            android:screenOrientation="landscape" >
+65-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:43:13-50
+66            <intent-filter>
+66-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:44:13-47:29
+67                <action android:name="android.intent.action.MAIN" />
+67-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:45:17-69
+67-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:45:25-66
+68
+69                <category android:name="android.intent.category.LAUNCHER" />
+69-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:46:17-77
+69-->/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:46:27-74
+70            </intent-filter>
+71        </activity>
+72
+73        <service
+73-->[androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:24:9-33:19
+74            android:name="androidx.camera.core.impl.MetadataHolderService"
+74-->[androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:25:13-75
+75            android:enabled="false"
+75-->[androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:26:13-36
+76            android:exported="false" >
+76-->[androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:27:13-37
+77            <meta-data
+77-->[androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:30:13-32:89
+78                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+78-->[androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:31:17-103
+79                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+79-->[androidx.camera:camera-camera2:1.2.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/04ef8bf78010e79dc0ac910c9df5e8da/transformed/camera-camera2-1.2.3/AndroidManifest.xml:32:17-86
+80        </service>
+81
+82        <provider
+82-->[androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+83            android:name="androidx.startup.InitializationProvider"
+83-->[androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+84            android:authorities="com.ptzcontroller.androidx-startup"
+84-->[androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+85            android:exported="false" >
+85-->[androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+86            <meta-data
+86-->[androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+87                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+87-->[androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+88                android:value="androidx.startup" />
+88-->[androidx.emoji2:emoji2:1.2.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/ba26ce9e57be73c5cc5fb480cb55da92/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+89            <meta-data
+89-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
+90                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+90-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
+91                android:value="androidx.startup" />
+91-->[androidx.lifecycle:lifecycle-process:2.6.1] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/09aaee38403441e0cb792c7204034357/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
+92            <meta-data
+92-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+93                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+94                android:value="androidx.startup" />
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+95        </provider>
+96
+97        <service
+97-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:9:9-15:19
+98            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
+98-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:10:13-91
+99            android:directBootAware="true"
+99-->[com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:17:13-43
+100            android:exported="false" >
+100-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:11:13-37
+101            <meta-data
+101-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:12:13-14:85
+102                android:name="com.google.firebase.components:com.google.mlkit.vision.barcode.internal.BarcodeRegistrar"
+102-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:13:17-120
+103                android:value="com.google.firebase.components.ComponentRegistrar" />
+103-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/aa0d576194a1d4441203b97b2e3744f6/transformed/play-services-mlkit-barcode-scanning-18.3.0/AndroidManifest.xml:14:17-82
+104            <meta-data
+104-->[com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:12:13-14:85
+105                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
+105-->[com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:13:17-124
+106                android:value="com.google.firebase.components.ComponentRegistrar" />
+106-->[com.google.mlkit:vision-common:17.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/6a940dfba7a6e8e091d5e57666ac5b00/transformed/vision-common-17.3.0/AndroidManifest.xml:14:17-82
+107            <meta-data
+107-->[com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:20:13-22:85
+108                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
+108-->[com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:21:17-120
+109                android:value="com.google.firebase.components.ComponentRegistrar" />
+109-->[com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:22:17-82
+110        </service>
+111
+112        <provider
+112-->[com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:9:9-13:38
+113            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+113-->[com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:10:13-78
+114            android:authorities="com.ptzcontroller.mlkitinitprovider"
+114-->[com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:11:13-69
+115            android:exported="false"
+115-->[com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:12:13-37
+116            android:initOrder="99" />
+116-->[com.google.mlkit:common:18.9.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/df8f2a61e0da15d29bc8300d08a049e3/transformed/common-18.9.0/AndroidManifest.xml:13:13-35
+117
+118        <activity
+118-->[com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
+119            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+119-->[com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:20:19-85
+120            android:exported="false"
+120-->[com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+121            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+121-->[com.google.android.gms:play-services-base:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/742f4f07628a3f6147b0d80cbe0a62cb/transformed/play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+122
+123        <meta-data
+123-->[com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
+124            android:name="com.google.android.gms.version"
+124-->[com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
+125            android:value="@integer/google_play_services_version" />
+125-->[com.google.android.gms:play-services-basement:18.1.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/f841ab4b4f9a618125767b27f3091a8f/transformed/play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+126
+127        <uses-library
+127-->[androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+128            android:name="androidx.window.extensions"
+128-->[androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+129            android:required="false" />
+129-->[androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+130        <uses-library
+130-->[androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+131            android:name="androidx.window.sidecar"
+131-->[androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+132            android:required="false" />
+132-->[androidx.window:window:1.0.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/12ece372cc517d931d11e95c7dcbf592/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+133
+134        <receiver
+134-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+135            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+135-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+136            android:directBootAware="false"
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+137            android:enabled="true"
+137-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+138            android:exported="true"
+138-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+139            android:permission="android.permission.DUMP" >
+139-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+140            <intent-filter>
+140-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+141                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+141-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+141-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+142            </intent-filter>
+143            <intent-filter>
+143-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+144                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+144-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+144-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+145            </intent-filter>
+146            <intent-filter>
+146-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+147                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+147-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+147-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+148            </intent-filter>
+149            <intent-filter>
+149-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+150                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+150-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+150-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/130a36c45a301fab26f0cc94b77143c4/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+151            </intent-filter>
+152        </receiver>
+153
+154        <service
+154-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:29:9-35:19
+155            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+155-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:30:13-103
+156            android:exported="false" >
+156-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:31:13-37
+157            <meta-data
+157-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:32:13-34:39
+158                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+158-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:33:17-94
+159                android:value="cct" />
+159-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/9c6c37ef8adfcc8114cc32afef8650d3/transformed/transport-backend-cct-2.3.3/AndroidManifest.xml:34:17-36
+160        </service>
+161        <service
+161-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:26:9-30:19
+162            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+162-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:27:13-117
+163            android:exported="false"
+163-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:28:13-37
+164            android:permission="android.permission.BIND_JOB_SERVICE" >
+164-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:29:13-69
+165        </service>
+166
+167        <receiver
+167-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:32:9-34:40
+168            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+168-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:33:13-132
+169            android:exported="false" />
+169-->[com.google.android.datatransport:transport-runtime:2.2.6] /Users/jbc-zeph21/.gradle/caches/8.11.1/transforms/a98a043baa36b161c3261c4874e7c971/transformed/transport-runtime-2.2.6/AndroidManifest.xml:34:13-37
+170    </application>
+171
+172</manifest>

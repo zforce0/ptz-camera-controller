@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_camera_control.xml",
+        "source": "com.ptzcontroller.app-main-60:/layout/fragment_camera_control.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-mergeDebugResources-57:/layout/item_bluetooth_device.xml",
+        "source": "com.ptzcontroller.app-main-60:/layout/item_bluetooth_device.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_connection.xml",
+        "source": "com.ptzcontroller.app-main-60:/layout/fragment_connection.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-mergeDebugResources-57:/layout/activity_main.xml",
+        "source": "com.ptzcontroller.app-main-60:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_settings.xml",
+        "source": "com.ptzcontroller.app-main-60:/layout/fragment_settings.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-mergeDebugResources-57:/layout/fragment_video_stream.xml",
+        "source": "com.ptzcontroller.app-main-60:/layout/fragment_video_stream.xml"
+    }
+]

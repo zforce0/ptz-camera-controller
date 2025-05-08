@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Connection Status -->
+    <TextView
+        android:id="@+id/connectionStatusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_connection_status"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Joystick Control -->
+    <com.ptzcontroller.ui.control.JoystickView
+        android:id="@+id/joystickView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/connectionStatusText"
+        app:layout_constraintWidth_percent="0.6" />
+        
+    <!-- Speed Indicators -->
+    <TextView
+        android:id="@+id/tvPanSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Pan: 0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/joystickView" />
+        
+    <TextView
+        android:id="@+id/tvTiltSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Tilt: 0"
+        app:layout_constraintStart_toEndOf="@id/tvPanSpeed"
+        app:layout_constraintTop_toTopOf="@id/tvPanSpeed" />
+        
+    <TextView
+        android:id="@+id/tvZoomLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Zoom: 0%"
+        app:layout_constraintStart_toEndOf="@id/tvTiltSpeed"
+        app:layout_constraintTop_toTopOf="@id/tvPanSpeed" />
+
+    <!-- Zoom Control -->
+    <TextView
+        android:id="@+id/zoomLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_zoom"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPanSpeed" />
+
+    <Button
+        android:id="@+id/btnZoomOut"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/btn_zoom_out"
+        app:layout_constraintBottom_toBottomOf="@id/zoomSlider"
+        app:layout_constraintStart_toEndOf="@id/zoomLabel"
+        app:layout_constraintTop_toTopOf="@id/zoomSlider" />
+
+    <SeekBar
+        android:id="@+id/zoomSlider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:max="100"
+        android:progress="0"
+        app:layout_constraintBottom_toBottomOf="@id/btnZoomOut"
+        app:layout_constraintEnd_toStartOf="@id/btnZoomIn"
+        app:layout_constraintStart_toEndOf="@id/btnZoomOut"
+        app:layout_constraintTop_toTopOf="@id/btnZoomOut" />
+
+    <Button
+        android:id="@+id/btnZoomIn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:text="@string/btn_zoom_in"
+        app:layout_constraintBottom_toBottomOf="@id/zoomSlider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/zoomSlider" />
+
+    <!-- Camera Mode -->
+    <TextView
+        android:id="@+id/cameraModeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_camera_mode"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/zoomSlider" />
+
+    <RadioGroup
+        android:id="@+id/cameraModeGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cameraModeLabel">
+
+        <RadioButton
+            android:id="@+id/rgbModeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:checked="true"
+            android:text="@string/btn_rgb_mode" />
+
+        <RadioButton
+            android:id="@+id/irModeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_ir_mode" />
+    </RadioGroup>
+    
+    <Switch
+        android:id="@+id/switchCameraMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="IR Mode"
+        android:checked="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cameraModeLabel" />
+
+    <!-- Presets -->
+    <TextView
+        android:id="@+id/presetsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_presets"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cameraModeGroup" />
+
+    <LinearLayout
+        android:id="@+id/presetsContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/presetsLabel">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/label_preset_number" />
+
+        <EditText
+            android:id="@+id/presetNumberInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:hint="1-255"
+            android:inputType="number"
+            android:maxLength="3" />
+
+        <Button
+            android:id="@+id/btnGotoPreset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/btn_goto_preset" />
+
+        <Button
+            android:id="@+id/btnSavePreset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_save_preset" />
+    </LinearLayout>
+    
+    <!-- Quick Preset Buttons -->
+    <LinearLayout
+        android:id="@+id/quickPresetsContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/presetsContainer">
+
+        <Button
+            android:id="@+id/btnPreset1"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="8dp"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btnPreset2"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="8dp"
+            android:text="2" />
+
+        <Button
+            android:id="@+id/btnPreset3"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="8dp"
+            android:text="3" />
+
+        <Button
+            android:id="@+id/btnPreset4"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:text="4" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

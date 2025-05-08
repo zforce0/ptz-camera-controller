@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_camera_control"
+        android:icon="@drawable/ic_camera_control"
+        android:title="@string/menu_camera_control" />
+    <item
+        android:id="@+id/navigation_video_stream"
+        android:icon="@drawable/ic_video_stream"
+        android:title="@string/menu_video_stream" />
+    <item
+        android:id="@+id/navigation_connection"
+        android:icon="@drawable/ic_connection"
+        android:title="@string/menu_connection" />
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/menu_settings" />
+</menu>

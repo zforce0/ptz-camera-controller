@@ -1,0 +1,810 @@
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/data/network/BluetoothClient.kt:51: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+        return bluetoothAdapter?.bondedDevices?.toList() ?: emptyList()
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/data/network/BluetoothClient.kt:76: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+            bluetoothSocket = device.createRfcommSocketToServiceRecord(UUID_SPP)
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/data/network/BluetoothClient.kt:77: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+            bluetoothSocket?.connect()
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/BluetoothDeviceAdapter.kt:34: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+        holder.deviceName.text = device.name ?: "Unknown Device"
+                                 ~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/BluetoothDeviceAdapter.kt:34: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+        holder.deviceName.text = device.name ?: "Unknown Device"
+                                 ~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/data/model/BluetoothDeviceInfo.kt:22: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+                name = device.name ?: "Unknown Device",
+                       ~~~~~~~~~~~
+
+   Explanation for issues of type "MissingPermission":
+   This check scans through your code and libraries and looks at the APIs
+   being used, and checks this against the set of permissions required to
+   access those APIs. If the code using those APIs is called at runtime, then
+   the program will crash.
+
+   Furthermore, for permissions that are revocable (with targetSdkVersion 23),
+   client code must also be prepared to handle the calls throwing an exception
+   if the user rejects the request for permission at runtime.
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:40: Error: Class referenced in the manifest, com.ptzcontroller.ui.MainActivity, was not found in the project or the libraries [MissingClass]
+            android:name=".ui.MainActivity"
+                          ~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "MissingClass":
+   If a class is referenced in the manifest or in a layout file, it must also
+   exist in the project (or in one of the libraries included by the project.
+   This check helps uncover typos in registration names, or attempts to rename
+   or move classes without updating the XML references properly.
+
+   https://developer.android.com/guide/topics/manifest/manifest-intro.html
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/MainActivity.kt:30: Warning: Field requires API level 31 (current min is 26): android.Manifest.permission#BLUETOOTH_SCAN [InlinedApi]
+        android.Manifest.permission.BLUETOOTH_SCAN,
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/MainActivity.kt:31: Warning: Field requires API level 31 (current min is 26): android.Manifest.permission#BLUETOOTH_CONNECT [InlinedApi]
+        android.Manifest.permission.BLUETOOTH_CONNECT,
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "InlinedApi":
+   This check scans through all the Android API field references in the
+   application and flags certain constants, such as static final integers and
+   Strings, which were introduced in later versions. These will actually be
+   copied into the class files rather than being referenced, which means that
+   the value is available even when running on older devices. In some cases
+   that's fine, and in other cases it can result in a runtime crash or
+   incorrect behavior. It depends on the context, so consider the code
+   carefully and decide whether it's safe and can be suppressed or whether the
+   code needs to be guarded.
+
+   If you really want to use this API and don't need to support older devices
+   just set the minSdkVersion in your build.gradle or AndroidManifest.xml
+   files.
+
+   If your code is deliberately accessing newer APIs, and you have ensured
+   (e.g. with conditional execution) that this code will only ever be called
+   on a supported platform, then you can annotate your class or method with
+   the @TargetApi annotation specifying the local minimum SDK to apply, such
+   as @TargetApi(11), such that this check considers 11 rather than your
+   manifest file's minimum SDK as the required API level.
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:35: Warning: Use SwitchCompat from AppCompat or SwitchMaterial from Material library [UseSwitchCompatOrMaterialCode from androidx.appcompat]
+    private lateinit var switchDarkMode: Switch
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:36: Warning: Use SwitchCompat from AppCompat or SwitchMaterial from Material library [UseSwitchCompatOrMaterialCode from androidx.appcompat]
+    private lateinit var switchKeepScreenOn: Switch
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:37: Warning: Use SwitchCompat from AppCompat or SwitchMaterial from Material library [UseSwitchCompatOrMaterialCode from androidx.appcompat]
+    private lateinit var switchHideControls: Switch
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseSwitchCompatOrMaterialCode":
+   Use SwitchCompat from AppCompat or SwitchMaterial from Material library
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.appcompat
+   Feedback: https://issuetracker.google.com/issues/new?component=460343
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:139: Warning: Use SwitchCompat from AppCompat or SwitchMaterial from Material library [UseSwitchCompatOrMaterialXml from androidx.appcompat]
+    <Switch
+    ^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_settings.xml:83: Warning: Use SwitchCompat from AppCompat or SwitchMaterial from Material library [UseSwitchCompatOrMaterialXml from androidx.appcompat]
+        <Switch
+        ^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_settings.xml:91: Warning: Use SwitchCompat from AppCompat or SwitchMaterial from Material library [UseSwitchCompatOrMaterialXml from androidx.appcompat]
+        <Switch
+        ^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_settings.xml:99: Warning: Use SwitchCompat from AppCompat or SwitchMaterial from Material library [UseSwitchCompatOrMaterialXml from androidx.appcompat]
+        <Switch
+        ^
+
+   Explanation for issues of type "UseSwitchCompatOrMaterialXml":
+   Use SwitchCompat from AppCompat or SwitchMaterial from Material library
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.appcompat
+   Feedback: https://issuetracker.google.com/issues/new?component=460343
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:59: Warning: A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.16.0 [GradleDependency]
+    implementation 'androidx.core:core-ktx:1.12.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:60: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.0 [GradleDependency]
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:61: Warning: A newer version of com.google.android.material:material than 1.11.0 is available: 1.12.0 [GradleDependency]
+    implementation 'com.google.android.material:material:1.11.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:62: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.1 [GradleDependency]
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:65: Warning: A newer version of androidx.navigation:navigation-fragment-ktx than 2.6.0 is available: 2.9.0 [GradleDependency]
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:66: Warning: A newer version of androidx.navigation:navigation-ui-ktx than 2.6.0 is available: 2.9.0 [GradleDependency]
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:69: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.6.1 is available: 2.9.0 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:70: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.6.1 is available: 2.9.0 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:73: Warning: A newer version of androidx.camera:camera-camera2 than 1.2.3 is available: 1.4.2 [GradleDependency]
+    implementation 'androidx.camera:camera-camera2:1.2.3'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:74: Warning: A newer version of androidx.camera:camera-lifecycle than 1.2.3 is available: 1.4.2 [GradleDependency]
+    implementation 'androidx.camera:camera-lifecycle:1.2.3'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:75: Warning: A newer version of androidx.camera:camera-view than 1.2.3 is available: 1.4.2 [GradleDependency]
+    implementation 'androidx.camera:camera-view:1.2.3'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:78: Warning: A newer version of com.google.mlkit:barcode-scanning than 17.2.0 is available: 17.3.0 [GradleDependency]
+    implementation 'com.google.mlkit:barcode-scanning:17.2.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:82: Warning: A newer version of com.google.android.exoplayer:exoplayer-core than 2.18.7 is available: 2.19.1 [GradleDependency]
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.7'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:83: Warning: A newer version of com.google.android.exoplayer:exoplayer-ui than 2.18.7 is available: 2.19.1 [GradleDependency]
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.7'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:84: Warning: A newer version of com.google.android.exoplayer:exoplayer-rtsp than 2.18.7 is available: 2.19.1 [GradleDependency]
+    implementation 'com.google.android.exoplayer:exoplayer-rtsp:2.18.7'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:96: Warning: A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.2.1 [GradleDependency]
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/build.gradle:97: Warning: A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.6.1 [GradleDependency]
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:43: Warning: Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed. [DiscouragedApi]
+            android:screenOrientation="landscape">
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "DiscouragedApi":
+   Discouraged APIs are allowed and are not deprecated, but they may be unfit
+   for common use (e.g. due to slow performance or subtle behavior).
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/ConnectionFragment.kt:147: Error: Format string 'msg_wifi_connecting' is not a valid format string so it should not be passed to String.format [StringFormatInvalid]
+                        getString(R.string.msg_wifi_connecting, state.ipAddress, state.port),
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:36: This definition does not require arguments
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/ConnectionFragment.kt:155: Error: Format string 'msg_wifi_connected' is not a valid format string so it should not be passed to String.format [StringFormatInvalid]
+                        getString(R.string.msg_wifi_connected, state.ipAddress, state.port),
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:37: This definition does not require arguments
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/ConnectionFragment.kt:163: Error: Format string 'msg_wifi_failed' is not a valid format string so it should not be passed to String.format [StringFormatInvalid]
+                        getString(R.string.msg_wifi_failed, state.ipAddress, state.port),
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:38: This definition does not require arguments
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/ConnectionFragment.kt:211: Error: Format string 'msg_bluetooth_connecting' is not a valid format string so it should not be passed to String.format [StringFormatInvalid]
+                        getString(R.string.msg_bluetooth_connecting, state.deviceInfo.name),
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:39: This definition does not require arguments
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/ConnectionFragment.kt:218: Error: Format string 'msg_bluetooth_connected' is not a valid format string so it should not be passed to String.format [StringFormatInvalid]
+                        getString(R.string.msg_bluetooth_connected, state.deviceInfo.name),
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:40: This definition does not require arguments
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/ConnectionFragment.kt:228: Error: Format string 'msg_bluetooth_failed' is not a valid format string so it should not be passed to String.format [StringFormatInvalid]
+                        getString(R.string.msg_bluetooth_failed, state.deviceInfo.name),
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    /Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:41: This definition does not require arguments
+
+   Explanation for issues of type "StringFormatInvalid":
+   If a string contains a '%' character, then the string may be a formatting
+   string which will be passed to String.format from Java code to replace each
+   '%' occurrence with specific values.
+
+   This lint warning checks for two related problems:
+   (1) Formatting strings that are invalid, meaning that String.format will
+   throw exceptions at runtime when attempting to use the format string.
+   (2) Strings containing '%' that are not formatting strings getting passed
+   to a String.format call. In this case the '%' will need to be escaped as
+   '%%'.
+
+   NOTE: Not all Strings which look like formatting strings are intended for
+   use by String.format; for example, they may contain date formats intended
+   for android.text.format.Time#format(). Lint cannot always figure out that a
+   String is a date format, so you may get false warnings in those scenarios.
+   See the suppress help topic for information on how to suppress errors in
+   that case.
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/BluetoothDeviceAdapter.kt:50: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged()
+        ~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/BluetoothDeviceInfoAdapter.kt:57: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged()
+        ~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/connection/BluetoothDeviceInfoAdapter.kt:82: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged()
+        ~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "NotifyDataSetChanged":
+   The RecyclerView adapter's onNotifyDataSetChanged method does not specify
+   what about the data set has changed, forcing any observers to assume that
+   all existing items and structure may no longer be valid. `LayoutManager`s
+   will be forced to fully rebind and relayout all visible views.
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/drawable/ic_settings.xml:9: Warning: Very long vector path (904 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector. [VectorPath]
+        android:pathData="M19.14,12.94c0.04,-0.3 0.06,-0.61 0.06,-0.94c0,-0.32 -0.02,-0.64 -0.07,-0.94l2.03,-1.58c0.18,-0.14 0.23,-0.41 0.12,-0.61l-1.92,-3.32c-0.12,-0.22 -0.37,-0.29 -0.59,-0.22l-2.39,0.96c-0.5,-0.38 -1.03,-0.7 -1.62,-0.94L14.4,2.81c-0.04,-0.24 -0.24,-0.41 -0.48,-0.41h-3.84c-0.24,0 -0.43,0.17 -0.47,0.41L9.25,5.35C8.66,5.59 8.12,5.92 7.63,6.29L5.24,5.33c-0.22,-0.08 -0.47,0 -0.59,0.22L2.74,8.87C2.62,9.08 2.66,9.34 2.86,9.48l2.03,1.58C4.84,11.36 4.8,11.69 4.8,12s0.02,0.64 0.07,0.94l-2.03,1.58c-0.18,0.14 -0.23,0.41 -0.12,0.61l1.92,3.32c0.12,0.22 0.37,0.29 0.59,0.22l2.39,-0.96c0.5,0.38 1.03,0.7 1.62,0.94l0.36,2.54c0.05,0.24 0.24,0.41 0.48,0.41h3.84c0.24,0 0.44,-0.17 0.47,-0.41l0.36,-2.54c0.59,-0.24 1.13,-0.56 1.62,-0.94l2.39,0.96c0.22,0.08 0.47,0 0.59,-0.22l1.92,-3.32c0.12,-0.22 0.07,-0.47 -0.12,-0.61L19.14,12.94zM12,15.6c-1.98,0 -3.6,-1.62 -3.6,-3.6s1.62,-3.6 3.6,-3.6s3.6,1.62 3.6,3.6S13.98,15.6 12,15.6z" />
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "VectorPath":
+   Using long vector paths is bad for performance. There are several ways to
+   make the pathData shorter:
+   * Using less precision
+   * Removing some minor details
+   * Using the Android Studio vector conversion tool
+   * Rasterizing the image (converting to PNG)
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/activity_main.xml:8: Warning: Possible overdraw: Root element paints background @color/background with a theme that also paints a background (inferred theme is @style/Theme.PTZCameraController) [Overdraw]
+    android:background="@color/background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_video_stream.xml:7: Warning: Possible overdraw: Root element paints background @color/background with a theme that also paints a background (inferred theme is @style/Theme.PTZCameraController) [Overdraw]
+    android:background="@color/background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/item_bluetooth_device.xml:9: Warning: Possible overdraw: Root element paints background ?attr/selectableItemBackground with a theme that also paints a background (inferred theme is @style/Theme.PTZCameraController) [Overdraw]
+    android:background="?attr/selectableItemBackground"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "Overdraw":
+   If you set a background drawable on a root view, then you should use a
+   custom theme where the theme background is null. Otherwise, the theme
+   background will be painted first, only to have your custom background
+   completely cover it; this is called "overdraw".
+
+   NOTE: This detector relies on figuring out which layouts are associated
+   with which activities based on scanning the Java code, and it's currently
+   doing that using an inexact pattern matching algorithm. Therefore, it can
+   incorrectly conclude which activity the layout is associated with and then
+   wrongly complain that a background-theme is hidden.
+
+   If you want your custom background on multiple pages, then you should
+   consider making a custom theme with your custom background and just using
+   that theme instead of a root element background.
+
+   Of course it's possible that your custom drawable is translucent and you
+   want it to be mixed with the background. However, you will get better
+   performance if you pre-mix the background with your drawable and use that
+   resulting image or color as a custom theme background instead.
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/xml/backup_rules.xml:2: Warning: The resource R.xml.backup_rules appears to be unused [UnusedResources]
+<full-backup-content>
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/menu/bottom_navigation_menu.xml:2: Warning: The resource R.menu.bottom_navigation_menu appears to be unused [UnusedResources]
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:16: Warning: The resource R.color.text_hint_light appears to be unused [UnusedResources]
+    <color name="text_hint_light">#BDBDBD</color>
+           ~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:29: Warning: The resource R.color.divider appears to be unused [UnusedResources]
+    <color name="divider">#DEDEDE</color>
+           ~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:32: Warning: The resource R.color.status_bar appears to be unused [UnusedResources]
+    <color name="status_bar">#388E3C</color>
+           ~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:33: Warning: The resource R.color.navigation_bar appears to be unused [UnusedResources]
+    <color name="navigation_bar">#212121</color>
+           ~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:36: Warning: The resource R.color.colorPrimary appears to be unused [UnusedResources]
+    <color name="colorPrimary">#1976D2</color>
+           ~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:37: Warning: The resource R.color.colorPrimaryDark appears to be unused [UnusedResources]
+    <color name="colorPrimaryDark">#0D47A1</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:38: Warning: The resource R.color.colorAccent appears to be unused [UnusedResources]
+    <color name="colorAccent">#FF4081</color>
+           ~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:42: Warning: The resource R.color.status_good appears to be unused [UnusedResources]
+    <color name="status_good">#4CAF50</color>
+           ~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:43: Warning: The resource R.color.status_idle appears to be unused [UnusedResources]
+    <color name="status_idle">#FFEB3B</color>
+           ~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:46: Warning: The resource R.color.mode_rgb appears to be unused [UnusedResources]
+    <color name="mode_rgb">#3F51B5</color>
+           ~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/colors.xml:47: Warning: The resource R.color.mode_ir appears to be unused [UnusedResources]
+    <color name="mode_ir">#9C27B0</color>
+           ~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/xml/data_extraction_rules.xml:2: Warning: The resource R.xml.data_extraction_rules appears to be unused [UnusedResources]
+<data-extraction-rules>
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:5: Warning: The resource R.string.app_settings appears to be unused [UnusedResources]
+    <string name="app_settings">App Settings</string>
+            ~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:7: Warning: The resource R.string.setting_about appears to be unused [UnusedResources]
+    <string name="setting_about">About</string>
+            ~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:10: Warning: The resource R.string.stream_settings appears to be unused [UnusedResources]
+    <string name="stream_settings">Stream Settings</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:12: Warning: The resource R.string.setting_show_status_overlay appears to be unused [UnusedResources]
+    <string name="setting_show_status_overlay">Show Status Overlay</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:19: Warning: The resource R.string.connection_settings appears to be unused [UnusedResources]
+    <string name="connection_settings">Connection Settings</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:20: Warning: The resource R.string.setting_auto_reconnect appears to be unused [UnusedResources]
+    <string name="setting_auto_reconnect">Auto Reconnect</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:21: Warning: The resource R.string.setting_connection_check_interval appears to be unused [UnusedResources]
+    <string name="setting_connection_check_interval">Connection Check Interval</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:22: Warning: The resource R.string.setting_use_bluetooth_fallback appears to be unused [UnusedResources]
+    <string name="setting_use_bluetooth_fallback">Use Bluetooth Fallback</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:23: Warning: The resource R.string.setting_wifi_timeout appears to be unused [UnusedResources]
+    <string name="setting_wifi_timeout">WiFi Timeout</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:26: Warning: The resource R.string.controller_settings appears to be unused [UnusedResources]
+    <string name="controller_settings">Controller Settings</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:30: Warning: The resource R.string.menu_camera_control appears to be unused [UnusedResources]
+    <string name="menu_camera_control">Camera Control</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:31: Warning: The resource R.string.menu_video_stream appears to be unused [UnusedResources]
+    <string name="menu_video_stream">Video Stream</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:32: Warning: The resource R.string.menu_settings appears to be unused [UnusedResources]
+    <string name="menu_settings">Settings</string>
+            ~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:33: Warning: The resource R.string.menu_connection appears to be unused [UnusedResources]
+    <string name="menu_connection">Connection</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:75: Warning: The resource R.string.status_connected appears to be unused [UnusedResources]
+    <string name="status_connected">Connected</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:76: Warning: The resource R.string.status_disconnected appears to be unused [UnusedResources]
+    <string name="status_disconnected">Disconnected</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:77: Warning: The resource R.string.status_connecting appears to be unused [UnusedResources]
+    <string name="status_connecting">Connecting...</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:78: Warning: The resource R.string.status_buffering appears to be unused [UnusedResources]
+    <string name="status_buffering">Buffering...</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:79: Warning: The resource R.string.label_status appears to be unused [UnusedResources]
+    <string name="label_status">Status:</string>
+            ~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:80: Warning: The resource R.string.label_quality appears to be unused [UnusedResources]
+    <string name="label_quality">Quality:</string>
+            ~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:81: Warning: The resource R.string.label_resolution appears to be unused [UnusedResources]
+    <string name="label_resolution">Resolution:</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/styles.xml:47: Warning: The resource R.style.Widget_PTZCameraController_Button_IconButton appears to be unused [UnusedResources]
+    <style name="Widget.PTZCameraController.Button.IconButton" parent="Widget.MaterialComponents.Button.Icon">
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/styles.xml:60: Warning: The resource R.style.Widget_PTZCameraController_SeekBar appears to be unused [UnusedResources]
+    <style name="Widget.PTZCameraController.SeekBar" parent="Widget.AppCompat.SeekBar">
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/styles.xml:66: Warning: The resource R.style.Widget_PTZCameraController_CardView appears to be unused [UnusedResources]
+    <style name="Widget.PTZCameraController.CardView" parent="Widget.MaterialComponents.CardView">
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/themes.xml:39: Warning: The resource R.style.Theme_PTZCameraController_SplashScreen appears to be unused [UnusedResources]
+    <style name="Theme.PTZCameraController.SplashScreen" parent="Theme.PTZCameraController">
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/themes.xml:46: Warning: The resource R.style.Theme_PTZCameraController_Dialog appears to be unused [UnusedResources]
+    <style name="Theme.PTZCameraController.Dialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/themes.xml:55: Warning: The resource R.style.Widget_PTZCameraController_IconButton appears to be unused [UnusedResources]
+    <style name="Widget.PTZCameraController.IconButton" parent="Widget.MaterialComponents.Button.Icon">
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:36: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="msg_wifi_connecting">Connecting to WiFi...</string>
+                                       ~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:39: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="msg_bluetooth_connecting">Connecting via Bluetooth...</string>
+                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:77: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="status_connecting">Connecting...</string>
+                                     ~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/values/strings.xml:78: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="status_buffering">Buffering...</string>
+                                    ~~~~~~~~~~~~
+
+   Explanation for issues of type "TypographyEllipsis":
+   You can replace the string "..." with a dedicated ellipsis character,
+   ellipsis character (u2026, &#8230;). This can help make the text more
+   readable.
+
+   https://en.wikipedia.org/wiki/Ellipsis
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/mipmap-hdpi/ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/mipmap-mdpi/ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/mipmap-xhdpi/ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/mipmap-xxhdpi/ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/mipmap-xxxhdpi/ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/mipmap-hdpi/ic_launcher_round.xml:2: Warning: The application adaptive roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/mipmap-mdpi/ic_launcher_round.xml:2: Warning: The application adaptive roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/mipmap-xhdpi/ic_launcher_round.xml:2: Warning: The application adaptive roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.xml:2: Warning: The application adaptive roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.xml:2: Warning: The application adaptive roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+
+   Explanation for issues of type "MonochromeLauncherIcon":
+   If android:roundIcon and android:icon are both in your manifest, you must
+   either remove the reference to android:roundIcon if it is not needed; or,
+   supply the monochrome icon in the drawable defined by the android:roundIcon
+   and android:icon attribute.
+
+   For example, if android:roundIcon and android:icon are both in the
+   manifest, a launcher might choose to use android:roundIcon over
+   android:icon to display the adaptive app icon. Therefore, your themed
+   application iconwill not show if your monochrome attribute is not also
+   specified in android:roundIcon.
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:213: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:220: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:227: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:234: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+
+   Explanation for issues of type "ButtonStyle":
+   Button bars typically use a borderless style for the buttons. Set the
+   style="?android:attr/buttonBarButtonStyle" attribute on each of the
+   buttons, and set style="?android:attr/buttonBarStyle" on the parent layout
+
+   https://d.android.com/r/studio-ui/designer/material/dialogs
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:176: Warning: Missing autofillHints attribute [Autofill]
+        <EditText
+         ~~~~~~~~
+
+   Explanation for issues of type "Autofill":
+   Specify an autofillHints attribute when targeting SDK version 26 or higher
+   or explicitly specify that the view is not important for autofill. Your app
+   can help an autofill service classify the data correctly by providing the
+   meaning of each view that could be autofillable, such as views representing
+   usernames, passwords, credit card fields, email addresses, etc.
+
+   The hints can have any value, but it is recommended to use predefined
+   values like 'username' for a username or 'creditCardNumber' for a credit
+   card number. For a list of all predefined autofill hint constants, see the
+   AUTOFILL_HINT_ constants in the View reference at
+   https://developer.android.com/reference/android/view/View.html.
+
+   You can mark a view unimportant for autofill by specifying an
+   importantForAutofill attribute on that view or a parent view. See
+   https://developer.android.com/reference/android/view/View.html#setImportant
+   ForAutofill(int).
+
+   https://developer.android.com/guide/topics/text/autofill.html
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/AndroidManifest.xml:25: Warning: Consider whether this feature (android.hardware.touchscreen) really is required for the app to function; you can set android:required="false" to indicate that the feature is used but not required [UnnecessaryRequiredFeature]
+    <uses-feature android:name="android.hardware.touchscreen" android:required="true" />
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnnecessaryRequiredFeature":
+   Avoid unnecessarily requiring features that may exclude your app from being
+   served onto devices it might otherwise support.
+
+   Consider whether your application can function adequately without
+   restrictive feature requirements by setting these to
+   android:required="false". By doing so, you can increase the availability of
+   your app to a broader set of devices, including tablets, laptops and cars.
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:41: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putString(KEY_WIFI_IP_ADDRESS, ipAddress).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:50: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putInt(KEY_WIFI_PORT, port).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:59: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putLong(KEY_WIFI_TIMEOUT, timeout).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:68: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putString(KEY_BLUETOOTH_ADDRESS, address).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:77: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putBoolean(KEY_BLUETOOTH_FALLBACK, enabled).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:86: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putInt(KEY_STREAM_QUALITY, quality).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:95: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putBoolean(KEY_AUTO_RECONNECT, enabled).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:104: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putInt(KEY_CONTROL_SENSITIVITY, sensitivity).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:113: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putBoolean(KEY_CONTROL_INVERT_PAN, invert).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:122: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putBoolean(KEY_CONTROL_INVERT_TILT, invert).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:131: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putInt(KEY_ZOOM_SENSITIVITY, sensitivity).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:140: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putBoolean(KEY_KEEP_SCREEN_ON, enabled).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:149: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putBoolean(KEY_DARK_MODE, enabled).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:158: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putBoolean(KEY_HIDE_CONTROLS, enabled).apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/utils/PreferenceManager.kt:167: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().clear().apply()
+        ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:245: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+        val uri = Uri.parse(url)
+                  ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseKtx":
+   The Android KTX libraries decorates the Android platform SDK as well as
+   various libraries with more convenient extension functions available from
+   Kotlin, allowing you to use default parameters, named parameters, and
+   more.
+
+   Available options:
+
+   **remove-defaults** (default is true):
+   Whether to skip arguments that match the defaults provided by the extension.
+
+   Extensions often provide default values for some of the parameters. For example:
+   ```kotlin
+   fun Path.readLines(charset: Charset = Charsets.UTF_8): List<String> { return Files.readAllLines(this, charset) }
+   ```
+   This lint check will by default automatically omit parameters that match the default, so if your code was calling ```kotlin
+   Files.readAllLines(file, Charset.UTF_8)
+   ```
+   lint would replace this with
+   ```kotlin
+   file.readLines()
+   ```
+   rather than
+   ```kotlin
+   file.readLines(Charset.UTF_8
+   ```
+   You can turn this behavior off using this option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="remove-defaults" value="true" />
+       </issue>
+   </lint>
+   ```
+
+   **require-present** (default is true):
+   Whether to only offer extensions already available.
+
+   This option lets you only have lint suggest extension replacements if those extensions are already available on the class path (in other words, you're already depending on the library containing the extension method.)
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="require-present" value="true" />
+       </issue>
+   </lint>
+   ```
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/JoystickView.kt:95: Warning: Custom view JoystickView overrides onTouchEvent but not performClick [ClickableViewAccessibility]
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+                 ~~~~~~~~~~~~
+
+   Explanation for issues of type "ClickableViewAccessibility":
+   If a View that overrides onTouchEvent or uses an OnTouchListener does not
+   also implement performClick and call it when clicks are detected, the View
+   may not handle accessibility actions properly. Logic handling the click
+   actions should ideally be placed in View#performClick as some accessibility
+   services invoke performClick when a click action should occur.
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/CameraControlFragment.kt:145: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        binding.tvPanSpeed.text = "Pan: $currentPanSpeed"
+                                  ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/CameraControlFragment.kt:145: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        binding.tvPanSpeed.text = "Pan: $currentPanSpeed"
+                                   ~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/CameraControlFragment.kt:146: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        binding.tvTiltSpeed.text = "Tilt: $currentTiltSpeed"
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/CameraControlFragment.kt:146: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        binding.tvTiltSpeed.text = "Tilt: $currentTiltSpeed"
+                                    ~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/CameraControlFragment.kt:147: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        binding.tvZoomLevel.text = "Zoom: $currentZoomLevel%"
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/control/CameraControlFragment.kt:147: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        binding.tvZoomLevel.text = "Zoom: $currentZoomLevel%"
+                                    ~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:83: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        textControlSensitivityValue.text = "${preferenceManager.getControlSensitivity()}%"
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:87: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                textControlSensitivityValue.text = "$progress%"
+                                                   ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:100: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        textZoomSensitivityValue.text = "${preferenceManager.getZoomSensitivity()}%"
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:104: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                textZoomSensitivityValue.text = "$progress%"
+                                                ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:171: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        textAppVersion.text = "App Version: ${packageInfo.versionName} (${packageInfo.versionCode})"
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/settings/SettingsFragment.kt:171: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        textAppVersion.text = "App Version: ${packageInfo.versionName} (${packageInfo.versionCode})"
+                               ~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:117: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                        binding.tvStreamStatus.text = "Streaming"
+                                                       ~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:121: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                        binding.tvStreamStatus.text = "Buffering..."
+                                                       ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:125: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                        binding.tvStreamStatus.text = "Stream ended"
+                                                       ~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:129: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                        binding.tvStreamStatus.text = "Idle"
+                                                       ~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:197: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    binding.tvStreamStatus.text = "No stream available"
+                                                   ~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:220: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        binding.tvStreamStatus.text = "Connecting to stream..."
+                                       ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:229: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    binding.tvStreamStatus.text = "Failed to get stream URL"
+                                                   ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:234: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                binding.tvStreamStatus.text = "Error: ${e.message}"
+                                              ~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:234: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                binding.tvStreamStatus.text = "Error: ${e.message}"
+                                               ~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:282: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        binding.tvStreamStatus.text = "Error: ${error.message}"
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/java/com/ptzcontroller/ui/stream/VideoStreamFragment.kt:282: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        binding.tvStreamStatus.text = "Error: ${error.message}"
+                                       ~~~~~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:38: Warning: Hardcoded string "Pan: 0", should use @string resource [HardcodedText]
+        android:text="Pan: 0"
+        ~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:47: Warning: Hardcoded string "Tilt: 0", should use @string resource [HardcodedText]
+        android:text="Tilt: 0"
+        ~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:56: Warning: Hardcoded string "Zoom: 0%", should use @string resource [HardcodedText]
+        android:text="Zoom: 0%"
+        ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:144: Warning: Hardcoded string "IR Mode", should use @string resource [HardcodedText]
+        android:text="IR Mode"
+        ~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:183: Warning: Hardcoded string "1-255", should use @string resource [HardcodedText]
+            android:hint="1-255"
+            ~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:218: Warning: Hardcoded string "1", should use @string resource [HardcodedText]
+            android:text="1" />
+            ~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:225: Warning: Hardcoded string "2", should use @string resource [HardcodedText]
+            android:text="2" />
+            ~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:232: Warning: Hardcoded string "3", should use @string resource [HardcodedText]
+            android:text="3" />
+            ~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_camera_control.xml:238: Warning: Hardcoded string "4", should use @string resource [HardcodedText]
+            android:text="4" />
+            ~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_connection.xml:38: Warning: Hardcoded string "192.168.1.100", should use @string resource [HardcodedText]
+            android:text="192.168.1.100" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_connection.xml:55: Warning: Hardcoded string "8000", should use @string resource [HardcodedText]
+            android:text="8000" />
+            ~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_settings.xml:35: Warning: Hardcoded string "Zoom Sensitivity", should use @string resource [HardcodedText]
+            android:text="Zoom Sensitivity"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_settings.xml:67: Warning: Hardcoded string "Low", should use @string resource [HardcodedText]
+                android:text="Low" />
+                ~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_settings.xml:73: Warning: Hardcoded string "Medium", should use @string resource [HardcodedText]
+                android:text="Medium" />
+                ~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_settings.xml:79: Warning: Hardcoded string "High", should use @string resource [HardcodedText]
+                android:text="High" />
+                ~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_settings.xml:104: Warning: Hardcoded string "Hide Controls", should use @string resource [HardcodedText]
+            android:text="Hide Controls" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_video_stream.xml:36: Warning: Hardcoded string "Status:", should use @string resource [HardcodedText]
+            android:text="Status:"
+            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_video_stream.xml:47: Warning: Hardcoded string "Disconnected", should use @string resource [HardcodedText]
+            android:text="Disconnected"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_video_stream.xml:59: Warning: Hardcoded string "Quality:", should use @string resource [HardcodedText]
+            android:text="Quality:"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_video_stream.xml:71: Warning: Hardcoded string "Medium", should use @string resource [HardcodedText]
+            android:text="Medium"
+            ~~~~~~~~~~~~~~~~~~~~~
+/Users/jbc-zeph21/Documents/jbc-zeph-23/Archon_Vision/ptz-camera-controller/app/src/main/res/layout/fragment_video_stream.xml:83: Warning: Hardcoded string "1280x720", should use @string resource [HardcodedText]
+            android:text="1280x720"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+13 errors, 156 warnings

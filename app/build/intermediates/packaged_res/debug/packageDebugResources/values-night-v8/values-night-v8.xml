@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#0D47A1</color>
+    <color name="colorPrimaryDark">#002171</color>
+    <color name="mode_ir">#BA68C8</color>
+    <color name="mode_rgb">#7986CB</color>
+    <color name="status_error">#E57373</color>
+    <color name="status_good">#81C784</color>
+    <color name="status_idle">#FFF59D</color>
+    <color name="text_hint">#61FFFFFF</color>
+    <color name="text_primary">#DEFFFFFF</color>
+    <color name="text_secondary">#99FFFFFF</color>
+    <style name="Theme.PTZCameraController" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/text_primary_dark</item>
+        
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent_dark</item>
+        <item name="colorOnSecondary">@color/text_primary_dark</item>
+        
+        <item name="android:statusBarColor">@color/background_dark</item>
+        
+        <item name="android:colorBackground">@color/background_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorOnSurface">@color/text_primary_dark</item>
+        <item name="colorOnBackground">@color/text_primary_dark</item>
+        
+        <item name="android:textColorPrimary">@color/text_primary_dark</item>
+        <item name="android:textColorSecondary">@color/text_secondary_dark</item>
+        <item name="android:textColorHint">@color/text_secondary_dark</item>
+        
+        <item name="android:navigationBarColor">@color/background_dark</item>
+        
+        <item name="android:windowLayoutInDisplayCutoutMode" ns1:targetApi="o_mr1">shortEdges</item>
+    </style>
+</resources>

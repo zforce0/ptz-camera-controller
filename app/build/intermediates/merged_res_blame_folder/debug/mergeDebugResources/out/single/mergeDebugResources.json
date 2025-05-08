@@ -1,0 +1,102 @@
+[
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/menu_bottom_navigation_menu.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/menu/bottom_navigation_menu.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/drawable_ic_video_stream.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/drawable/ic_video_stream.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/layout_fragment_settings.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/layout/fragment_settings.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/mipmap-mdpi_ic_launcher.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/mipmap-mdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/drawable_ic_camera_control.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/drawable/ic_camera_control.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/drawable_ic_connection.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/drawable/ic_connection.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/layout_fragment_connection.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/layout/fragment_connection.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/mipmap-xxhdpi_ic_launcher_round.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/mipmap-xxhdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/layout_fragment_camera_control.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/layout/fragment_camera_control.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/drawable_ic_settings.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/drawable/ic_settings.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/mipmap-xxhdpi_ic_launcher.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/mipmap-xxhdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/navigation_mobile_navigation.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/navigation/mobile_navigation.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/mipmap-hdpi_ic_launcher_round.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/mipmap-hdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/mipmap-xhdpi_ic_launcher_round.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/mipmap-xhdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/layout_activity_main.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/mipmap-xxxhdpi_ic_launcher_round.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/mipmap-xxxhdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/xml_backup_rules.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/mipmap-hdpi_ic_launcher.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/mipmap-hdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/xml_data_extraction_rules.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/mipmap-mdpi_ic_launcher_round.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/mipmap-mdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/layout_fragment_video_stream.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/layout/fragment_video_stream.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/layout_item_bluetooth_device.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/layout/item_bluetooth_device.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/mipmap-xhdpi_ic_launcher.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/mipmap-xhdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.ptzcontroller.app-debug-58:/mipmap-xxxhdpi_ic_launcher.xml.flat",
+        "source": "com.ptzcontroller.app-main-60:/mipmap-xxxhdpi/ic_launcher.xml"
+    }
+]
