@@ -44,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Set the toolbar as the ActionBar
+        setSupportActionBar(binding.toolbar)
+
         // Initialize the PreferenceManager
         preferenceManager = PreferenceManager(this)
 
