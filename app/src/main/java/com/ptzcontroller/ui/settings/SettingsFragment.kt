@@ -4,7 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.SeekBar
+import android.widget.Switch
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.ptzcontroller.R
@@ -15,8 +19,21 @@ class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-    
     private lateinit var preferenceManager: PreferenceManager
+
+    private lateinit var seekbarControlSensitivity: SeekBar
+    private lateinit var textControlSensitivityValue: TextView
+    private lateinit var seekbarZoomSensitivity: SeekBar
+    private lateinit var textZoomSensitivityValue: TextView
+    private lateinit var radioGroupStreamQuality: RadioGroup
+    private lateinit var radioLowQuality: RadioButton
+    private lateinit var radioMediumQuality: RadioButton
+    private lateinit var radioHighQuality: RadioButton
+    private lateinit var switchDarkMode: Switch
+    private lateinit var switchKeepScreenOn: Switch
+    private lateinit var switchHideControls: Switch
+    private lateinit var textAppVersion: TextView
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,62 +42,76 @@ class SettingsFragment : Fragment() {
     ): View {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         preferenceManager = PreferenceManager(requireContext())
-        
-        setupControlSettings()
-        setupDisplaySettings()
-        setupInformationSection()
-        
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        seekbarControlSensitivity = binding.seekbarControlSensitivity
+        textControlSensitivityValue = binding.textControlSensitivityValue
+        seekbarZoomSensitivity = binding.seekbarZoomSensitivity
+        textZoomSensitivityValue = binding.textZoomSensitivityValue
+        radioGroupStreamQuality = binding.radioGroupStreamQuality
+        radioLowQuality = binding.radioLowQuality
+        radioMediumQuality = binding.radioMediumQuality
+        radioHighQuality = binding.radioHighQuality
+        switchDarkMode = binding.switchDarkMode
+        switchKeepScreenOn = binding.switchKeepScreenOn
+        switchHideControls = binding.switchHideControls
+        textAppVersion = binding.textAppVersion
+
+        setupControlSensitivity()
+        setupZoomSensitivity()
+        setupStreamQuality()
+        setupDarkMode()
+        setupKeepScreenOn()
+        setupHideControls()
+        setupAppVersion()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-    
-    /**
-     * Set up control sensitivity settings
-     */
-    private fun setupControlSettings() {
-        // Control sensitivity
-        binding.seekbarControlSensitivity.progress = preferenceManager.getControlSensitivity()
-        binding.textControlSensitivityValue.text = "${preferenceManager.getControlSensitivity()}%"
-        
-        binding.seekbarControlSensitivity.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+
+    private fun setupControlSensitivity() {
+        seekbarControlSensitivity.progress = preferenceManager.getControlSensitivity()
+        textControlSensitivityValue.text = "${preferenceManager.getControlSensitivity()}%"
+
+        seekbarControlSensitivity.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                binding.textControlSensitivityValue.text = "$progress%"
+                textControlSensitivityValue.text = "$progress%"
             }
-            
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 seekBar?.let {
                     preferenceManager.setControlSensitivity(it.progress)
                 }
             }
         })
-        
-        // Zoom sensitivity
-        binding.seekbarZoomSensitivity.progress = preferenceManager.getZoomSensitivity()
-        binding.textZoomSensitivityValue.text = "${preferenceManager.getZoomSensitivity()}%"
-        
-        binding.seekbarZoomSensitivity.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+    }
+
+    private fun setupZoomSensitivity() {
+        seekbarZoomSensitivity.progress = preferenceManager.getZoomSensitivity()
+        textZoomSensitivityValue.text = "${preferenceManager.getZoomSensitivity()}%"
+
+        seekbarZoomSensitivity.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                binding.textZoomSensitivityValue.text = "$progress%"
+                textZoomSensitivityValue.text = "$progress%"
             }
-            
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 seekBar?.let {
                     preferenceManager.setZoomSensitivity(it.progress)
                 }
             }
         })
-        
-        // Stream quality
+    }
+
+    private fun setupStreamQuality() {
         val qualityValue = preferenceManager.getStreamQuality()
-        binding.radioGroupStreamQuality.check(
+        radioGroupStreamQuality.check(
             when (qualityValue) {
                 0 -> R.id.radioLowQuality
                 1 -> R.id.radioMediumQuality
@@ -88,8 +119,8 @@ class SettingsFragment : Fragment() {
                 else -> R.id.radioMediumQuality
             }
         )
-        
-        binding.radioGroupStreamQuality.setOnCheckedChangeListener { _, checkedId ->
+
+        radioGroupStreamQuality.setOnCheckedChangeListener { _, checkedId ->
             val quality = when (checkedId) {
                 R.id.radioLowQuality -> 0
                 R.id.radioMediumQuality -> 1
@@ -99,57 +130,45 @@ class SettingsFragment : Fragment() {
             preferenceManager.setStreamQuality(quality)
         }
     }
-    
-    /**
-     * Set up display settings
-     */
-    private fun setupDisplaySettings() {
-        // Dark mode
+
+    private fun setupDarkMode() {
         binding.switchDarkMode.isChecked = preferenceManager.getDarkMode()
         binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             preferenceManager.setDarkMode(isChecked)
-            
-            // Apply immediately
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
-        
-        // Keep screen on
-        binding.switchKeepScreenOn.isChecked = preferenceManager.getKeepScreenOn()
-        binding.switchKeepScreenOn.setOnCheckedChangeListener { _, isChecked ->
+    }
+
+    private fun setupKeepScreenOn() {
+        switchKeepScreenOn.isChecked = preferenceManager.getKeepScreenOn()
+        switchKeepScreenOn.setOnCheckedChangeListener { _, isChecked ->
             preferenceManager.setKeepScreenOn(isChecked)
-            
-            // Apply to activity
             if (isChecked) {
                 requireActivity().window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             } else {
                 requireActivity().window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             }
         }
-        
-        // Hide controls
-        binding.switchHideControls.isChecked = preferenceManager.getHideControls()
-        binding.switchHideControls.setOnCheckedChangeListener { _, isChecked ->
+    }
+
+    private fun setupHideControls() {
+        switchHideControls.isChecked = preferenceManager.getHideControls()
+        switchHideControls.setOnCheckedChangeListener { _, isChecked ->
             preferenceManager.setHideControls(isChecked)
         }
     }
-    
-    /**
-     * Set up version information
-     */
-    private fun setupInformationSection() {
-        // App version
+
+
+    private fun setupAppVersion() {
         val packageInfo = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
-        binding.textAppVersion.text = "App Version: ${packageInfo.versionName} (${packageInfo.versionCode})"
+        textAppVersion.text = "App Version: ${packageInfo.versionName} (${packageInfo.versionCode})"
     }
-    
+
     companion object {
-        /**
-         * Create a new instance of the fragment
-         */
         fun newInstance(): SettingsFragment {
             return SettingsFragment()
         }
