@@ -243,4 +243,47 @@ class ConnectionRepository(private val context: Context) {
         
         return@withContext true
     }
+    
+    /**
+     * Check if WiFi is connected to the camera server
+     * @return true if connected
+     */
+    suspend fun isWiFiConnected(): Boolean = withContext(Dispatchers.IO) {
+        return@withContext _connectionStatus.value == ConnectionStatus.CONNECTED && 
+                networkClient != null && 
+                networkClient?.testConnection() == true
+    }
+    
+    /**
+     * Get the stream URL from the server
+     * @return Stream URL or null if not available
+     */
+    suspend fun getStreamUrl(): String? = withContext(Dispatchers.IO) {
+        if (_connectionStatus.value != ConnectionStatus.CONNECTED) {
+            return@withContext null
+        }
+        
+        // Try to get stream URL from server
+        val command = JSONObject().apply {
+            put("command", "get_stream_url")
+            put("quality", preferenceManager.getStreamQuality())
+        }
+        
+        val response = networkClient?.sendCommand(command)
+        
+        if (response != null && response.has("stream_url")) {
+            return@withContext response.getString("stream_url")
+        }
+        
+        // Default RTSP URL format if server doesn't provide one
+        val ipAddress = preferenceManager.getWiFiIpAddress()
+        val port = 8554 // Default RTSP port
+        val quality = when (preferenceManager.getStreamQuality()) {
+            0 -> "low"
+            1 -> "medium"
+            else -> "high"
+        }
+        
+        return@withContext "rtsp://$ipAddress:$port/stream?quality=$quality"
+    }
 }
